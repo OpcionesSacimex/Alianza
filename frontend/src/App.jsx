@@ -12,8 +12,10 @@ function App() {
       {
         path: '/', element: <HomeLayout/>,
         children:[{
-          path:"login/", element: <AccesoPage/>
+          path:"/*", element: <AccesoPage/>
         }]
+      },{
+        path:"*", element:<Navigate replace="/login"/>
       }
     ]
   )
