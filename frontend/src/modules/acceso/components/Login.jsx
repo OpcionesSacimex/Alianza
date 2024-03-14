@@ -1,4 +1,4 @@
-import React from "react"
+import React,{useRef} from "react"
 import {PanelGrid} from "./../../../globalsComponents/panels/PanelGrid"
 import {PanelCenter} from "./../../../globalsComponents/panels/PanelCenter"
 import {Card} from "primereact/card"
@@ -7,9 +7,11 @@ import {InputNumber} from "primereact/inputnumber"
 import {Password} from "primereact/password"
 import {Button} from "primereact/button"
 import { useNavigate } from "react-router"
+import { OverlayPanel } from 'primereact/overlaypanel';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 const Login=()=>{
     const navigate = useNavigate()
-
+    const ov = useRef(null)
     const onRegister =(e)=>{
         navigate("/register",{replace:true})
     }
@@ -55,11 +57,11 @@ const Login=()=>{
                             <div className="mb-2">
                                 ¿No tienes una cuenta?
                             </div>
-                            <Button type="button" onClick={onRegister} label="Regístrate" link />
+                            <Button className="text-green-800" type="button" onClick={onRegister} label="Regístrate" link />
                             <div className="mb-2">
                                 ¿Olvidaste tu contraseña?
                             </div>
-                            <Button type="button" onClick={onKnowPass} label="Restablacer contraseña" link />
+                            <Button className="text-green-800" type="button" onClick={onKnowPass} label="Restablacer contraseña" link />
                             </PanelCenter>
                         </div>
                         </PanelGrid>
@@ -67,6 +69,14 @@ const Login=()=>{
                     </form>
                 </Card>
             </PanelCenter>
+            <div className="card flex">
+                <Button severity="success" onClick={(e) => ov.current.toggle(e)}>
+                    <FontAwesomeIcon rounded icon={"comments"}></FontAwesomeIcon>
+                </Button>
+                <OverlayPanel ref={ov}>
+                    
+                </OverlayPanel>
+            </div>
             </div>
             
         </>
