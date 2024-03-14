@@ -24,7 +24,7 @@ function App() {
       },{
         path: "/clientes", element: <HomeLayout/>,
         children:[{
-          path:"/*", element:<ClientesPage/>
+          path:"clientes/*", element:<ClientesPage/>
         }]
       },{
         path:"*", element:<Navigate replace="/login"/>
