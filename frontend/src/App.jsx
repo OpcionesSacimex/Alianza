@@ -22,12 +22,12 @@ function App() {
           path:"/*", element: <AccesoPage/>
         }]
       },{
-        path: "/clientes", element: <HomeLayout/>,
+        path: "/", element: <HomeLayout/>,
         children:[{
           path:"clientes/*", element:<ClientesPage/>
         }]
       },{
-        path:"*", element:<Navigate replace="/login"/>
+        path:"../", element:<Navigate replace to="/login"/>
       }
     ]
   )

@@ -8,7 +8,7 @@ export const AccesoPage = () => {
             <Routes>
                 <Route path='/login' element={<Login />}></Route>
                 <Route path='/register' element={<Register/>}></Route>
-                <Route path='*' element={<Navigate replace="/login"/>}></Route>
+                <Route path='*' element={<Navigate replace to="/login"/>}></Route>
             </Routes>
         </div>
     )
