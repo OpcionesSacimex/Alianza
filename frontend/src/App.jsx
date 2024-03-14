@@ -1,25 +1,22 @@
-import logo from './logo.svg';
+import React, {useContext, useEffect} from 'react'
+import {Navigate, useRoutes} from 'react-router-dom'
 import './App.css';
-
+import "primereact/resources/themes/lara-light-indigo/theme.css"
+import "primereact/resources/primereact.css"
+import "primeflex/primeflex.css"
+import {AccesoPage} from "./modules/acceso/pages/AccesoPage"
+import HomeLayout from "./layouts/Home/HomeLayout"
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  return useRoutes(
+    [
+      {
+        path: '/', element: <HomeLayout/>,
+        children:[{
+          path:"login/", element: <AccesoPage/>
+        }]
+      }
+    ]
+  )
 }
 
 export default App;
