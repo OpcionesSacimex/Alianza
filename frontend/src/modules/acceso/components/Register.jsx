@@ -58,7 +58,7 @@ const Registrate=()=>{
                                 términos y condiciones
                                 </a> y que has leído el <a href="#" onClick={(e)=>{
                                 setTitulo("Aviso de privacidad")
-                                setContent(<Terminos/>)
+                                setContent(<AvisoPrivacidad/>)
                                 setVisible(true)
                                 }}>Aviso de Privacidad</a> de sacimex
                         </div>
