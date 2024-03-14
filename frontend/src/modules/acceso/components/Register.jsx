@@ -14,8 +14,11 @@ const Registrate=()=>{
     const [content,setContent] = useState(<></>)
     return (
         <>
-            <ContentDialog titulo={titulo} closable={true} visible={visible} onHide={(e)=>{setVisible(false)}}>
-                {content}
+            <ContentDialog maxWidth={"600px"} titulo={titulo} closable={true} visible={visible} onHide={(e)=>{setVisible(false)}}>
+                <div className="m-5">
+                    {content}
+                </div>
+                
             </ContentDialog>
             <div className="mt-5 mb-6">
                 <PanelCenter>

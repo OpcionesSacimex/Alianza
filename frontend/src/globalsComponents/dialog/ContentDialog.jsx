@@ -2,7 +2,7 @@ import {Dialog} from "primereact/dialog"
 import React, {useState} from "react";
 import {PanelCenter} from "../panels/PanelCenter";
 
-export const ContentDialog = ({children,visible,onHide,footer,titulo,closable, className}) => {
+export const ContentDialog = ({children,visible,onHide,footer,titulo,closable, className,maxWidth}) => {
     const [dialogWidth] = useState(null);
 
     const templateTitleDialog=()=>{
@@ -22,7 +22,7 @@ export const ContentDialog = ({children,visible,onHide,footer,titulo,closable, c
                     onHide={onHide}
                     headerStyle={{height:"2px"}}
                     style={{
-                        maxWidth: "100%"
+                        maxWidth: maxWidth?maxWidth:"100%"
                     }}
                     footer={footer}
                     header={templateTitleDialog}
