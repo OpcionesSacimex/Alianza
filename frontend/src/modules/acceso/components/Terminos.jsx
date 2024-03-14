@@ -22,7 +22,13 @@ export const Terminos=()=>{
                 Los derechos de propiedad intelectual respecto de los Servicios y Contenidos y los signos distintivos y dominios prestados a través de, contenidos en o atingentes a, el Portal, así como los derechos de uso y explotación de los mismos, incluyendo en forma enunciativa pero no limitativa, su divulgación, modificación, transmisión, publicación, venta o comercialización, reproducción y/o distribución, son propiedad exclusiva de <label className="text-black-alpha-90 font-bold">Opciones Sacimex, S.A. de C.V. SOFOM E.N.R</label> y están protegidas por la normativa vigente en materia de propiedad intelectual. El Usuario no adquiere derecho alguno de propiedad intelectual por el simple uso de los Servicios y Contenidos del Portal y en ningún momento dicho uso será considerado como una autorización o una licencia para utilizar los Servicios y Contenidos con fines distintos a los expresamente previstos en los presentes Términos y Condiciones de Uso. En consecuencia, el Usuario EN NINGÚN CASO estará facultado para crear nuevas versiones, distribuir, exhibir o de cualquier forma explotar, cualquiera de los Contenidos desplegados a través de este Portal y que son propiedad exclusiva de <label className="text-black-alpha-90 font-bold">Opciones Sacimex, S.A. de C.V. SOFOM E.N.R</label>
                 </label>
             </div>
-            
+            <div className="mt-3">
+                <label className="text-md text-black-alpha-90 font-bold">Usos permitidos.</label>
+            </div>
+            <div className="mt-3">
+                <li><label className="text-md text-black-alpha-90 font-bold">Usos permitidos.</label></li>
+                
+            </div>
         </>
     )
 }
