@@ -5,6 +5,7 @@ import "primereact/resources/themes/lara-light-indigo/theme.css"
 import "primereact/resources/primereact.css"
 import "primeflex/primeflex.css"
 import {AccesoPage} from "./modules/acceso/pages/AccesoPage"
+import {ClientesPage} from "./modules/clientes/pages/ClientesPage"
 import HomeLayout from "./layouts/Home/HomeLayout"
 
 import {library} from '@fortawesome/fontawesome-svg-core'
@@ -19,6 +20,11 @@ function App() {
         path: '/', element: <HomeLayout/>,
         children:[{
           path:"/*", element: <AccesoPage/>
+        }]
+      },{
+        path: "/clientes", element: <HomeLayout/>,
+        children:[{
+          path:"/*", element:<ClientesPage/>
         }]
       },{
         path:"*", element:<Navigate replace="/login"/>
