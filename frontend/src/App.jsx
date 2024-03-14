@@ -6,6 +6,12 @@ import "primereact/resources/primereact.css"
 import "primeflex/primeflex.css"
 import {AccesoPage} from "./modules/acceso/pages/AccesoPage"
 import HomeLayout from "./layouts/Home/HomeLayout"
+
+import {library} from '@fortawesome/fontawesome-svg-core'
+import {
+  faComments
+} from '@fortawesome/free-solid-svg-icons'
+library.add(faComments)
 function App() {
   return useRoutes(
     [

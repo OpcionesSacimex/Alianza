@@ -8,10 +8,17 @@ import { ContentDialog } from "../../../globalsComponents/dialog/ContentDialog"
 import { useState } from "react"
 import {AvisoPrivacidad} from "./AvisoPrivacidad"
 import {Terminos} from "./Terminos"
+import { useNavigate } from "react-router"
+import { Button } from "primereact/button"
 const Registrate=()=>{
     const [visible,setVisible]=useState(false)
     const [titulo,setTitulo] = useState("")
     const [content,setContent] = useState(<></>)
+
+    const navigate=useNavigate()
+    const onCuenta=(e)=>{
+        navigate("/login",{replace:true})
+    }
     return (
         <>
             <ContentDialog maxWidth={"600px"} titulo={titulo} closable={true} visible={visible} onHide={(e)=>{setVisible(false)}}>
@@ -49,20 +56,23 @@ const Registrate=()=>{
                                 <label htmlFor="pass" className="text-xl">Confirmar Contraseña</label>
                             </span>
                         </div>
-                        <div className="col-12 mb-4">
-                            Al dar clic en "Registrarme" aceptas los <a href="#" onClick={(e)=>{
+                        <div className="col-12 mb-4 text-justify">
+                            Al dar clic en "Registrarme" aceptas los <a className="text-green-800" href="#" onClick={(e)=>{
                                 setTitulo("Terminos y condiciones")
                                 setContent(<Terminos/>)
                                 setVisible(true)
                                 }}>
                                 términos y condiciones
-                                </a> y que has leído el <a href="#" onClick={(e)=>{
+                                </a> y que has leído el <a href="#" className="text-green-800" onClick={(e)=>{
                                 setTitulo("Aviso de privacidad")
                                 setContent(<AvisoPrivacidad/>)
                                 setVisible(true)
                                 }}>Aviso de Privacidad</a> de sacimex
                         </div>
+                        
                         </PanelGrid>
+                            <label>¿Ya tienes cuenta?</label>
+                            <Button className="text-green-800" type="button" onClick={onCuenta} label="Iniciar sesion" link />
                         </PanelCenter>
                     </Card>
                 </PanelCenter>
