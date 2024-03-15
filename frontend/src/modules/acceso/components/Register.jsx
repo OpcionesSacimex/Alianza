@@ -31,8 +31,8 @@ const Registrate=()=>{
                 <PanelCenter>
                     <Card className="bg-gray-200 ml-6 mr-6 w-30rem">
                         <PanelCenter>
-                        <div class="flex flex-wrap align-items-center justify-content-center">
-                            <p class="text-center text-2xl text-green-800 font-bold">
+                        <div className="flex flex-wrap align-items-center justify-content-center">
+                            <p className="text-center text-2xl text-green-800 font-bold">
                                 Regístrate y obtén tu pre-aprobación en minutos.
                             </p>
                         </div> 
@@ -50,13 +50,19 @@ const Registrate=()=>{
                                 <label htmlFor="pass" className="text-xl">Contraseña</label>
                             </span>
                         </div>
-                        <div className="col-12 mb-4">
+                        <div className="col-12 mb-2">
                             <span className="p-float-label">
                                 <Password name="pass" placeholder="Contraseña" toggleMask />
                                 <label htmlFor="pass" className="text-xl">Confirmar Contraseña</label>
                             </span>
                         </div>
-                        <div className="col-12 mb-4 text-justify">
+                        <div className="col-12 mb-2">
+                            <PanelCenter>
+                                <Button className="w-min" severity="success">Registrarme</Button>
+                            </PanelCenter>
+                            
+                        </div>
+                        <div className="col-12 mb-3 text-justify">
                             Al dar clic en "Registrarme" aceptas los <a className="text-green-800" href="#" onClick={(e)=>{
                                 setTitulo("Terminos y condiciones")
                                 setContent(<Terminos/>)

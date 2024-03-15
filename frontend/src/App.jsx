@@ -10,9 +10,9 @@ import HomeLayout from "./layouts/Home/HomeLayout"
 
 import {library} from '@fortawesome/fontawesome-svg-core'
 import {
-  faComments
+  faComments,faHandHoldingDollar,faCommentsDollar
 } from '@fortawesome/free-solid-svg-icons'
-library.add(faComments)
+library.add(faComments,faHandHoldingDollar,faCommentsDollar)
 function App() {
   return useRoutes(
     [

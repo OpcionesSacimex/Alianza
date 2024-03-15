@@ -21,7 +21,7 @@ export const PasswordResetEmail = ()=>{
                         <label htmlFor="correo">Correo</label>
                     </span>
                     <div className="mt-3">
-                        <Button type="button">
+                        <Button severity="success" type="button">
                         Enviar enlace para restablecer contraseña
                         </Button>
                     </div>
