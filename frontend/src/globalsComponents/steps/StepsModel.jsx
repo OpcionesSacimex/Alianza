@@ -2,7 +2,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import { PanelCenter } from "../panels/PanelCenter";
 export const StepsModel =(item, itemIndex,activeIndex, setActiveIndex)=>{
     const isActiveItem = activeIndex === itemIndex;
-    const backgroundColor = isActiveItem ? 'var(--primary-color)' : 'var(--surface-b)';
+    const backgroundColor = isActiveItem ? 'var(--green-800)' : 'var(--surface-b)';
     const textColor = isActiveItem ? 'var(--surface-b)' : 'var(--text-color-secondary)';
 
     return (
@@ -15,7 +15,7 @@ export const StepsModel =(item, itemIndex,activeIndex, setActiveIndex)=>{
                     item.icon?<FontAwesomeIcon icon={item.icon} className="text-xl" />:<></>
                 }
             </span>
-            <label className="p-fluid text-white">{item.label}</label>
+            <label className="p-fluid text-black">{item.label}</label>
             </PanelCenter>
             
         </div>

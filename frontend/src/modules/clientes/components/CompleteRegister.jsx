@@ -6,6 +6,8 @@ import {CreditoDeseado} from "../template/CreditoDeseado"
 import { Card } from 'primereact/card';
 import {StepsModel} from "../../../globalsComponents/steps/StepsModel"
 import {useUpdateEffect} from "primereact/hooks"
+import { Divider } from 'primereact/divider';
+        
 export const CompleteRegister =()=>{
     const [activeIndex, setActiveIndex] = useState(0);
     const [content,setContent]=useState(<></>)
@@ -37,9 +39,15 @@ export const CompleteRegister =()=>{
         <>
             <PanelCenter>
                 <div className="card mb-4 w-full">
-                    <Steps className='bg-gray-800' model={items} activeIndex={activeIndex} onSelect={(e) => setActiveIndex(e.index)} readOnly={false}>   
+                    <Steps className='' model={items} activeIndex={activeIndex} onSelect={(e) => setActiveIndex(e.index)} readOnly={false}>   
                     </Steps>
+                    <Divider className='border-green-800 border-3' layout='horizontal'>
+                        <div className='w-full bg-green-800 h-full'>
+
+                        </div>
+                    </Divider>
                 </div>
+                
                 <div>
                     <PanelCenter>
                         <Card>
