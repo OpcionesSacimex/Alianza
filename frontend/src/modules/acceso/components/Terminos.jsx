@@ -1,8 +1,11 @@
+import { relativeTimeRounding } from "moment/moment"
 import { PanelCenter } from "../../../globalsComponents/panels/PanelCenter"
-
+import image from "../../../img/vrdsacinfondo.png"
 export const Terminos=()=>{
     return (
-        <>
+        <div className="font-bold" style={{
+            backgroundImage: `url(${image})`, backgroundRepeat:"repeat", backgroundSize:104,
+            }}>
             <PanelCenter>
                 <label className="text-green-900 text-2xl text-center font-bold">OPCIONES SACIMEX, S.A. DE C.V. SOFOM E.N.R. </label>
                 <label className="text-green-800 text-xl text-center font-bold"> TÉRMINOS Y CONDICIONES</label>
@@ -207,6 +210,6 @@ export const Terminos=()=>{
                 El presente Contrato se rige por las leyes mexicanas, para la interpretación, cumplimiento y ejecución del presente Contrato, las Partes se someten a los tribunales y Juzgados competentes del Estado de Oaxaca, renunciando expresamente a cualquier otro fuero que, por razón de sus domicilios, presentes o futuros, o por cualquier otra causa, pudiere corresponderles. <label className="text-green-800 font-bold">Opciones Sacimex, S.A. de C.V. SOFOM E.N.R.</label>, no realiza declaración u otorga garantía alguna en el sentido de que la información contenida en este Portal sea apropiada o disponible para ser utilizada en todos los países o jurisdicciones, y prohíbe accesar materiales desde territorios en donde los Servicios y Contenidos del Portal sean ilícitos. Aquellos Usuarios que acceden a este Portal, lo hacen por iniciativa propia y serán responsables de cumplir con las leyes aplicables en los lugares desde los cuales acceden al Portal.
                 </label>
             </div>
-        </>
+        </div>
     )
 }

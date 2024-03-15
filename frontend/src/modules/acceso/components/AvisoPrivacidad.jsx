@@ -1,7 +1,10 @@
 import { PanelCenter } from "../../../globalsComponents/panels/PanelCenter"
+import image from "../../../img/vrdsacinfondo.png"
 export const AvisoPrivacidad=()=>{
     return (
-        <>
+        <div className="font-bold" style={{
+            backgroundImage: `url(${image})`, backgroundRepeat:"repeat", backgroundSize:104,
+            }}>
             <PanelCenter>
                 <label className="text-green-800 text-xl font-bold">¿QUIÉN ES OPCIONES SACIMEX, S.A. de C.V. SOFOM E.N.R?</label>
             </PanelCenter>
@@ -142,6 +145,6 @@ export const AvisoPrivacidad=()=>{
                 </label>
             </div>
             
-        </>
+        </div>
     )
 }
