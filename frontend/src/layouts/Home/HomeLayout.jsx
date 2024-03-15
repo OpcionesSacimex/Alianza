@@ -3,10 +3,10 @@ import { useOutlet } from 'react-router-dom';
 import {PanelGrid} from "./../../globalsComponents/panels/PanelGrid"
 import {PanelCenter} from "./../../globalsComponents/panels/PanelCenter"
 import { Toolbar } from 'primereact/toolbar';
-import image from '../../img/sacinfondo.png'  
+import {URLStorage} from "../../utils/URLBackend"
 const HomeLayout = () => {
     const outlet = useOutlet();
-    const logo= "https://convenio.opcionessacimex.com/img/logo.png";
+    const logo= `${URLStorage}/img/image.png`
     const start = ()=>{
         return (
             <>
@@ -14,7 +14,7 @@ const HomeLayout = () => {
             <PanelGrid>
                 <div className="col-12 md:col-6">
                     <a href="https://convenio.opcionessacimex.com">
-                        <img alt="logo" src={image} heigth="80" width="250"></img>
+                        <img alt="logo" src={logo} heigth="80" width="250"></img>
                     </a>
                 </div>
             </PanelGrid>
