@@ -58,7 +58,7 @@ const Registrate=()=>{
                         </div>
                         <div className="col-12 mb-2">
                             <PanelCenter>
-                                <Button className="w-min" severity="success">Registrarme</Button>
+                                <Button className="w-min" style={{ background:'var(--green-800)'}} severity="success">Registrarme</Button>
                             </PanelCenter>
                             
                         </div>
