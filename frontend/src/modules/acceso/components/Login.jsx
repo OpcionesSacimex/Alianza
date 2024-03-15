@@ -1,4 +1,4 @@
-import React,{useRef} from "react"
+import React,{useRef, useState} from "react"
 import {PanelGrid} from "./../../../globalsComponents/panels/PanelGrid"
 import {PanelCenter} from "./../../../globalsComponents/panels/PanelCenter"
 import {Card} from "primereact/card"
@@ -9,19 +9,28 @@ import {Button} from "primereact/button"
 import { useNavigate } from "react-router"
 import { OverlayPanel } from 'primereact/overlaypanel';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { ContentDialog } from "../../../globalsComponents/dialog/ContentDialog"
+import { PasswordResetEmail } from "./PasswordResetEmail"
 const Login=()=>{
     const navigate = useNavigate()
     const ov = useRef(null)
+    const [visible,setVisible]=useState(false)
+
     const onRegister =(e)=>{
         navigate("/register",{replace:true})
     }
     const onKnowPass =(e)=>{
-        
+        setVisible(true)
     }
-
+    const onSubmit=(data)=>{
+        navigate("/clientes/solicitud",{replace:true})
+    }
     
     return (
         <>
+            <ContentDialog titulo={"Restablecer contraseña"} visible={visible} closable={true} onHide={(e)=>{setVisible(false)}}>
+                <PasswordResetEmail/>
+            </ContentDialog>
             <div className="mt-5 mb-6">
             <PanelCenter>
                 <Card className="bg-gray-200 ml-6 mr-6 w-30rem">
@@ -53,7 +62,7 @@ const Login=()=>{
                         </div>
                         <div className="col-12">
                             <PanelCenter className="mb-2">
-                            <Button className="mb-2" label="Ingresar" severity="success" rounded />
+                            <Button className="mb-2" label="Ingresar" onClick={onSubmit} severity="success" rounded />
                             <div className="mb-2">
                                 ¿No tienes una cuenta?
                             </div>
