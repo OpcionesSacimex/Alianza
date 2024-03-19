@@ -62,7 +62,7 @@ const Login=()=>{
                         </div>
                         <div className="col-12">
                             <PanelCenter className="mb-2">
-                            <Button className="mb-2" label="Ingresar" onClick={onSubmit} severity="success" rounded />
+                            <Button className="mb-2" style={{ background:'var(--green-800)'}} label="Ingresar" onClick={onSubmit} severity="success" rounded />
                             <div className="mb-2">
                                 ¿No tienes una cuenta?
                             </div>
