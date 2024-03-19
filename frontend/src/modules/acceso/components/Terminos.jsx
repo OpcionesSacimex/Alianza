@@ -4,10 +4,10 @@ import image from "../../../img/vrdsacinfondo.png"
 export const Terminos=()=>{
     return (
         <div className="font-bold" style={{
-            backgroundImage: `url(${image})`, backgroundRepeat:"repeat", backgroundSize:104,
+            backgroundImage: `url(${image})`, backgroundRepeat:"repeat", backgroundSize:104, 
             }}>
             <PanelCenter>
-                <label className="text-green-900 text-2xl text-center font-bold">OPCIONES SACIMEX, S.A. DE C.V. SOFOM E.N.R. </label>
+                <label className="text-green-900 text-2xl text-center font-bold"> OPCIONES SACIMEX, S.A. DE C.V. SOFOM E.N.R. </label>
                 <label className="text-green-800 text-xl text-center font-bold"> TÉRMINOS Y CONDICIONES</label>
             </PanelCenter>
             <div className="mt-3">

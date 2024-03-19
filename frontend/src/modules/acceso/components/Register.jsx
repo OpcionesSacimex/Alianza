@@ -29,7 +29,7 @@ const Registrate=()=>{
             </ContentDialog>
             <div className="mt-5 mb-6">
                 <PanelCenter>
-                    <Card className="bg-gray-200 ml-6 mr-6 w-30rem">
+                    <Card className="bg-gray-200 ml-6 mr-6 w-30rem shadow-7">
                         <PanelCenter>
                         <div className="flex flex-wrap align-items-center justify-content-center">
                             <p className="text-center text-2xl text-green-800 font-bold">

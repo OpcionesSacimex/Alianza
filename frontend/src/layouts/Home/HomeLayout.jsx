@@ -6,7 +6,6 @@ import { Toolbar } from 'primereact/toolbar';
 import image from '../../img/sacinfondo.png'  
 const HomeLayout = () => {
     const outlet = useOutlet();
-    const logo= `${URLStorage}/img/image.png`
     const start = ()=>{
         return (
             <>
@@ -14,7 +13,7 @@ const HomeLayout = () => {
             <PanelGrid>
                 <div className="col-12 md:col-6">
                     <a href="https://convenio.opcionessacimex.com">
-                        <img alt="logo" src={logo} heigth="80" width="250"></img>
+                        <img alt="logo" src={image} heigth="70" width="240"></img>
                     </a>
                 </div>
             </PanelGrid>
@@ -27,8 +26,8 @@ const HomeLayout = () => {
             <>
                 <div className="col-12">
                     <PanelCenter>
-                    <div className="">
-                    <label className="text-2xl font-bold mt-4 text-white"> Tu crédito de confianza. </label>
+                    <div className="mt-2">
+                    <label className="text-2xl font-bold text-white font-italic"> Tu crédito de confianza. </label>
                     </div>
                     </PanelCenter>    
                 </div>  
@@ -37,7 +36,7 @@ const HomeLayout = () => {
     }
     return (
         <div> 
-            <Toolbar className='bg-green-800' start={start} end={end}/>
+            <Toolbar className='bg-green-800 shadow-3' start={start} end={end}/>
             {outlet}
         </div>
     )
