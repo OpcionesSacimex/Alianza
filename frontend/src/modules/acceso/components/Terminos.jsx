@@ -1,4 +1,3 @@
-import { relativeTimeRounding } from "moment/moment"
 import { PanelCenter } from "../../../globalsComponents/panels/PanelCenter"
 import {URLStorage} from "../../../utils/URLBackend"
 export const Terminos=()=>{
