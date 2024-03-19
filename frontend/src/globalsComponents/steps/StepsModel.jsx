@@ -6,7 +6,7 @@ export const StepsModel =(item, itemIndex,activeIndex, setActiveIndex)=>{
     const textColor = isActiveItem ? 'var(--surface-b)' : 'var(--text-color-secondary)';
 
     return (
-        <div className="mt-4 mb-2">
+        <div className="mt-6 mb-2">
             <PanelCenter>
             <span className="inline-flex align-items-center justify-content-center align-items-center border-circle border-primary border-1 h-3rem w-3rem z-1 cursor-pointer"
             style={{ backgroundColor: backgroundColor, color: textColor, marginTop: '-25px' }}

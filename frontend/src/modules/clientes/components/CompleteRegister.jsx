@@ -1,5 +1,5 @@
 
-import React,{useState} from 'react';
+import React,{useState,useRef} from 'react';
 import { Steps } from 'primereact/steps';
 import { PanelCenter } from '../../../globalsComponents/panels/PanelCenter';
 import {CreditoDeseado} from "../template/CreditoDeseado"
@@ -11,6 +11,7 @@ import { Divider } from 'primereact/divider';
 export const CompleteRegister =()=>{
     const [activeIndex, setActiveIndex] = useState(0);
     const [content,setContent]=useState(<></>)
+    const toast = useRef(null);
     const items = [
         {
             label: 'Credito',
@@ -38,11 +39,12 @@ export const CompleteRegister =()=>{
         <>
             <PanelCenter>
                 <div className="card mb-4 w-full">
-                    <Divider className='border-green-800 border-3' layout='horizontal'>
-                    </Divider>
                     <Steps className='' model={items} activeIndex={activeIndex} onSelect={(e) => setActiveIndex(e.index)} readOnly={false}>   
                     </Steps>
                     <Divider className='border-green-800 border-3' layout='horizontal'>
+                        <div className='w-full bg-green-800 h-full'>
+
+                        </div>
                     </Divider>
                 </div>
                 

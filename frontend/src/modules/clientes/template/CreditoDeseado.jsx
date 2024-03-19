@@ -1,4 +1,6 @@
 import { PanelCenter } from "../../../globalsComponents/panels/PanelCenter"
+import { PanelGrid } from "../../../globalsComponents/panels/PanelGrid"
+import {Card} from "primereact/card"
 import {InputNumber} from "primereact/inputnumber"
 export const CreditoDeseado =()=>{
     return (
