@@ -6,6 +6,7 @@ import { Toolbar } from 'primereact/toolbar';
 import {URLStorage} from "../../utils/URLBackend"
 const HomeLayout = () => {
     const outlet = useOutlet();
+    const logo= `${URLStorage}/img/sacinfondo.png`
     const start = ()=>{
         return (
             <>
@@ -13,7 +14,7 @@ const HomeLayout = () => {
             <PanelGrid>
                 <div className="col-12 md:col-6">
                     <a href="https://convenio.opcionessacimex.com">
-                        <img alt="logo" src={image} heigth="70" width="240"></img>
+                        <img alt="logo" src={logo} heigth="80" width="250"></img>
                     </a>
                 </div>
             </PanelGrid>
