@@ -1,6 +1,7 @@
 import { PanelCenter } from "../../../globalsComponents/panels/PanelCenter"
-import image from "../../../img/vrdsacinfondo.png"
+import {URLStorage} from "../../../utils/URLBackend"
 export const AvisoPrivacidad=()=>{
+    const image = `${URLStorage}/img/vrdsacinfondo.png`
     return (
         <div className="font-bold" style={{
             backgroundImage: `url(${image})`, backgroundRepeat:"repeat", backgroundSize:104,
