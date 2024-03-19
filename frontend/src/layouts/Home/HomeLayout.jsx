@@ -3,10 +3,10 @@ import { useOutlet } from 'react-router-dom';
 import {PanelGrid} from "./../../globalsComponents/panels/PanelGrid"
 import {PanelCenter} from "./../../globalsComponents/panels/PanelCenter"
 import { Toolbar } from 'primereact/toolbar';
-import image from '../../img/sacinfondo.png'  
+import {URLStorage} from "../../utils/URLBackend"
 const HomeLayout = () => {
     const outlet = useOutlet();
-    const logo= `${URLStorage}/img/sacinfondo.png`
+    const logo= `${URLStorage}/img/image.png`
     const start = ()=>{
         return (
             <>

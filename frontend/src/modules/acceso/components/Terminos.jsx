@@ -1,7 +1,7 @@
-import { relativeTimeRounding } from "moment/moment"
 import { PanelCenter } from "../../../globalsComponents/panels/PanelCenter"
-import image from "../../../img/vrdsacinfondo.png"
+import {URLStorage} from "../../../utils/URLBackend"
 export const Terminos=()=>{
+    const image = `${URLStorage}/img/vrdsacinfondo`
     return (
         <div className="font-bold" style={{
             backgroundImage: `url(${image})`, backgroundRepeat:"repeat", backgroundSize:104, 
