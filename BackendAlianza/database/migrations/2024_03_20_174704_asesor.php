@@ -11,7 +11,7 @@ return new class extends Migration
     {
         Schema::create('asesor', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("persona_id")->nullable(true)->references('id')->on('persona');
+            $table->foreignId("persona_id")->nullable(false)->references('id')->on('persona');
             $table->foreignId("usuario_id")->nullable(false)->references('id')->on('usuario');
         });
     }

@@ -8,7 +8,7 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('direcciones', function (Blueprint $table) {
+        Schema::create('direccion', function (Blueprint $table) {
             $table->id();
             $table->string("calle",45);
             $table->string("no_exterior",8);
@@ -22,6 +22,6 @@ return new class extends Migration
 
     public function down(): void
     {
-        Schema::drop('direcciones');
+        Schema::drop('direccion');
     }
 };
