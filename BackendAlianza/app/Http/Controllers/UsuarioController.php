@@ -14,14 +14,9 @@ class UsuarioController extends Controller
         ],200);
     }
     public function store(Request $request){
-        Usuario::create([
-            "correo"=>$request->correo,
-            "password"=>$request->password,
-            
-        ]);
-
         return response()->json([
             'status'=>true,
+            'ARES'=>"NOP"
         ],200);
     }
     public function show($id){
