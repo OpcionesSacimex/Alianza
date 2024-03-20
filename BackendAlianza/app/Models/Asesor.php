@@ -11,11 +11,11 @@ class Asesor extends Model
     use HasFactory;
 
     protected $filltable = [
-        "usuario_idUsuario",
-        "persona_idPersona"
+        "usuario_id",
+        "persona_id"
     ];
     protected $table="asesor";
-    protected $primaryKey = "idAsesor";
+    protected $primaryKey = "id";
     public $incrementing = true;
     public $timestamps = false;
 

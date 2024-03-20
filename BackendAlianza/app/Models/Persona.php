@@ -16,7 +16,7 @@ class Persona extends Model
         "telefono"
     ];
     protected $table="persona";
-    protected $primaryKey = "idPersona";
+    protected $primaryKey = "id";
     public $incrementing = true;
     public $timestamps = false;
 

@@ -14,7 +14,7 @@ class Aval extends Model
         "clientes_idClientes"
     ];
     protected $table="aval";
-    protected $primaryKey = "idAval";
+    protected $primaryKey = "id";
     public $incrementing = true;
     public $timestamps = false;
 

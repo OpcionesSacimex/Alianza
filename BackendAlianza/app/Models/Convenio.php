@@ -11,12 +11,12 @@ class Convenio extends Model
 
     protected $fillable = [
         "nombre_Conv",
-        "asesor_idAsesor",
+        "asesor_id",
         "taza"
     ];
 
     protected $table="convenio";
-    protected $primaryKey = "idConvenio";
+    protected $primaryKey = "id";
     public $incrementing = false;
     public $timestamps = false;
 
