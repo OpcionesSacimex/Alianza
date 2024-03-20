@@ -37,7 +37,7 @@ const HomeLayout = () => {
     }
     return (
         <div> 
-            <Toolbar className='bg-green-800 shadow-3' style={{height:"5rem"}} start={start} end={end}/>
+            <Toolbar className='bg-green-800 shadow-3 sticky top-0' style={{height:"5rem"}} start={start} end={end}/>
             {outlet}
         </div>
     )
