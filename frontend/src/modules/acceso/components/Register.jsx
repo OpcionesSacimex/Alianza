@@ -60,11 +60,15 @@ const Registrate=()=>{
                             
                         </div>
                         <div className="col-12 mb-4">
-                            <Controller control={control} />
-                            <span className="p-float-label">
-                                <Password name="pass" placeholder="Contraseña" toggleMask />
-                                <label htmlFor="pass" className="text-xl">Contraseña</label>
-                            </span>
+                            <Controller control={control} name="password" render={({field,fieldState})=>(
+                                <>
+                                    <span className="p-float-label">
+                                        <Password name={field.name} value={field.value} onChange={field.onChange} placeholder="Contraseña" toggleMask />
+                                        <label htmlFor="pass" className="text-xl">Contraseña</label>
+                                    </span>
+                                </>
+                            )}/>
+                            
                         </div>
                         <div className="col-12 mb-2">
                             <span className="p-float-label">
