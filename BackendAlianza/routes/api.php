@@ -1,6 +1,7 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsuarioController;
 
-Route::post('/new_user', [UsuarioController::class,"store"]);
+Route::post('/user',[UsuarioController::class,'store']);;
