@@ -58,9 +58,9 @@ const Registrate=()=>{
                                 </>
                             )}/>
                             
-                            
                         </div>
                         <div className="col-12 mb-4">
+                            <Controller control={control} />
                             <span className="p-float-label">
                                 <Password name="pass" placeholder="Contraseña" toggleMask />
                                 <label htmlFor="pass" className="text-xl">Contraseña</label>
