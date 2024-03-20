@@ -9,11 +9,11 @@ class Usuario extends Model
 {
     use HasFactory;
     protected $fillable = [
-        "corre_user",
+        "correo",
         "password"
     ];
     protected $table="usuario";
-    protected $primaryKey = "idUsuario";
+    protected $primaryKey = "id";
     public $incrementing = true;
     public $timestamps = false;
 

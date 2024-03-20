@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use \Illuminate\Database\Eloquent\Relations\HasOne;
 
 class direcciones extends Model
 {
@@ -18,11 +19,11 @@ class direcciones extends Model
         "longitud"
     ];
     protected $table="direcciones";
-    protected $primarykey="id_direcciones";
+    protected $primarykey="id";
     public $incrementing= true;
     public $timestamps=false;
 
-    public function direcciones(){
-        return $this->hasMany("","","");
+    public function cliente(): HasOne{
+        return $this->hasOne(Cliente::class);
     }
 }

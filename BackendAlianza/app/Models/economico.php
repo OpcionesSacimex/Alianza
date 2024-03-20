@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use \Illuminate\Database\Eloquent\Relations\HasOne;
 
 class economico extends Model
 {
@@ -16,7 +17,11 @@ class economico extends Model
         "clabe_int",
     ];
     protected $table="economico";
-    protected $primarykey="id_economico";
+    protected $primarykey="id";
     public $incrementing= true;
     public $timestamps=false;
+
+    public function cliente(): HasOne{
+        return $this->hasOne(Cliente::class);
+    }
 }
