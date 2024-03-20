@@ -10,8 +10,8 @@ class Aval extends Model
     use HasFactory;
 
     protected $fillable = [
-        "persona_idPersona",
-        "clientes_idClientes"
+        "persona_id",
+        "clientes_id"
     ];
     protected $table="aval";
     protected $primaryKey = "id";

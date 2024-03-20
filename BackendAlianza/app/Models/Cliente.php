@@ -11,6 +11,16 @@ class Cliente extends Model
 {
     use HasFactory;
 
+    protected $fillable=[
+        "usuario_id",
+        "persona_id",
+        "direccion_id",
+        "economico_id"
+    ];
+    protected $table="cliente";
+    protected $primaryKey = "id";
+    public $incrementing = true;
+    public $timestamps = false;
     public function usuario(): BelongsTo{
         return $this->belongsTo(Usuario::class);
     }
