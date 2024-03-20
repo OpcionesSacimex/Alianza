@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use \Illuminate\Database\Eloquent\Relations\HasOne;
 
-class direcciones extends Model
+class Direccion extends Model
 {
     use HasFactory;
     protected $fillable = [
@@ -18,7 +18,7 @@ class direcciones extends Model
         "latitud", 
         "longitud"
     ];
-    protected $table="direcciones";
+    protected $table="direccion";
     protected $primarykey="id";
     public $incrementing= true;
     public $timestamps=false;
