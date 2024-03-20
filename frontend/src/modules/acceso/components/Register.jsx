@@ -10,12 +10,19 @@ import {AvisoPrivacidad} from "./AvisoPrivacidad"
 import {Terminos} from "./Terminos"
 import { useNavigate } from "react-router"
 import { Button } from "primereact/button"
+import {Controller,useForm} from "react-hook-form"
 const Registrate=()=>{
     const [visible,setVisible]=useState(false)
     const [titulo,setTitulo] = useState("")
     const [content,setContent] = useState(<></>)
 
+    const {control,setValue,getValues,reset,handleSubmit,formState:{errors}} =useForm()
     const navigate=useNavigate()
+
+    const onSubmit=(data)=>{
+        console.log(data)
+    }
+
     const onCuenta=(e)=>{
         navigate("/login",{replace:true})
     }
@@ -30,6 +37,7 @@ const Registrate=()=>{
             <div className="mt-5 mb-6">
                 <PanelCenter>
                     <Card className="bg-gray-200 ml-6 mr-6 w-30rem shadow-7">
+                    <form onSubmit={handleSubmit(onSubmit)}>
                         <PanelCenter>
                         <div className="flex flex-wrap align-items-center justify-content-center">
                             <p className="text-center text-2xl text-green-800 font-bold">
@@ -37,11 +45,19 @@ const Registrate=()=>{
                             </p>
                         </div> 
                         <PanelGrid className="mt-5">
+                        
                         <div className="col-12 mb-4">
-                            <span className="p-float-label">
-                                <InputText name="correo" placeholder="ejemplo@ejemplo.com"/>
-                                <label htmlFor="correo" className="text-xl">Correo electrónico</label>
-                            </span>
+                            <Controller rules={{
+                                required:"Es requerido"
+                            }} control={control} name="correo" render={({field,fieldState})=>(
+                                <>
+                                    <span className="p-float-label">
+                                        <InputText name={field.name} value={field.value} onChange={field.onChange} placeholder="ejemplo@ejemplo.com"/>
+                                        <label htmlFor="correo" className="text-xl">Correo electrónico</label>
+                                    </span>
+                                </>
+                            )}/>
+                            
                             
                         </div>
                         <div className="col-12 mb-4">
@@ -60,7 +76,6 @@ const Registrate=()=>{
                             <PanelCenter>
                                 <Button className="w-min" style={{ background:'var(--green-800)'}} severity="success">Registrarme</Button>
                             </PanelCenter>
-                            
                         </div>
                         <div className="col-12 mb-3 text-justify">
                             Al dar clic en "Registrarme" aceptas los <a className="text-green-800" href="#" onClick={(e)=>{
@@ -80,6 +95,7 @@ const Registrate=()=>{
                             <label>¿Ya tienes cuenta?</label>
                             <Button className="text-green-800" type="button" onClick={onCuenta} label="Iniciar sesion" link />
                         </PanelCenter>
+                        </form>
                     </Card>
                 </PanelCenter>
             </div>
