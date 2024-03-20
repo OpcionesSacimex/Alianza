@@ -17,7 +17,6 @@ class UsuarioController extends Controller
         Usuario::create([
             "correo"=>$request->correo,
             "password"=>$request->password,
-            
         ]);
 
         return response()->json([

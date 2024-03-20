@@ -63,7 +63,7 @@ const Registrate=()=>{
                             <Controller control={control} name="password" render={({field,fieldState})=>(
                                 <>
                                     <span className="p-float-label">
-                                        <Password name={field.name} value={field.value} onChange={field.onChange} placeholder="Contraseña" toggleMask />
+                                        <Password strongLabel="Fuerte" weakLabel="Debil" mediumLabel="Medio" promptLabel="Introdusca su contraseña" name={field.name} value={field.value} onChange={field.onChange} placeholder="Contraseña" toggleMask />
                                         <label htmlFor="pass" className="text-xl">Contraseña</label>
                                     </span>
                                 </>
