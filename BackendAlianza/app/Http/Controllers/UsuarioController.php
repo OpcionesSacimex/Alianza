@@ -18,6 +18,7 @@ class UsuarioController extends Controller
             "correo"=>$request->correo,
             "password"=>bcrypt($request->password),
         ]);
+        
         return response()->json([
             'status'=>true,
             'Ares'=>"sads"
