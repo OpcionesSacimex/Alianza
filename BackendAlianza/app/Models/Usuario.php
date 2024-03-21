@@ -5,7 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use \Illuminate\Database\Eloquent\Relations\HasOne;
-class Usuario extends Model
+use Laravel\Sanctum\HasApiTokens;
+use Tymon\JWTAuth\Contracts\JWTSubject;
+
+class Usuario extends Model implements JWTSubject
 {
     use HasFactory;
     protected $fillable = [
@@ -22,5 +25,15 @@ class Usuario extends Model
     }
     public function cliente (): HasOne{
         return $this->hasOne(Cliente::class);
+    }
+
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    public function getJWTCustomClaims()
+    {
+        return [];
     }
 }
