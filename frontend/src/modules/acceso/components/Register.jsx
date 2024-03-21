@@ -17,6 +17,7 @@ const Registrate=()=>{
     const [visible,setVisible]=useState(false)
     const [titulo,setTitulo] = useState("")
     const [content,setContent] = useState(<></>)
+    const [password,setPassword]=useState("")
 
     const {control,setValue,getValues,reset,handleSubmit,formState:{errors}} =useForm()
     const navigate=useNavigate()
@@ -65,19 +66,22 @@ const Registrate=()=>{
                             
                         </div>
                         <div className="col-12 mb-4">
-                            <Controller control={control} name="password" render={({field,fieldState})=>(
+                            <Controller rules={{
+                                required:"La contraseña es requerida"
+                            }} control={control} name="password" render={({field,fieldState})=>(
                                 <>
                                     <span className="p-float-label">
                                         <Password strongLabel="Fuerte" weakLabel="Debil" mediumLabel="Medio" promptLabel="Introdusca su contraseña" name={field.name} value={field.value||""} onChange={field.onChange} placeholder="Contraseña" toggleMask />
                                         <LabelForm htmlFor={field.name} status={fieldState.invalid} required={true}>Contraseña</LabelForm>
                                     </span>
+                                    <ErrorLabel name={field.name} errors={errors}></ErrorLabel>
                                 </>
                             )}/>
                             
                         </div>
                         <div className="col-12 mb-2">
                             <span className="p-float-label">
-                                <Password name="pass" placeholder="Contraseña" toggleMask />
+                                <Password value={password} onChange={e=>{setPassword(e.target.value)}} name="pass" placeholder="Contraseña" toggleMask />
                                 <LabelForm htmlFor={"pass"} required={true}>Confirmar Contraseña</LabelForm>
                             </span>
                         </div>
