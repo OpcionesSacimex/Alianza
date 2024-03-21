@@ -20,7 +20,7 @@ class UsuarioController extends Controller
         ]);
         return response()->json([
             'status'=>true,
-            'ARES'=>"NOP"
+            'Ares'=>"sads"
         ],200);
     }
     public function show($id){

@@ -23,7 +23,6 @@ const Registrate=()=>{
 
     const onSubmit=async(data)=>{
         const res = await createUser(data)
-        console.log(res)
     }
 
     const onCuenta=(e)=>{
