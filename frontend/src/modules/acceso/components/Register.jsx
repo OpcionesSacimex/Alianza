@@ -12,6 +12,7 @@ import { useNavigate } from "react-router"
 import { Button } from "primereact/button"
 import {Controller,useForm} from "react-hook-form"
 import {LabelForm,ErrorLabel} from "../../../globalsComponents/msg/LabelForm"
+import {createUser} from "../handle/handleAcceso"
 const Registrate=()=>{
     const [visible,setVisible]=useState(false)
     const [titulo,setTitulo] = useState("")
@@ -20,8 +21,9 @@ const Registrate=()=>{
     const {control,setValue,getValues,reset,handleSubmit,formState:{errors}} =useForm()
     const navigate=useNavigate()
 
-    const onSubmit=(data)=>{
-        console.log(data)
+    const onSubmit=async(data)=>{
+        const res = await createUser(data)
+        console.log(res)
     }
 
     const onCuenta=(e)=>{

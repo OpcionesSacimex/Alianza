@@ -55,6 +55,7 @@ export const postNotTokenJson = async (URL, data) => {
                     "Content-Type": 'application/json'
                 },
             })
+            console.log(res)
         if (res.error) {
             return res;
         } else {
