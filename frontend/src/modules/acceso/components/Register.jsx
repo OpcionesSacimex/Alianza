@@ -11,6 +11,7 @@ import {Terminos} from "./Terminos"
 import { useNavigate } from "react-router"
 import { Button } from "primereact/button"
 import {Controller,useForm} from "react-hook-form"
+import {LabelForm,ErrorLabel} from "../../../globalsComponents/msg/LabelForm"
 const Registrate=()=>{
     const [visible,setVisible]=useState(false)
     const [titulo,setTitulo] = useState("")
@@ -53,8 +54,11 @@ const Registrate=()=>{
                                 <>
                                     <span className="p-float-label">
                                         <InputText name={field.name} value={field.value} onChange={field.onChange} placeholder="ejemplo@ejemplo.com"/>
-                                        <label htmlFor="correo" className="text-xl">Correo electrónico</label>
+                                        <LabelForm htmlFor={field.name} status={fieldState.invalid} required={true}>
+                                            Correo electrónico
+                                        </LabelForm>
                                     </span>
+                                    <ErrorLabel name={field.name} errors={errors}></ErrorLabel>
                                 </>
                             )}/>
                             
@@ -64,7 +68,7 @@ const Registrate=()=>{
                                 <>
                                     <span className="p-float-label">
                                         <Password strongLabel="Fuerte" weakLabel="Debil" mediumLabel="Medio" promptLabel="Introdusca su contraseña" name={field.name} value={field.value} onChange={field.onChange} placeholder="Contraseña" toggleMask />
-                                        <label htmlFor="pass" className="text-xl">Contraseña</label>
+                                        <LabelForm htmlFor={field.name} status={fieldState.invalid} required={true}>Contraseña</LabelForm>
                                     </span>
                                 </>
                             )}/>
@@ -73,7 +77,7 @@ const Registrate=()=>{
                         <div className="col-12 mb-2">
                             <span className="p-float-label">
                                 <Password name="pass" placeholder="Contraseña" toggleMask />
-                                <label htmlFor="pass" className="text-xl">Confirmar Contraseña</label>
+                                <LabelForm htmlFor={"pass"} required={true}>Confirmar Contraseña</LabelForm>
                             </span>
                         </div>
                         <div className="col-12 mb-2">
