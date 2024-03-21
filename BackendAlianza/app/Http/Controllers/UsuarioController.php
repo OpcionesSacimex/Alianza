@@ -16,7 +16,7 @@ class UsuarioController extends Controller
     public function store(Request $request){
         Usuario::create([
             "correo"=>$request->correo,
-            "password"=>$request->password,
+            "password"=>bcrypt($request->password),
         ]);
         return response()->json([
             'status'=>true,

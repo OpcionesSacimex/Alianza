@@ -24,6 +24,8 @@ const Registrate=()=>{
 
     const onSubmit=async(data)=>{
         const res = await createUser(data)
+        reset()
+        setPassword("")
     }
 
     const onCuenta=(e)=>{
@@ -67,14 +69,15 @@ const Registrate=()=>{
                         </div>
                         <div className="col-12 mb-4">
                             <Controller rules={{
-                                required:"La contraseña es requerida"
+                                required:"La contraseña es requerida",
+                                validate:(v)=>v===password || "Las contraseñas no coinciden"
                             }} control={control} name="password" render={({field,fieldState})=>(
                                 <>
                                     <span className="p-float-label">
                                         <Password strongLabel="Fuerte" weakLabel="Debil" mediumLabel="Medio" promptLabel="Introdusca su contraseña" name={field.name} value={field.value||""} onChange={field.onChange} placeholder="Contraseña" toggleMask />
                                         <LabelForm htmlFor={field.name} status={fieldState.invalid} required={true}>Contraseña</LabelForm>
                                     </span>
-                                    <ErrorLabel name={field.name} errors={errors}></ErrorLabel>
+                                    <ErrorLabel name={field.name} errors={errors}></ErrorLabel>                                    
                                 </>
                             )}/>
                             
