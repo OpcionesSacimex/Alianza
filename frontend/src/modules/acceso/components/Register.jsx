@@ -55,7 +55,7 @@ const Registrate=()=>{
                             }} control={control} name="correo" render={({field,fieldState})=>(
                                 <>
                                     <span className="p-float-label">
-                                        <InputText name={field.name} value={field.value} onChange={field.onChange} placeholder="ejemplo@ejemplo.com"/>
+                                        <InputText name={field.name} value={field.value||""} onChange={field.onChange} placeholder="ejemplo@ejemplo.com"/>
                                         <LabelForm htmlFor={field.name} status={fieldState.invalid} required={true}>
                                             Correo electrónico
                                         </LabelForm>
@@ -69,7 +69,7 @@ const Registrate=()=>{
                             <Controller control={control} name="password" render={({field,fieldState})=>(
                                 <>
                                     <span className="p-float-label">
-                                        <Password strongLabel="Fuerte" weakLabel="Debil" mediumLabel="Medio" promptLabel="Introdusca su contraseña" name={field.name} value={field.value} onChange={field.onChange} placeholder="Contraseña" toggleMask />
+                                        <Password strongLabel="Fuerte" weakLabel="Debil" mediumLabel="Medio" promptLabel="Introdusca su contraseña" name={field.name} value={field.value||""} onChange={field.onChange} placeholder="Contraseña" toggleMask />
                                         <LabelForm htmlFor={field.name} status={fieldState.invalid} required={true}>Contraseña</LabelForm>
                                     </span>
                                 </>
