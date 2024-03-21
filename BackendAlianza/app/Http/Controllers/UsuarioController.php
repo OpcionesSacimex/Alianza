@@ -18,7 +18,6 @@ class UsuarioController extends Controller
             "correo"=>$request->correo,
             "password"=>$request->password,
         ]);
-
         return response()->json([
             'status'=>true,
             'ARES'=>"NOP"
