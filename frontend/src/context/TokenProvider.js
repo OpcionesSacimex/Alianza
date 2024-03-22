@@ -11,7 +11,7 @@ export const TokenProvider = ({ children }) => {
   const login = async (data) => {
     setAuth(data)
     try {
-      navigate("/dashboard", { replace: true });
+      navigate("/cliente/dashboard", { replace: true });
     }
     catch (error) {
      
@@ -19,10 +19,10 @@ export const TokenProvider = ({ children }) => {
 
   }
 
-  const logout = async (idUser) => {
-    setAuth({token: false})
+  const logout = async () => {
+    setAuth({})
     try {
-      navigate("/home/login", { replace: true });
+      navigate("/login", { replace: true });
     } catch (error) {
      
     }
@@ -42,4 +42,4 @@ export const TokenProvider = ({ children }) => {
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
 }
 
-
+export default AuthContext

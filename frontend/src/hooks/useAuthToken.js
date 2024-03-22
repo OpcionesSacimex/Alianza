@@ -1,5 +1,5 @@
 import {useContext} from "react";
-import {TokenProvider} from "../context/TokenProvider"
+import TokenContext from "../context/TokenProvider"
 export const useAuth = () => {
-    return useContext(TokenProvider);
+    return useContext(TokenContext);
 }

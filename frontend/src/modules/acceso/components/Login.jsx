@@ -11,16 +11,18 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { ContentDialog } from "../../../globalsComponents/dialog/ContentDialog"
 import { PasswordResetEmail } from "./PasswordResetEmail"
 import {loginUser} from "../handle/handleAcceso"
-import {useUserInfo} from "../../../hooks/useUserAuth"
-import {useAuth} from "../../../hooks/useAuthToken"
 import {Controller,useForm} from "react-hook-form"
 import {LabelForm,ErrorLabel} from "../../../globalsComponents/msg/LabelForm"
+import {Toast} from "primereact/toast"
+import {useAuth} from "../../../hooks/useAuthToken"
 const Login=()=>{
     const navigate = useNavigate()
     const ov = useRef(null)
     const [visible,setVisible]=useState(false)
-    const {infoInfo,setUserInfo} = useUserInfo()
-    const aut = useAuth()
+    const {setAuth} = useAuth()
+
+    const toast = useRef()
+
     const {control,setValue,getValues,reset,handleSubmit,formState:{errors}} =useForm()
 
     const onRegister =(e)=>{
@@ -32,21 +34,26 @@ const Login=()=>{
     const onSubmit=async(data)=>{
         const user = await loginUser(data)
 
-        console.log(user)
-
-        
-        
-        navigate("/clientes/solicitud",{replace:true})
+        if(!user.error){
+            setAuth(user)
+            /*const usuarioLogeado = await getUserData();
+            if(!usuarioLogeado.cliente){
+                navigate("/clientes/solicitud",{replace:true})
+            }else{
+                navigate("/clientes/dashboard",{replace:true})
+            }*/
+            
+        }else{
+            toast.current.show({severity:'warn', summary: user.error, detail: 'Usuario o contraseña incorecta'})
+        }   
     }
-    useEffect(()=>{
-        
-    },[infoInfo])
     
     return (
         <>
             <ContentDialog titulo={"Restablecer contraseña"} visible={visible} closable={true} onHide={(e)=>{setVisible(false)}}>
                 <PasswordResetEmail/>
             </ContentDialog>
+            <Toast className="mt-8" ref={toast} />
             <div className="mt-5 mb-6">
             <PanelCenter>
                 <Card className="bg-gray-200 ml-6 mr-6 w-30rem">
