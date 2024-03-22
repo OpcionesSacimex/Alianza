@@ -52,13 +52,6 @@ const Login=()=>{
                                 <Password name="pass" placeholder="Contraseña" toggleMask />
                                 <label htmlFor="pass" className="text-xl">Contraseña</label>
                             </span>
-                            
-                        </div>
-                        <div className="col-12 mb-4">
-                            <span className="p-float-label">
-                                <InputNumber placeholder="Convenio" useGrouping={false} />
-                                <label htmlFor="pass" className="text-xl mb-4">Convenio</label>
-                            </span>
                         </div>
                         <div className="col-12">
                             <PanelCenter className="mb-2">

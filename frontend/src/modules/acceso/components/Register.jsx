@@ -2,6 +2,7 @@
 import {PanelCenter} from "../../../globalsComponents/panels/PanelCenter"
 import {PanelGrid} from "../../../globalsComponents/panels/PanelGrid"
 import {InputText} from "primereact/inputtext"
+import {InputNumber} from "primereact/inputnumber"
 import {Password} from "primereact/password"
 import {Card} from "primereact/card"
 import { ContentDialog } from "../../../globalsComponents/dialog/ContentDialog"
@@ -13,6 +14,9 @@ import { Button } from "primereact/button"
 import {Controller,useForm} from "react-hook-form"
 import {LabelForm,ErrorLabel} from "../../../globalsComponents/msg/LabelForm"
 import {createUser} from "../handle/handleAcceso"
+import { InputMask } from 'primereact/inputmask';
+        
+
 const Registrate=()=>{
     const [visible,setVisible]=useState(false)
     const [titulo,setTitulo] = useState("")
@@ -23,6 +27,7 @@ const Registrate=()=>{
     const navigate=useNavigate()
 
     const onSubmit=async(data)=>{
+        console.log(data)
         const res = await createUser(data)
         reset()
         setPassword("")
@@ -65,7 +70,22 @@ const Registrate=()=>{
                                     <ErrorLabel name={field.name} errors={errors}></ErrorLabel>
                                 </>
                             )}/>
-                            
+                        </div>
+                        <div className="col-12 mb-4">
+                            <Controller rules={{
+                                required: "El convenio es requerido"
+                            }} control={control} name="convenio" render={({field,fieldState})=>(
+                                <>
+                                    <span className="p-float-label">
+                                        <InputMask className="uppercase" name={field.name} value={field.value||""} mask="99-aaaa" onChange={(e)=>{
+                                            field.onChange(e.value)}} placeholder="00-DEMO"/>
+                                        <LabelForm htmlFor={field.name} status={fieldState.invalid} required={true} className="text-xl mb-4">
+                                            Convenio
+                                        </LabelForm> 
+                                    </span>
+                                    <ErrorLabel name={field.name} errors={errors}></ErrorLabel> 
+                                </>
+                            )}/>
                         </div>
                         <div className="col-12 mb-4">
                             <Controller rules={{
