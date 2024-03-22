@@ -14,7 +14,7 @@ const HomeLayout = () => {
             <PanelGrid>
                 <div className="col-12 md:col-2">
                     <a href="https://convenio.opcionessacimex.com">
-                        <img className="md:h-3rem h-1.5rem md:w-15rem w-7rem" alt="logo" src={logo} ></img>
+                        <img className="sm:h-3rem h-1.5rem sm:w-15rem w-7rem" alt="logo" src={logo} ></img>
                     </a>
                 </div>
             </PanelGrid>
@@ -27,7 +27,7 @@ const HomeLayout = () => {
             <>
                 <div className="">
                     <PanelCenter>
-                    <div className="mt-0 md:text-2xl text-sm text-center">
+                    <div className="mt-0 sm:text-2xl text-sm text-center">
                         <label className="font-bold text-white font-italic"> Tu crédito de confianza. </label>
                     </div>
                     </PanelCenter>    
