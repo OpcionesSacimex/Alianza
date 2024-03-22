@@ -7,13 +7,8 @@ use App\Models\Usuario;
 
 class UsuarioController extends Controller
 {
-    public function index(){
-        return response()->json([
-            'status'=>true,
-            'ARES'=>"NOP"
-        ],200);
-    }
-    public function store(Request $request){
+    
+    public function create(Request $request){
         Usuario::create([
             "correo"=>$request->correo,
             "password"=>bcrypt($request->password), //encrip
@@ -24,19 +19,27 @@ class UsuarioController extends Controller
             'Ares'=>"sads"
         ],200);
     }
-    public function show($id){
+    public function login(Request $request){
+        $credentials = $request->only(['correo','password']);
+
+        $token = auth('api')->attempt($credentials);
+    
+        if ($token==false){
+            abort(401,'Unauthorized');
+        }
         return response()->json([
-            'status'=>true,
-            'ARES'=>"NOP"
-        ],200);
+            'data' =>[
+                'token'=> $token,
+                'token_type' => 'bearer',
+                'expires_in' => auth('api')->factory()->getTTL()
+            ]
+        ]);
     }
-    public function edit($id){
-        return response()->json(['status'=>true],200);
+    public function getUser(Request $request){
+        $id = $request->user()->id;
+        $user = Usuario::with('cliente')->find($id);
+        return response()->json([$user]);
+        //Usuario::find($id);
     }
-    public function update(Request $request, $id){
-        return response()->json(['status'=>true],200);
-    }
-    public function destroy($id){
-        return response()->json(['status'=>true],200);
-    }
+
 }
