@@ -13,6 +13,8 @@ Route::middleware('auth:api')->get('/user',function(Request $request){
 Route::post('/login',function(Request $request){
     $credentials = $request->only(['correo','password']);
 
+    echo(auth()->attempt($credentials));
+
     if (!$token = auth()->attempt($credentials)){
         abort(401,'Unauthorized');
     }
@@ -20,7 +22,7 @@ Route::post('/login',function(Request $request){
         'data' =>[
             'token'=> $token,
             'token_type' => 'bearer',
-            'expires_in' => auth()->factory()->getTTL() * 60
+            'expires_in' => 60
         ]
     ]);
 });
