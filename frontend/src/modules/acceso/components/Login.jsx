@@ -32,7 +32,7 @@ const Login=()=>{
     const onSubmit=async(data)=>{
         const user = await loginUser(data)
 
-        console.log(aut)
+        console.log(user)
 
         
         
