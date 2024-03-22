@@ -27,9 +27,12 @@ class UsuarioController extends Controller
         if ($token==false){
             abort(401,'Unauthorized');
         }
-        return response()->json(['token'=> $token,
+        //dulio aqui >:(
+        return response()->json([
+                'token'=> $token,
                 'token_type' => 'bearer',
-                'expires_in' => auth('api')->factory()->getTTL()]);
+                'expires_in' => auth('api')->factory()->getTTL()
+            ]);
     }
     public function getUser(Request $request){
         $id = $request->user()->id;
