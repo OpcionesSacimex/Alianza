@@ -22,7 +22,7 @@ Route::post('/login',function(Request $request){
         'data' =>[
             'token'=> $token,
             'token_type' => 'bearer',
-            'expires_in' => 60
+            'expires_in' => auth('api')->factory()->getTTL()
         ]
     ]);
 });
