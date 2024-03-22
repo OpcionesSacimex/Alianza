@@ -5,17 +5,22 @@ import './index.css';
 import App from './App';
 import {PrimeReactProvider} from "primereact/api"
 import { ConfirmDialog } from 'primereact/confirmdialog';
-
+import {AutenticateContextProvider} from "./context/AutenticateContext"
+import {TokenProvider} from "./context/TokenProvider"
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-    <PrimeReactProvider>
-      <>
-        <ConfirmDialog/>
-        <App/>
-      </>
-    </PrimeReactProvider>
+      <TokenProvider>
+        <AutenticateContextProvider>
+          <PrimeReactProvider>
+            <>
+              <ConfirmDialog/>
+              <App/>
+            </>
+          </PrimeReactProvider>
+        </AutenticateContextProvider>
+      </TokenProvider>
     </BrowserRouter>
   </React.StrictMode>
 )

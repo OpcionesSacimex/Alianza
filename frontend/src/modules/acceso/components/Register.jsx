@@ -2,7 +2,6 @@
 import {PanelCenter} from "../../../globalsComponents/panels/PanelCenter"
 import {PanelGrid} from "../../../globalsComponents/panels/PanelGrid"
 import {InputText} from "primereact/inputtext"
-import {InputNumber} from "primereact/inputnumber"
 import {Password} from "primereact/password"
 import {Card} from "primereact/card"
 import { ContentDialog } from "../../../globalsComponents/dialog/ContentDialog"
@@ -27,6 +26,7 @@ const Registrate=()=>{
     const navigate=useNavigate()
 
     const onSubmit=async(data)=>{
+        
         console.log(data)
         const res = await createUser(data)
         reset()
