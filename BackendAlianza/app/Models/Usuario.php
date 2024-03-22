@@ -14,7 +14,11 @@ class Usuario extends Authenticatable implements JWTSubject
     use HasFactory;
     protected $fillable = [
         "correo",
-        "password"
+        "password",
+    ];
+    protected $hidden = [
+        'password',
+        'remember_token',
     ];
     protected $table="usuario";
     protected $primaryKey = "id";

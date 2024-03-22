@@ -12,6 +12,7 @@ return new class extends Migration
             $table->id();
             $table->string("correo",45)->unique();
             $table->string("password",100);
+            $table->rememberToken();
         });
     }
     public function down(): void
