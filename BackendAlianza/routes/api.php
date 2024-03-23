@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\DireccionController;
 use App\Http\Controllers\EconomicoController;
 use App\Http\Controllers\PersonaController;
@@ -15,3 +16,4 @@ Route::post('/usuario/login',[UsuarioController::class,'login']);
 Route::post('/persona/createUser',[PersonaController::class,'create']);
 Route::post('/direccion/createDireccion',[DireccionController::class,'create']);
 Route::post('/economico/createEconomico',[EconomicoController::class,'create']);
+Route::post('/cliente/createCliente',[ClienteController::class,'create']);
