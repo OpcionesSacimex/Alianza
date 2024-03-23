@@ -28,7 +28,7 @@ class Cliente extends Model
         return $this->belongsTo(Persona::class);
     }
     public function direccion(): BelongsTo{
-        return $this->belongsTo(Direcciones::class);
+        return $this->belongsTo(Direccion::class);
     }
     public function economico(): BelongsTo{
         return $this->belongsTo(Economico::class);
