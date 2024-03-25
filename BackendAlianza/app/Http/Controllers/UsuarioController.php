@@ -7,7 +7,10 @@ use App\Models\Usuario;
 
 class UsuarioController extends Controller
 {
-    
+    public function __construct()
+    {
+        $this->middleware('auth:api', ['except' => ['login']]);
+    }
     public function create(Request $request){
         Usuario::create([
             "correo"=>$request->correo,
@@ -47,7 +50,7 @@ class UsuarioController extends Controller
         return response()->json(['message' => 'Successfully logged out']);
     }
 
-    public function refresh(Request $request)
+    public function refresh()
     {
         return $this->respondWithToken(auth('api')->refresh());
     }
