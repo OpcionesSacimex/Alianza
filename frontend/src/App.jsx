@@ -7,7 +7,7 @@ import "primeflex/primeflex.css"
 import {AccesoPage} from "./modules/acceso/pages/AccesoPage"
 import {ClientesPage} from "./modules/clientes/pages/ClientesPage"
 import HomeLayout from "./layouts/Home/HomeLayout"
-
+import ClienteLayout from "./layouts/Home/ClienteLayout"
 import {library} from '@fortawesome/fontawesome-svg-core'
 import {
   faComments,faHandHoldingDollar,faCommentsDollar
@@ -22,9 +22,13 @@ function App() {
           path:"/*", element: <AccesoPage/>
         }]
       },{
-        path: "/", element: <HomeLayout/>,
+        path: "/dashboard", element: <HomeLayout/>,
         children:[{
-          path:"clientes/*", element:<ClientesPage/>
+          path:"/dashboard/*", element: <ClienteLayout/>,
+          children:[{
+            path:"clientes/*", element:<ClientesPage/>
+          }]
+          
         }]
       },{
         path:"../", element:<Navigate replace to="/login"/>

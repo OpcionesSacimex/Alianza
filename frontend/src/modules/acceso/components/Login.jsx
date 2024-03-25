@@ -38,9 +38,9 @@ const Login=()=>{
             setAuth(user)
             const usuarioLogeado = await getUserData();
             if(!usuarioLogeado.cliente){
-                navigate("/clientes/solicitud",{replace:true})
+                navigate("/dashboard",{replace:true})
             }else{
-                navigate("/clientes/dashboard",{replace:true})
+                navigate("/dashboard",{replace:true})
             }
             
         }else{
@@ -85,7 +85,7 @@ const Login=()=>{
                             }} name="password" control={control} render={({field,fieldState})=>(
                                 <>
                                     <span className="p-float-label">
-                                        <Password name={field.name} value={field.value||''} onChange={field.onChange} placeholder="Contraseña" toggleMask />
+                                        <Password feedback={false} name={field.name} value={field.value||''} onChange={field.onChange} placeholder="Contraseña" toggleMask />
                                         <LabelForm htmlFor={field.name} required={true} status={fieldState.invalid}>Contraseña</LabelForm>
                                     </span>
                                     <ErrorLabel errors={errors} name={field.name}></ErrorLabel>

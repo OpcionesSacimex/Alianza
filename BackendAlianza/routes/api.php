@@ -14,6 +14,7 @@ Route::post('/usuario/login',[UsuarioController::class,'login']);
 Route::middleware('auth:api')->post('/usuario/refresh',[UsuarioController::class,'refresh']);
 Route::middleware('auth:api')->get('/usuario/user', [UsuarioController::class,'getUser']);
 Route::middleware('auth:api')->post('/usuario/logout', [UsuarioController::class,'logout']);
+Route::post('/usuario/createUser',[UsuarioController::class,'create']);
 
 
 Route::post('/persona/createUser',[PersonaController::class,'create']);

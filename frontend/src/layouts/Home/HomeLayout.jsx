@@ -5,17 +5,13 @@ import {PanelCenter} from "./../../globalsComponents/panels/PanelCenter"
 import { Toolbar } from 'primereact/toolbar';
 import {URLStorage} from "../../utils/URLBackend"
 import {useAuth} from "../../hooks/useAuthToken"
-import {useUserInfo} from "../../hooks/useUserAuth"
 const HomeLayout = () => {
     const outlet = useOutlet();
     const logo= `${URLStorage}/img/image.png`
     const {auth,logout} = useAuth()
-    const {infoInfo,setUserInfo} = useUserInfo()
-
     useEffect(()=>{
         if(!auth.token){
             logout()
-        }else{
         }
     },[])
     const start = ()=>{
