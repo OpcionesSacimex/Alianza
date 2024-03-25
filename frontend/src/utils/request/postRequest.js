@@ -1,9 +1,7 @@
 import axios from "axios";
 import { URLBackend } from "../URLBackend"
-import {useAuth} from "../../hooks/useAuthToken"
 const refreshTokenURL = URLBackend + "/usuarios/REFRESH"
 
-//const {auth} = useAuth()
 export const postNotTokenMultipart = async (URL, data) => {
     try {
         const res = await axios.post(URL, data,
@@ -77,7 +75,6 @@ export const postTokenJson = async (URL,data) => {
             })
 
         const { token } = await resToken.data
-            console.log(auth)
         const res = await axios.post(URL, data,
             {
                 withCredentials: true,
