@@ -12,12 +12,10 @@ const HomeLayout = () => {
     const {auth,logout} = useAuth()
     const {infoInfo,setUserInfo} = useUserInfo()
 
-    console.log(auth)
     useEffect(()=>{
         if(!auth.token){
             logout()
         }else{
-            console.log(infoInfo)
         }
     },[])
     const start = ()=>{

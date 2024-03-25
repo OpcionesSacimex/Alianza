@@ -1,6 +1,6 @@
 import axios from "axios";
-import { URLBackend } from "../URLBackend"
-const refreshTokenURL = URLBackend + "/usuarios/REFRESH"
+import { refreshToken } from "./refreshToken";
+//const refreshTokenURL = URLBackend + "/usuarios/REFRESH"
 
 export const postNotTokenMultipart = async (URL, data) => {
     try {
@@ -22,13 +22,8 @@ export const postNotTokenMultipart = async (URL, data) => {
 }
 export const postTokenJsonMultipar = async (URL,data) => {
     try {
-        const resToken = await axios.get(refreshTokenURL,
-            {
-                withCredentials: true,
-            })
-
-        const { token } = await resToken.data
-
+        const resToken = await refreshToken()
+        const { token } = await resToken
         const res = await axios.post(URL, data,
             {
                 withCredentials: true,
@@ -69,12 +64,8 @@ export const postNotTokenJson = async (URL, data) => {
 
 export const postTokenJson = async (URL,data) => {
     try {
-        const resToken = await axios.get(refreshTokenURL,
-            {
-                withCredentials: true,
-            })
-
-        const { token } = await resToken.data
+        const resToken = await refreshToken()
+        const { token } = resToken
         const res = await axios.post(URL, data,
             {
                 withCredentials: true,
@@ -89,7 +80,7 @@ export const postTokenJson = async (URL,data) => {
             return res.data;
         }
     } catch (error) {
-
+        console.log(error)
         return { error: error.message }
     }
 }

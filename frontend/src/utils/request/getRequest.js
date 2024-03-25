@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { URLBackend } from "../URLBackend"
+import { refreshToken } from './refreshToken';
 
 const refreshTokenURL = URLBackend + "/usuarios/REFRESH"
 
@@ -18,11 +19,8 @@ export const getRefreshToken = async () => {
 }
 export const getAllRegisters = async (URL) => {
     try {
-        const resToken = await axios.get(refreshTokenURL,
-            {
-                withCredentials: true,
-            })
-        const { token } = await resToken.data
+        const resToken = await refreshToken()
+        const { token } =  resToken
         const res = await axios.get(URL,
             {
                 withCredentials: true,
@@ -37,7 +35,7 @@ export const getAllRegisters = async (URL) => {
             return res.data;
         }
     } catch (error) {
-
+        console.log(error)
         return { error: error.message }
     }
 }

@@ -10,11 +10,12 @@ import { OverlayPanel } from 'primereact/overlaypanel';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { ContentDialog } from "../../../globalsComponents/dialog/ContentDialog"
 import { PasswordResetEmail } from "./PasswordResetEmail"
-import {loginUser} from "../handle/handleAcceso"
+import {getUserData, loginUser} from "../handle/handleAcceso"
 import {Controller,useForm} from "react-hook-form"
 import {LabelForm,ErrorLabel} from "../../../globalsComponents/msg/LabelForm"
 import {Toast} from "primereact/toast"
 import {useAuth} from "../../../hooks/useAuthToken"
+import { refreshToken } from "../../../utils/request/refreshToken"
 const Login=()=>{
     const navigate = useNavigate()
     const ov = useRef(null)
@@ -33,15 +34,14 @@ const Login=()=>{
     }
     const onSubmit=async(data)=>{
         const user = await loginUser(data)
-
         if(!user.error){
             setAuth(user)
-            /*const usuarioLogeado = await getUserData();
+            const usuarioLogeado = await getUserData();
             if(!usuarioLogeado.cliente){
                 navigate("/clientes/solicitud",{replace:true})
             }else{
                 navigate("/clientes/dashboard",{replace:true})
-            }*/
+            }
             
         }else{
             toast.current.show({severity:'warn', summary: user.error, detail: 'Usuario o contraseña incorecta'})
