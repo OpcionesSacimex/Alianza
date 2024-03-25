@@ -26,9 +26,7 @@ const Registrate=()=>{
     const navigate=useNavigate()
 
     const onSubmit=async(data)=>{
-        console.log(data)
         const res = await createUser(data)
-        console.log(res)
         reset()
         setPassword("")
     }

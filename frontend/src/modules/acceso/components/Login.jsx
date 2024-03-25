@@ -38,9 +38,9 @@ const Login=()=>{
             setAuth(user)
             const usuarioLogeado = await getUserData();
             if(!usuarioLogeado.cliente){
-                navigate("/dashboard",{replace:true})
+                navigate("/clientes/solicitud",{replace:true})
             }else{
-                navigate("/dashboard",{replace:true})
+                navigate("/clientes/solicitud",{replace:true})
             }
             
         }else{
