@@ -7,6 +7,7 @@ import {PrimeReactProvider} from "primereact/api"
 import { ConfirmDialog } from 'primereact/confirmdialog';
 import {AutenticateContextProvider} from "./context/AutenticateContext"
 import {TokenProvider} from "./context/TokenProvider"
+import './App.css';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>

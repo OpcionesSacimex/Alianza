@@ -56,7 +56,7 @@ const Login=()=>{
             <Toast className="mt-8" ref={toast} />
             <div className="mt-5 mb-6">
             <PanelCenter>
-                <Card className="bg-gray-200 ml-6 mr-6 w-30rem">
+                <Card>
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <PanelCenter>
                         <label className="text-2xl text-green-800 font-bold">Te damos la bienvenida a Sacimex</label>
