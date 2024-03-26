@@ -8,7 +8,11 @@ import {StepsModel} from "../../../globalsComponents/steps/StepsModel"
 import {useUpdateEffect} from "primereact/hooks"
 import { Divider } from 'primereact/divider';
 import {FrmPersona} from '../template/FrmPersona'
+import {FrmEconomico} from '../template/FrmEconomico'
 import {Controller,useForm} from 'react-hook-form'
+import { Button } from 'primereact/button';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { ButtonBackGO } from '../template/ButtonBackGO';
 
 export const CompleteRegister =()=>{
     const {control,getValues,setValue,handleSubmit, formState:{errors}}=useForm()
@@ -18,21 +22,33 @@ export const CompleteRegister =()=>{
     const items = [
         {
             label: 'Datos Personales',
-            icon: "comments-dollar",
+            icon: "file-lines",
             command: (e) => {},
             template:(item)=>StepsModel(item,0,activeIndex,setActiveIndex)
+        },{
+            label:"socio economico",
+            icon:"comments-dollar",
+            command:(e)=>{},
+            template:(item)=>StepsModel(item,1,activeIndex,setActiveIndex)
         },{
             label: 'Detalles del credito',
             icon: "hand-holding-dollar",
             command: (e) => {},
-            template:(item)=>StepsModel(item,1,activeIndex,setActiveIndex)
+            template:(item)=>StepsModel(item,2,activeIndex,setActiveIndex)
         }
     ]
     useUpdateEffect(()=>{
         switch(activeIndex){
-            case 0: setContent(<FrmPersona control={control} errors={errors}/>)
+            case 0: setContent(<FrmPersona control={control} errors={errors}>
+                <ButtonBackGO setActiveIndex={setActiveIndex} activeIndex={activeIndex} go={true}/>
+            </FrmPersona>)
             break;
-            case 1: setContent( <CreditoDeseado/>)
+            case 1: setContent(
+            <FrmEconomico control={control} errors={errors}>
+                <ButtonBackGO setActiveIndex={setActiveIndex} activeIndex={activeIndex} back={true} go={true}/>
+            </FrmEconomico>)
+            break;
+            case 2: setContent( <CreditoDeseado/>)
             break;
             default: setContent (<></>)
             break;

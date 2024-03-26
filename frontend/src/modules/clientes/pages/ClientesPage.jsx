@@ -5,7 +5,7 @@ export const ClientesPage = () => {
     return (
         <div>
             <Routes>
-                <Route path='solicitud' element={<CompleteRegister />}></Route>
+                <Route path='solicitud' element={<CompleteRegister/>}></Route>
                 <Route path='*' element={<Navigate replace to="/dashboard/clientes/solicitud"/>}></Route>
             </Routes>
         </div>

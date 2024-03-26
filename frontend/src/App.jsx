@@ -11,9 +11,11 @@ import AuthLaout from "./layouts/AuthLayout"
 import ClienteLayout from "./layouts/Home/ClienteLayout"
 import {library} from '@fortawesome/fontawesome-svg-core'
 import {
-  faComments,faHandHoldingDollar,faCommentsDollar, faCircleArrowRight
+  faComments,faHandHoldingDollar,faCommentsDollar, faCircleArrowRight,
+  faCircleArrowLeft,faFileLines
 } from '@fortawesome/free-solid-svg-icons'
-library.add(faComments,faHandHoldingDollar,faCommentsDollar,faCircleArrowRight)
+library.add(faComments,faHandHoldingDollar,faCommentsDollar,faCircleArrowRight,
+  faCircleArrowLeft, faFileLines)
 function App() {
   return useRoutes(
     [
