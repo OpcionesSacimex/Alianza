@@ -23,16 +23,15 @@ function App() {
       {
         path: '/home', element: <HomeLayout/>,
         children:[{
-          path:"login/",element:<Login/>
-        },{
-          path:"register/" ,element:<Registrate/>
-        },{
-          path: '*', element: <Navigate replace to="/home"/>
+          path:"/home/*", element: <AccesoPage/>
         }]
       },{
-        path: "/dashboard/*", element: <AuthLaout/>,
+        path: "dashboard/", element: <AuthLaout/>,
       },{
-        path:"/dashboard/clientes/*", element:<ClientesPage/>
+        path:"dashboard/", element:<ClienteLayout/>,
+        children:[{
+          path: "clientes/*",element:<ClientesPage/>
+        }]
       },{
         path:"*", element:<Navigate replace to="/home/login"/>
       }
@@ -41,30 +40,3 @@ function App() {
 }
 
 export default App;
-
-
-/*
-[{
-          path: "/", element: <HomeLayout/>,
-          children:[{
-            path: "dashboard/", element: <DashBoardLayout/>,
-            children=[{
-
-            }]
-          },{
-            path:"clientes/*", element:<ClientesPage/>
-          }]
-        }]
-
-
-        {
-
-        path: "/", element: <AuthLaout/>,
-        children:[{
-            path: "/dashboard/", element: <DashBoardLayout/>,
-            children:[{
-              path:"clientes/*", element:<ClientesPage/>
-            }]
-        }]
-      }
-*/
