@@ -15,7 +15,6 @@ import {Controller,useForm} from "react-hook-form"
 import {LabelForm,ErrorLabel} from "../../../globalsComponents/msg/LabelForm"
 import {Toast} from "primereact/toast"
 import {useAuth} from "../../../hooks/useAuthToken"
-import { refreshToken } from "../../../utils/request/refreshToken"
 const Login=()=>{
     const navigate = useNavigate()
     const ov = useRef(null)
@@ -27,7 +26,7 @@ const Login=()=>{
     const {control,setValue,getValues,reset,handleSubmit,formState:{errors}} =useForm()
 
     const onRegister =(e)=>{
-        navigate("/register",{replace:true})
+        navigate("/home/register",{replace:true})
     }
     const onKnowPass =(e)=>{
         setVisible(true)
@@ -37,11 +36,17 @@ const Login=()=>{
         if(!user.error){
             setAuth(user)
             const usuarioLogeado = await getUserData();
-            if(!usuarioLogeado.cliente){
+            if(!usuarioLogeado.error){
+                navigate("/dashboard",{replace:true})
+            }
+            else{
+                toast.current.show({severity:'Error', summary: "Error", detail: usuarioLogeado.error})
+            }
+            /*if(!usuarioLogeado.cliente){
                 navigate("/clientes/solicitud",{replace:true})
             }else{
                 navigate("/clientes/solicitud",{replace:true})
-            }
+            }*/
             
         }else{
             toast.current.show({severity:'warn', summary: user.error, detail: 'Usuario o contraseña incorecta'})

@@ -7,6 +7,10 @@ import "primeflex/primeflex.css"
 import {AccesoPage} from "./modules/acceso/pages/AccesoPage"
 import {ClientesPage} from "./modules/clientes/pages/ClientesPage"
 import HomeLayout from "./layouts/Home/HomeLayout"
+import DashBoardLayout from "./layouts/Home/DashBoardLayoout"
+import AuthLaout from "./layouts/AuthLayout"
+import Login from './modules/acceso/components/Login';
+import Registrate from "./modules/acceso/components/Register"
 import ClienteLayout from "./layouts/Home/ClienteLayout"
 import {library} from '@fortawesome/fontawesome-svg-core'
 import {
@@ -17,21 +21,50 @@ function App() {
   return useRoutes(
     [
       {
-        path: '/', element: <HomeLayout/>,
+        path: '/home', element: <HomeLayout/>,
         children:[{
-          path:"/*", element: <AccesoPage/>
+          path:"login/",element:<Login/>
+        },{
+          path:"register/" ,element:<Registrate/>
+        },{
+          path: '*', element: <Navigate replace to="/home"/>
         }]
       },{
-        path: "/", element: <HomeLayout/>,
-        children:[{
-          path:"clientes/*", element:<ClientesPage/>
-        
-        }]
+        path: "/dashboard/*", element: <AuthLaout/>,
       },{
-        path:"../", element:<Navigate replace to="/login"/>
+        path:"/dashboard/clientes/*", element:<ClientesPage/>
+      },{
+        path:"*", element:<Navigate replace to="/home/login"/>
       }
     ]
   )
 }
 
 export default App;
+
+
+/*
+[{
+          path: "/", element: <HomeLayout/>,
+          children:[{
+            path: "dashboard/", element: <DashBoardLayout/>,
+            children=[{
+
+            }]
+          },{
+            path:"clientes/*", element:<ClientesPage/>
+          }]
+        }]
+
+
+        {
+
+        path: "/", element: <AuthLaout/>,
+        children:[{
+            path: "/dashboard/", element: <DashBoardLayout/>,
+            children:[{
+              path:"clientes/*", element:<ClientesPage/>
+            }]
+        }]
+      }
+*/

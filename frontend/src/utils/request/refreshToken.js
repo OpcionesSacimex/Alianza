@@ -12,6 +12,6 @@ export const refreshToken =async ()=>{
                 Authorization: "Bearer " + token,
             }
         })
-    window.localStorage.setItem("auth",resToken.data)
+    window.localStorage.setItem("auth",JSON.stringify(resToken.data))
     return resToken.data
 }

@@ -1,5 +1,5 @@
 import React, { useEffect,use } from 'react'
-import { useOutlet } from 'react-router-dom';
+import { Navigate, useOutlet } from 'react-router-dom';
 import {PanelGrid} from "./../../globalsComponents/panels/PanelGrid"
 import {PanelCenter} from "./../../globalsComponents/panels/PanelCenter"
 import { Toolbar } from 'primereact/toolbar';
@@ -9,11 +9,7 @@ const HomeLayout = () => {
     const outlet = useOutlet();
     const logo= `${URLStorage}/img/image.png`
     const {auth,logout} = useAuth()
-    useEffect(()=>{
-        if(!auth.token){
-            logout()
-        }
-    },[])
+
     const start = ()=>{
         return (
             <>
@@ -42,12 +38,16 @@ const HomeLayout = () => {
             </>      
         )
     }
-    return (
-        <div> 
-            <Toolbar className='bg-green-800 shadow-3 z-5 sticky top-0' style={{height:"6rem"}} start={start} end={end}/>
-            {outlet}
-        </div>
-    )
+    if(auth.token !== false){
+        return <Navigate to="/dashboard" replace={true}/>
+    }else{
+        return (
+            <div> 
+                <Toolbar className='bg-green-800 shadow-3 z-5 sticky top-0' style={{height:"6rem"}} start={start} end={end}/>
+                {outlet}
+            </div>
+        ) 
+    }
 }
 
 export default HomeLayout

@@ -5,7 +5,6 @@ import {Controller,useForm} from "react-hook-form"
 import {LabelForm,ErrorLabel} from "../../../globalsComponents/msg/LabelForm"
 import { InputNumber } from "primereact/inputnumber"
 import { Button } from "primereact/button"
-import 'primeicons/primeicons.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 export const FrmPersona=({control,errors})=>{

@@ -32,7 +32,7 @@ const Registrate=()=>{
     }
 
     const onCuenta=(e)=>{
-        navigate("/login",{replace:true})
+        navigate("/home/login",{replace:true})
     }
     return (
         <>
