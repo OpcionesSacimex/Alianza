@@ -7,10 +7,7 @@ import "primeflex/primeflex.css"
 import {AccesoPage} from "./modules/acceso/pages/AccesoPage"
 import {ClientesPage} from "./modules/clientes/pages/ClientesPage"
 import HomeLayout from "./layouts/Home/HomeLayout"
-import DashBoardLayout from "./layouts/Home/DashBoardLayoout"
 import AuthLaout from "./layouts/AuthLayout"
-import Login from './modules/acceso/components/Login';
-import Registrate from "./modules/acceso/components/Register"
 import ClienteLayout from "./layouts/Home/ClienteLayout"
 import {library} from '@fortawesome/fontawesome-svg-core'
 import {

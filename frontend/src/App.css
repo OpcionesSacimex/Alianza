@@ -24,3 +24,10 @@
   font-size: 2.5em;
   flex:100%;
 }
+
+.p-steps-item:before{
+  border-top: none !important;
+}
+.p-divider-solid.p-divider-horizontal:before {
+  border-top-style: none !important;
+}

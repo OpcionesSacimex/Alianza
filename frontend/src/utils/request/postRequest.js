@@ -1,6 +1,5 @@
 import axios from "axios";
 import { refreshToken } from "./refreshToken";
-//const refreshTokenURL = URLBackend + "/usuarios/REFRESH"
 
 export const postNotTokenMultipart = async (URL, data) => {
     try {
@@ -80,7 +79,6 @@ export const postTokenJson = async (URL,data) => {
             return res.data;
         }
     } catch (error) {
-        console.log(error)
         return { error: error.message }
     }
 }
