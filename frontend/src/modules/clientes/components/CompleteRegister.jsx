@@ -46,7 +46,6 @@ export const CompleteRegister =()=>{
                     </Steps>
                     <Divider className='border-green-800 border-3' layout='horizontal'>
                         <div className='w-full bg-green-800 h-full'>
-
                         </div>
                     </Divider>
                 </div>

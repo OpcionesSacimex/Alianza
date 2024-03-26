@@ -18,3 +18,9 @@
   background-color: #e6e3e3;
   width: 35em;
 }
+
+.svg-inline--fa {
+  color:rgb(4, 61, 9);
+  font-size: 2.5em;
+  flex:100%;
+}
