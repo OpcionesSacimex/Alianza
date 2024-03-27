@@ -6,6 +6,7 @@ use App\Models\Cliente;
 use Illuminate\Http\Request;
 use App\Models\Usuario;
 Use App\Models\Direccion;
+use App\Models\Economico;
 Use App\Models\Persona;
 
 class UsuarioController extends Controller
@@ -23,7 +24,6 @@ class UsuarioController extends Controller
         
         return response()->json([
             'status'=>true,
-            'Ares'=>"sads"
         ],200);
     }
     public function login(Request $request){
@@ -43,8 +43,9 @@ class UsuarioController extends Controller
     }
     public function getUser(Request $request){
         $id = $request->user()->id;
-        $user = Usuario::with('rol')->find($id);
-        return response()->json([$user]);
+        $user = Usuario::with('cliente')->find($id);
+        //$user = Usuario::with('rol')->find($id);
+        return response()->json($user);
         //Usuario::find($id);
         //$direccion = Direccion::find($id);
         //return response()->json([$Direccion]);

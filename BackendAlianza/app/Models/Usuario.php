@@ -16,10 +16,10 @@ class Usuario extends Authenticatable implements JWTSubject
     protected $fillable = [
         "correo",
         "password",
+        'rol_id',
     ];
     protected $hidden = [
         'password',
-        'rol_id',
         'remember_token',
     ];
     protected $table="usuario";

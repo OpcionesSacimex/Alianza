@@ -20,3 +20,4 @@ Route::post('/usuario/createUser',[UsuarioController::class,'create']);
 Route::post('/persona/createUser',[PersonaController::class,'create']);
 Route::post('/direccion/createDireccion',[DireccionController::class,'create']);
 Route::post('/economico/createEconomico',[EconomicoController::class,'create']);
+Route::post('/cliente/createCliente',[ClienteController::class,'create']);
