@@ -1,21 +1,16 @@
-import {PanelCenter} from "../../../globalsComponents/panels/PanelCenter"
 import {PanelGrid} from "../../../globalsComponents/panels/PanelGrid"
-import {InputText} from "primereact/inputtext"
 import {Controller,useForm} from "react-hook-form"
 import {LabelForm,ErrorLabel} from "../../../globalsComponents/msg/LabelForm"
 import { InputNumber } from "primereact/inputnumber"
-import { Button } from "primereact/button"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 export const FrmEconomico=({children,control,errors})=>{
     return(
         <>
                     <p className="text-center text-2xl text-green-800 font-bold">
-                        Hablemos de tus ingresos.
+                        Hablemos de tus ingresos:
                     </p>
             <PanelGrid>
                 <div className="col-12">
-                    |
                     <Controller rules={{
                         required:"Es requerido"
                         }} control={control} name="nombre" render={({field,fieldState})=>(

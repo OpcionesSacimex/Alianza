@@ -9,9 +9,8 @@ import {useUpdateEffect} from "primereact/hooks"
 import { Divider } from 'primereact/divider';
 import {FrmPersona} from '../template/FrmPersona'
 import {FrmEconomico} from '../template/FrmEconomico'
+import { FrmMontos } from "../template/FrmMontos";
 import {Controller,useForm} from 'react-hook-form'
-import { Button } from 'primereact/button';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ButtonBackGO } from '../template/ButtonBackGO';
 
 export const CompleteRegister =()=>{
@@ -48,7 +47,9 @@ export const CompleteRegister =()=>{
                 <ButtonBackGO setActiveIndex={setActiveIndex} activeIndex={activeIndex} back={true} go={true}/>
             </FrmEconomico>)
             break;
-            case 2: setContent( <CreditoDeseado/>)
+            case 2: setContent(<FrmMontos control={control} errors={errors}>
+                <ButtonBackGO setActiveIndex={setActiveIndex} activeIndex={activeIndex} back={true} go={true}/>
+            </FrmMontos>)
             break;
             default: setContent (<></>)
             break;
