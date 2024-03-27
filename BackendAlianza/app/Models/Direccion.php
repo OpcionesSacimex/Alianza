@@ -26,4 +26,8 @@ class Direccion extends Model
     public function cliente(): HasOne{
         return $this->hasOne(Cliente::class);
     }
+    public function roles()
+    {
+        return $this->belongsToMany(Cliente::class, 'cliente');
+    }
 }

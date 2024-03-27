@@ -43,7 +43,7 @@ class UsuarioController extends Controller
     }
     public function getUser(Request $request){
         $id = $request->user()->id;
-        $user = Usuario::with('cliente')->find($id);
+        $user = Usuario::with('rol')->find($id);
         return response()->json([$user]);
         //Usuario::find($id);
         //$direccion = Direccion::find($id);
