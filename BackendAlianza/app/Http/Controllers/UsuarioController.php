@@ -41,6 +41,35 @@ class UsuarioController extends Controller
                 'expires_in' => auth('api')->factory()->getTTL()
             ]);
     }
+    public function ingresarPersona(Request $request){
+        $id = $request->user()->id;
+        Persona::create([
+            "nombre"=>$request->nombre,
+            "ape_pat"=>$request->ape_pat,
+            "apr_mat"=>$request->apr_mat,
+            "telefono"=>$request->telefono
+        ]);
+        Direccion::create([
+            "calle"=>$request->calle,
+            "no_exterior"=>$request->no_exterior,
+            "no_interior"=>$request->no_interior,
+            "cp"=>$request->cp,
+            "colonia"=>$request->colonia,
+            "latitud"=>$request->latitud, 
+            "longitud"=>$request->longitud
+        ]);
+        Economico::create([
+            "ingresos_q"=>$request->ingresos_q,
+            "disponible_q"=>$request->disponible_q,
+            "prestamo_f"=>$request->prestamo_f,
+            "plazo_f"=>$request->plazo_f,
+            "clabe_int"=>$request->clabe_int
+        ]);
+
+        return response()->json([
+            'status'=>true,
+        ],200);
+    }
     public function getUser(Request $request){
         $id = $request->user()->id;
         $user = Usuario::with('rol')->find($id);

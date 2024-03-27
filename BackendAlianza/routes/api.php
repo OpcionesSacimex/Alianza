@@ -16,6 +16,7 @@ Route::middleware('auth:api')->get('/usuario/user', [UsuarioController::class,'g
 Route::middleware('auth:api')->post('/usuario/logout', [UsuarioController::class,'logout']);
 Route::post('/usuario/createUser',[UsuarioController::class,'create']);
 
+Route::post('/usuario/formulario',[UsuarioController::class,'ingresarPersona']);
 
 Route::post('/persona/createUser',[PersonaController::class,'create']);
 Route::post('/direccion/createDireccion',[DireccionController::class,'create']);
