@@ -12,8 +12,8 @@ const AuthLaout = ()=>{
     const getInfoUserLogged = async () => {
         if (auth.token !== false) {         
             const res = await getUserData()
-            if(res.errror){
-                logout()
+            if(res.error){
+                closeSession()
             }else{
                 const user = res[0]
                 setUserInfo(user)
@@ -31,6 +31,7 @@ const AuthLaout = ()=>{
 
     const closeSession = () => {
         //logoutUser()
+        setUserInfo({})
         logout()
     }
 
@@ -40,14 +41,6 @@ const AuthLaout = ()=>{
         }
         asyncrona()
     })
-
-    /*if (auth.token === false) {
-        return <Navigate to="/home/login" />;
-    }
-    if (auth.token !== false) {
-        return <Navigate to="/dashboard/clientes" />;
-    }*/
-
 }
 
 export default AuthLaout

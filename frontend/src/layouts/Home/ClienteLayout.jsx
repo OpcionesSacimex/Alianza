@@ -1,17 +1,49 @@
 import React, { useEffect } from "react"
 import {useUserInfo} from "../../hooks/useUserAuth"
-import { Navigate, useOutlet } from "react-router";
+import { Navigate, useNavigate, useOutlet } from "react-router";
 import { PanelCenter } from "../../globalsComponents/panels/PanelCenter";
 import { Toolbar } from "primereact/toolbar";
 import { URLStorage } from "../../utils/URLBackend";
 import { PanelGrid } from "../../globalsComponents/panels/PanelGrid";
 import { useAuth } from "../../hooks/useAuthToken";
+import { useMountEffect } from "primereact/hooks";
+import { getUserData } from "../../modules/acceso/handle/handleAcceso";
 
 const ClienteLayout = ()=>{
     const outlet = useOutlet();
     const logo= `${URLStorage}/img/image.png`
     const {auth,logout} = useAuth()
+    const {userInfo,setUserInfo} = useUserInfo()
 
+    const navigate=useNavigate();
+    const getInfoUserLogged = async () => {
+        if (auth.token !== false) {         
+            const res = await getUserData()
+            const user = res[0]
+            setUserInfo(user)
+            if(res.error){
+                closeSession()
+            }else{
+                if(user.rol_id!==1){
+                    navigate("/dashboard",{replace:true})
+                }
+            }
+        }
+
+    }
+
+    const closeSession = () => {
+        //logoutUser()
+        setUserInfo({})
+        logout()
+    }
+
+    useMountEffect(() => {
+        const asyncrona = async () => {
+            await getInfoUserLogged()
+        }
+        asyncrona()
+    })
     const start = ()=>{
         return (
             <>
@@ -40,8 +72,6 @@ const ClienteLayout = ()=>{
             </>      
         )
     }
-
-    const {infoInfo,setUserInfo} = useUserInfo()
     if(auth.token===false){
         return <Navigate replace to="/"/>
     }else{

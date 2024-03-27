@@ -47,7 +47,8 @@ export const CompleteRegister =()=>{
                 <ButtonBackGO setActiveIndex={setActiveIndex} activeIndex={activeIndex} back={true} go={true}/>
             </FrmEconomico>)
             break;
-            case 2: setContent(<FrmMontos control={control} errors={errors}>
+            case 2: setContent(
+            <FrmMontos control={control} errors={errors}>
                 <ButtonBackGO setActiveIndex={setActiveIndex} activeIndex={activeIndex} back={true} go={true}/>
             </FrmMontos>)
             break;
@@ -55,6 +56,11 @@ export const CompleteRegister =()=>{
             break;
         }
     },[activeIndex])
+
+    const onSubmit=(data)=>{
+        console.log(data)
+    }
+
     return (
         <>
             <PanelCenter>
@@ -68,7 +74,7 @@ export const CompleteRegister =()=>{
                 </div>
                 
                 <div>
-                    <form> 
+                    <form onSubmit={handleSubmit(onSubmit)}> 
                         <PanelCenter>
                             <Card>
                                 {content}

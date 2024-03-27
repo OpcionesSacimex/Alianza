@@ -1,4 +1,3 @@
-import {PanelCenter} from "../../../globalsComponents/panels/PanelCenter"
 import {PanelGrid} from "../../../globalsComponents/panels/PanelGrid"
 import {InputText} from "primereact/inputtext"
 import {Controller,useForm} from "react-hook-form"
@@ -18,10 +17,10 @@ export const FrmPersona=({children,control,errors})=>{
                             }} control={control} name="nombre" render={({field,fieldState})=>(
                                 <>
                                     <span className="mt-4 p-float-label">
+                                        <InputText maxLength={45} name={field.name} value={field.value||""} onChange={field.onChange}/>
                                         <LabelForm htmlFor={field.name} status={fieldState.invalid} required={true}>
                                             Nombre: 
                                         </LabelForm>
-                                        <InputText className="p-fluid" name={field.name} value={field.value||""} onChange={field.onChange}/>
                                     </span>
                                     <ErrorLabel name={field.name} errors={errors}></ErrorLabel>
                                 </>
@@ -33,10 +32,10 @@ export const FrmPersona=({children,control,errors})=>{
                             }} control={control} name="ape_pat" render={({field,fieldState})=>(
                                 <>
                                     <span className="mt-2 p-float-label">
+                                        <InputText maxLength={45} name={field.name} value={field.value||""} onChange={field.onChange}/>
                                         <LabelForm htmlFor={field.name} status={fieldState.invalid} required={true}>
                                             Apellido Paterno: 
                                         </LabelForm>
-                                        <InputText name={field.name} value={field.value||""} onChange={field.onChange}/>
                                     </span>
                                     <ErrorLabel name={field.name} errors={errors}></ErrorLabel>
                                 </>
@@ -49,10 +48,10 @@ export const FrmPersona=({children,control,errors})=>{
                             }} control={control} name="ape_mat" render={({field,fieldState})=>(
                                 <>
                                     <span className="mt-2 p-float-label">
+                                        <InputText maxLength={45} name={field.name} value={field.value||""} onChange={field.onChange}/>
                                         <LabelForm htmlFor={field.name} status={fieldState.invalid} required={true}>
                                             Apellido Materno: 
                                         </LabelForm>
-                                        <InputText name={field.name} value={field.value||""} onChange={field.onChange}/>
                                     </span>
                                     <ErrorLabel name={field.name} errors={errors}></ErrorLabel>
                                 </>
@@ -65,10 +64,10 @@ export const FrmPersona=({children,control,errors})=>{
                             }} control={control} name="telefono" render={({field,fieldState})=>(
                                 <>
                                     <span className="mt-2 p-float-label">
+                                        <InputNumber  type="text" max={9999999999} name={field.name} value={field.value||""} onChange={(e)=>field.onChange(e.value)} useGrouping={false}/>
                                         <LabelForm htmlFor={field.name} status={fieldState.invalid} required={true}>
                                             Número telefonico: 
                                         </LabelForm>
-                                        <InputNumber maxLength={10} name={field.name} value={field.value||""} onChange={(e)=>field.onChange(e.value)} useGrouping={false}/>
                                     </span>
                                     <ErrorLabel name={field.name} errors={errors}></ErrorLabel>
                                 </>

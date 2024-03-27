@@ -35,7 +35,6 @@ export const getAllRegisters = async (URL) => {
             return res.data;
         }
     } catch (error) {
-        console.log(error)
         return { error: error.message }
     }
 }

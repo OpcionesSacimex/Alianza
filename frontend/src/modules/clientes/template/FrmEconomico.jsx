@@ -16,10 +16,10 @@ export const FrmEconomico=({children,control,errors})=>{
                         }} control={control} name="ingreso_q" render={({field,fieldState})=>(
                             <>
                                 <span className="mt-4 p-float-label">
+                                    <InputNumber mode="currency" currency="USD" name={field.name} value={field.value||""} onChange={(e)=>field.onChange(e.value)} useGrouping={false}/>
                                     <LabelForm htmlFor={field.name} status={fieldState.invalid} required={true}>
                                         Ingresos quincenales: 
                                     </LabelForm>
-                                    <InputNumber mode="currency" currency="USD" name={field.name} value={field.value||""} onChange={(e)=>field.onChange(e.value)} useGrouping={false}/>
                                 </span>
                                 <ErrorLabel name={field.name} errors={errors}></ErrorLabel>
                             </>
@@ -31,10 +31,10 @@ export const FrmEconomico=({children,control,errors})=>{
                         }} control={control} name="disponible_q" render={({field,fieldState})=>(
                             <>
                                 <span className="mt-2 p-float-label">
+                                    <InputNumber mode="currency" currency="USD" name={field.name} value={field.value||""} onChange={(e)=>field.onChange(e.value)} useGrouping={false}/>
                                     <LabelForm htmlFor={field.name} status={fieldState.invalid} required={true}>
                                          ¿Cuánto te queda disponible?: 
                                     </LabelForm>
-                                    <InputNumber mode="currency" currency="USD" name={field.name} value={field.value||""} onChange={(e)=>field.onChange(e.value)} useGrouping={false}/>
                                 </span>
                                 <ErrorLabel name={field.name} errors={errors}></ErrorLabel>
                             </>

@@ -12,10 +12,13 @@ export const FrmMontos=({children,control,errors})=>{
                     <Controller control={control} name="pago_min" render={({field,fieldState})=>(
                         <>
                             <span className="p-float-label">
+                                <InputNumber mode="currency" currency="USD" name={field.name} value={field.value||""} onChange={(e)=>{
+                                    field.onChange(e.value)
+                                }}
+                                useGrouping={false}/>
                                 <LabelForm htmlFor={field.name} status={fieldState.invalid} required={true}>
                                     Pago mínimo quincenal: 
                                 </LabelForm>
-                                <InputNumber mode="currency" currency="USD" name={field.name} value={field.value||""} onChange={(e)=>field.onChange(e.value)} useGrouping={false}/>
                             </span>
                             <ErrorLabel name={field.name} errors={errors}></ErrorLabel>
                         </>
@@ -25,10 +28,10 @@ export const FrmMontos=({children,control,errors})=>{
                     <Controller defaultValue={0} control={control} name="pago_max" render={({field,fieldState})=>(
                         <>
                             <span className="p-float-label">
+                                <InputNumber mode="currency" currency="USD" name={field.name} value={field.value} onChange={(e)=>field.onChange(e.value)} useGrouping={false} />
                                 <LabelForm htmlFor={field.name} status={fieldState.invalid} required={true}>
                                     Pago máximo quincenal: 
                                 </LabelForm>
-                                <InputNumber mode="currency" currency="USD" name={field.name} value={field.value} onChange={(e)=>field.onChange(e.value)} useGrouping={false} />
                             </span>
                             <ErrorLabel name={field.name} errors={errors}></ErrorLabel>
                         </>
