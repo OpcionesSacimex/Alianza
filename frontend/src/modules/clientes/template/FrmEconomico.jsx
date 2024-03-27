@@ -13,7 +13,7 @@ export const FrmEconomico=({children,control,errors})=>{
                 <div className="col-12">
                     <Controller rules={{
                         required:"Es requerido"
-                        }} control={control} name="nombre" render={({field,fieldState})=>(
+                        }} control={control} name="ingreso_q" render={({field,fieldState})=>(
                             <>
                                 <span className="mt-4 p-float-label">
                                     <LabelForm htmlFor={field.name} status={fieldState.invalid} required={true}>
@@ -28,7 +28,7 @@ export const FrmEconomico=({children,control,errors})=>{
                     <div className="col-12">
                     <Controller rules={{
                             required:"Es requerido"
-                        }} control={control} name="ape_pat" render={({field,fieldState})=>(
+                        }} control={control} name="disponible_q" render={({field,fieldState})=>(
                             <>
                                 <span className="mt-2 p-float-label">
                                     <LabelForm htmlFor={field.name} status={fieldState.invalid} required={true}>

@@ -22,7 +22,9 @@ export const TokenProvider = ({ children }) => {
   }
 
   const logout = async () => {
-    setAuth({})
+    setAuth({
+      token:false
+    })
     try {
       navigate("/login", { replace: true });
     } catch (error) {

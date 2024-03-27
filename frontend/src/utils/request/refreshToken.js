@@ -13,5 +13,6 @@ export const refreshToken =async ()=>{
             }
         })
     window.localStorage.setItem("auth",JSON.stringify(resToken.data))
+    console.log(resToken.data)
     return resToken.data
 }
