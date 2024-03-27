@@ -19,12 +19,12 @@ const ClienteLayout = ()=>{
     const getInfoUserLogged = async () => {
         if (auth.token !== false) {         
             const res = await getUserData()
-            const user = res[0]
+            const user = res
             setUserInfo(user)
             if(res.error){
                 closeSession()
             }else{
-                if(user.rol_id!==1){
+                if(user.rol.id!==1){
                     navigate("/dashboard",{replace:true})
                 }
             }

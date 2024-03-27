@@ -10,19 +10,21 @@ const AuthLaout = ()=>{
     const {userInfo,setUserInfo}= useUserInfo();
     const navigate=useNavigate();
     const getInfoUserLogged = async () => {
-        if (auth.token !== false) {         
+        if (auth.token !== false) {
             const res = await getUserData()
             if(res.error){
                 closeSession()
             }else{
-                const user = res[0]
+                const user = res
                 setUserInfo(user)
-                if(user.rol_id===1){
-                    navigate("/dashboard/clientes",{replace:true})
-                }else if(user.rol_id===2){
-                    navigate("/dashboard/asesores",{replace:true})
-                }else if(user.rol_id===3){
-                    navigate("/dashboard/admins",{replace:true})
+                switch(user.rol.id){
+                    case 1: navigate("/dashboard/clientes",{replace:true});
+                    break;
+                    case 2: navigate("/dashboard/asesores",{replace:true})
+                    break;
+                    case 3: navigate("/dashboard/admins",{replace:true})
+                    break;
+                    default: closeSession()
                 }
             }
         }
@@ -31,7 +33,7 @@ const AuthLaout = ()=>{
 
     const closeSession = () => {
         //logoutUser()
-        setUserInfo({})
+        //setUserInfo({})
         logout()
     }
 
