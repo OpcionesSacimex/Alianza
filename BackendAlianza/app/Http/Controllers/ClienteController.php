@@ -19,4 +19,9 @@ class ClienteController extends Controller
             //'nombre'=> 'nombre'
         ],200);
     }
+    public function getCliente(Request $request){
+        $id = $request->user()->id;
+        $user = Cliente::with('usuario','persona','direccion','economico')->find($id);
+        return response()->json($user);
+    }
 }
