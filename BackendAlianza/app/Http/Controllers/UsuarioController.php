@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cliente;
 use Illuminate\Http\Request;
 use App\Models\Usuario;
+Use App\Models\Direccion;
+Use App\Models\Persona;
 
 class UsuarioController extends Controller
 {
@@ -15,6 +18,7 @@ class UsuarioController extends Controller
         Usuario::create([
             "correo"=>$request->correo,
             "password"=>bcrypt($request->password), //encrip
+            "rol_id"=>1
         ]);
         
         return response()->json([
@@ -42,6 +46,11 @@ class UsuarioController extends Controller
         $user = Usuario::with('cliente')->find($id);
         return response()->json([$user]);
         //Usuario::find($id);
+        //$direccion = Direccion::find($id);
+        //return response()->json([$Direccion]);
+
+        //$user = Usuario::with('cliente')->with('direccion')->find($id);
+        //return response()->json($user);
     }
     public function logout()
     {
