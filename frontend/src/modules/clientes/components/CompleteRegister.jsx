@@ -12,6 +12,7 @@ import {FrmEconomico} from '../template/FrmEconomico'
 import { FrmMontos } from "../template/FrmMontos";
 import {Controller,useForm} from 'react-hook-form'
 import { ButtonBackGO } from '../template/ButtonBackGO';
+import { FrmDireccion } from '../template/FrmDireccion';
 
 export const CompleteRegister =()=>{
     const {control,getValues,setValue,handleSubmit, formState:{errors}}=useForm()
@@ -25,15 +26,20 @@ export const CompleteRegister =()=>{
             command: (e) => {},
             template:(item)=>StepsModel(item,0,activeIndex,setActiveIndex)
         },{
+            label:"Direccion",
+            icon:"map-location-dot",
+            command:(e)=>{},
+            template:(item)=>StepsModel(item,1,activeIndex,setActiveIndex)
+        },{
             label:"socio economico",
             icon:"comments-dollar",
             command:(e)=>{},
-            template:(item)=>StepsModel(item,1,activeIndex,setActiveIndex)
+            template:(item)=>StepsModel(item,2,activeIndex,setActiveIndex)
         },{
             label: 'Detalles del credito',
             icon: "hand-holding-dollar",
             command: (e) => {},
-            template:(item)=>StepsModel(item,2,activeIndex,setActiveIndex)
+            template:(item)=>StepsModel(item,3,activeIndex,setActiveIndex)
         }
     ]
     useUpdateEffect(()=>{
@@ -43,11 +49,16 @@ export const CompleteRegister =()=>{
             </FrmPersona>)
             break;
             case 1: setContent(
+            <FrmDireccion control={control} errors={errors}>
+                <ButtonBackGO setActiveIndex={setActiveIndex} activeIndex={activeIndex} back={true} go={true}/>
+            </FrmDireccion>)
+            break;
+            case 2: setContent(
             <FrmEconomico control={control} errors={errors}>
                 <ButtonBackGO setActiveIndex={setActiveIndex} activeIndex={activeIndex} back={true} go={true}/>
             </FrmEconomico>)
             break;
-            case 2: setContent(
+            case 3: setContent(
             <FrmMontos control={control} errors={errors}>
                 <ButtonBackGO setActiveIndex={setActiveIndex} activeIndex={activeIndex} back={true} go={true}/>
             </FrmMontos>)
