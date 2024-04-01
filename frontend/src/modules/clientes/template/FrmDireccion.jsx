@@ -1,7 +1,10 @@
-import React from "react"
+import React, { useState } from "react"
 import { PanelGrid } from "../../../globalsComponents/panels/PanelGrid"
 import { OpenMap } from "../../../globalsComponents/map/OpenMap"
 export const FrmDireccion =({children,control,errors})=>{
+
+    const [position,setPosition]=useState()
+
     return(
         <>
             <p className="text-center text-2xl text-green-800 font-bold">
@@ -9,7 +12,7 @@ export const FrmDireccion =({children,control,errors})=>{
             </p>
             <PanelGrid>
                 <div className="col-12">
-                    <OpenMap/>
+                    <OpenMap setPosition={setPosition} position={position}/>
                 </div>
                 <div className="col-6">
 

@@ -16,6 +16,7 @@ import {LabelForm,ErrorLabel} from "../../../globalsComponents/msg/LabelForm"
 import {Toast} from "primereact/toast"
 import {useAuth} from "../../../hooks/useAuthToken"
 import { useUserInfo } from "../../../hooks/useUserAuth"
+import { useMountEffect } from "primereact/hooks"
 const Login=()=>{
     const navigate = useNavigate()
     const {setUserInfo} = useUserInfo()
@@ -24,6 +25,7 @@ const Login=()=>{
     const {auth,setAuth} = useAuth()
 
     const toast = useRef()
+    const toastContact = useRef()
 
     const {control,setValue,getValues,reset,handleSubmit,formState:{errors}} =useForm()
 
@@ -42,6 +44,9 @@ const Login=()=>{
             toast.current.show({severity:'warn', summary: user.error, detail: 'Usuario o contraseña incorecta'})
         }   
     }
+    useMountEffect(()=>{
+        toastContact.current.show({sticky: true})
+    })
     
     return (
         <>
@@ -49,6 +54,15 @@ const Login=()=>{
                 <PasswordResetEmail/>
             </ContentDialog>
             <Toast className="mt-8" ref={toast} />
+            <Toast className="mt-8" ref={toastContact} position="bottom-left" content={({ message }) =>(
+                <>
+                    <Button severity="success" onClick={(e) => ov.current.toggle(e)} rounded={true}>
+                        <FontAwesomeIcon icon={"comments"}></FontAwesomeIcon>
+                        <OverlayPanel ref={ov}></OverlayPanel>
+                    </Button>
+                    
+                </>
+            )} />
             <div className="mt-5 mb-6">
             <PanelCenter>
                 <Card>
@@ -107,12 +121,7 @@ const Login=()=>{
                 </Card>
             </PanelCenter>
             <div className="card flex sticky top-0">
-                <Button severity="success" onClick={(e) => ov.current.toggle(e)} rounded={true}>
-                    <FontAwesomeIcon icon={"comments"}></FontAwesomeIcon>
-                </Button>
-                <OverlayPanel ref={ov}>
-                    
-                </OverlayPanel>
+                
             </div>
             </div>
             
