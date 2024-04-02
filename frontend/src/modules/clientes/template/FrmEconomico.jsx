@@ -1,9 +1,7 @@
 import {PanelGrid} from "../../../globalsComponents/panels/PanelGrid"
-import {Controller,useForm} from "react-hook-form"
+import {Controller} from "react-hook-form"
 import {LabelForm,ErrorLabel} from "../../../globalsComponents/msg/LabelForm"
 import { InputNumber } from "primereact/inputnumber"
-import { InputText } from "primereact/inputtext"
-
 export const FrmEconomico=({children,control,errors})=>{
     return(
         <>

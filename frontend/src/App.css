@@ -9,14 +9,9 @@
     font-family: 'Presidencia Fina', 'sans-serif';
     font-size: 1.5em;
     outline: none;
-    padding: 10px 5px 10px 20px;
+    padding: 10px 5px 10px 0px;
     margin: .5em 1em 1em 0em;
     text-align: end;
-}
-
-.p-card{
-  background-color: #e6e3e3;
-  width: 35em;
 }
 
 .svg-inline--fa {
@@ -30,4 +25,29 @@
 }
 .p-divider-solid.p-divider-horizontal:before {
   border-top-style: none !important;
+}
+/*
+border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+*/
+.slider-tem{
+  height: 1rem !important;
+  border-radius: 50px;
+}
+.slider-tem .p-slider-range{
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  background: var(--yellow-500);
+}
+.slider-tem .p-slider-handle{
+  width: 2.43rem;
+  height: 2.43rem;
+  border: 2px solid var(--green-900);
+  background: var(--green-900);
+}
+.slider-tem .p-slider-handle:hover{
+  background-color: var(--green-800);
+}
+.slider-tem .p-slider-handle{
+  top:1%;
 }

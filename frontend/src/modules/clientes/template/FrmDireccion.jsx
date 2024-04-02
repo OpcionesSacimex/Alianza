@@ -52,36 +52,44 @@ export const FrmDireccion =({children,control,errors,getValues,setValue})=>{
                 <div className="col-12">
                     <Controller name="direccion" control={control} render={({field:f,fieldState:fs})=>(
                         <>
-                            <Controller name={`${f.name}.colonia`} control={control} render={({field,fieldState})=>(
-                                <>
-                                   <span className="p-float-label">
-                                        <InputText name={`${field.name}`} value={`${field.value ||''}`} onChange={field.onChange} />
-                                        <LabelForm htmlFor={field.name} required={true} status={fieldState.invalid}>
-                                            Colonia
-                                        </LabelForm>
-                                   </span>
-                                </>
-                            )} />
-                            <Controller name={`${f.name}.calle`} control={control} render={({field,fieldState})=>(
-                                <>
-                                   <span className="p-float-label">
-                                        <InputText name={`${field.name}`} value={`${field.value ||''}`} onChange={field.onChange} />
-                                        <LabelForm htmlFor={field.name} required={true} status={fieldState.invalid}>
-                                            Calle
-                                        </LabelForm>
-                                   </span>
-                                </>
-                            )} />
-                            <Controller name={`${f.name}.cp`} control={control} render={({field,fieldState})=>(
-                                <>
-                                   <span className="p-float-label">
-                                        <InputText name={`${field.name}`} value={`${field.value ||''}`} onChange={field.onChange} />
-                                        <LabelForm htmlFor={field.name} required={true} status={fieldState.invalid}>
-                                            Codigo postal
-                                        </LabelForm>
-                                   </span>
-                                </>
-                            )} />
+                        <PanelGrid>
+                            <div className="col-12">
+                                <Controller name={`${f.name}.calle`} control={control} render={({field,fieldState})=>(
+                                    <>
+                                        <span className="p-float-label">
+                                            <InputText name={`${field.name}`} value={`${field.value ||''}`} onChange={field.onChange} />
+                                            <LabelForm htmlFor={field.name} required={true} status={fieldState.invalid}>
+                                                Calle
+                                            </LabelForm>
+                                        </span>
+                                    </>
+                                )} />
+                            </div>
+                            <div className="col-12 lg:col-7">
+                                <Controller name={`${f.name}.colonia`} control={control} render={({field,fieldState})=>(
+                                    <>
+                                        <span className="p-float-label">
+                                            <InputText name={`${field.name}`} value={`${field.value ||''}`} onChange={field.onChange} />
+                                            <LabelForm htmlFor={field.name} required={true} status={fieldState.invalid}>
+                                                Colonia:
+                                            </LabelForm>
+                                        </span>  
+                                        </>
+                                 )} />
+                            </div>
+                            <div className="col-12 lg:col-5">
+                                <Controller name={`${f.name}.cp`} control={control} render={({field,fieldState})=>(
+                                    <>
+                                        <span className="p-float-label">
+                                            <InputText name={`${field.name}`} value={`${field.value ||''}`} onChange={field.onChange} />
+                                            <LabelForm htmlFor={field.name} required={true} status={fieldState.invalid}>
+                                                Codigo postal
+                                            </LabelForm>
+                                        </span>
+                                    </>
+                                )} />
+                            </div>
+                            <div className="col-12 lg:col-6">
                             <Controller name={`${f.name}.no_interior`} control={control} render={({field,fieldState})=>(
                                 <>
                                    <span className="p-float-label">
@@ -92,17 +100,20 @@ export const FrmDireccion =({children,control,errors,getValues,setValue})=>{
                                    </span>
                                 </>
                             )} />
-                            <Controller name={`${f.name}.no_exterior`} control={control} render={({field,fieldState})=>(
-                                <>
-                                   <span className="p-float-label">
-                                        <InputText name={`${field.name}`} value={`${field.value ||''}`} onChange={field.onChange} />
-                                        <LabelForm htmlFor={field.name} required={true} status={fieldState.invalid}>
-                                            Numero exterior
-                                        </LabelForm>
-                                   </span>
-                                </>
-                            )} />
-                            
+                            </div>
+                            <div className="col-12 lg:col-6">
+                                <Controller name={`${f.name}.no_exterior`} control={control} render={({field,fieldState})=>(
+                                    <>
+                                        <span className="p-float-label">
+                                            <InputText name={`${field.name}`} value={`${field.value ||''}`} onChange={field.onChange} />
+                                            <LabelForm htmlFor={field.name} required={true} status={fieldState.invalid}>
+                                                Numero exterior
+                                            </LabelForm>
+                                        </span>
+                                    </>
+                                )} />
+                            </div>
+                            </PanelGrid>
                         </>
                     )}/>
                 </div>
