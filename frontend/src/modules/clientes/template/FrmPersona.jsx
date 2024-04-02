@@ -19,14 +19,14 @@ export const FrmPersona=({children,control,errors})=>{
                                     <span className="mt-4 p-float-label">
                                         <InputText maxLength={45} name={field.name} value={field.value||""} onChange={field.onChange}/>
                                         <LabelForm htmlFor={field.name} status={fieldState.invalid} required={true}>
-                                            Nombre: 
+                                            Nombre(s): 
                                         </LabelForm>
                                     </span>
                                     <ErrorLabel name={field.name} errors={errors}></ErrorLabel>
                                 </>
                     )}/>
                     </div>
-                    <div className="col-12">
+                    <div className="col-12 lg:col-6">
                     <Controller rules={{
                                 required:"Es requerido"
                             }} control={control} name="ape_pat" render={({field,fieldState})=>(
@@ -42,7 +42,7 @@ export const FrmPersona=({children,control,errors})=>{
                     )}/>
                     </div>
 
-                    <div className="col-12">
+                    <div className="col-12 lg:col-6">
                     <Controller rules={{
                                 required:"Es requerido"
                             }} control={control} name="ape_mat" render={({field,fieldState})=>(

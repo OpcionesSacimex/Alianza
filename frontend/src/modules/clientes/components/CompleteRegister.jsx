@@ -76,7 +76,8 @@ export const CompleteRegister =()=>{
         <>
             <PanelCenter>
                 <div className="card w-full">
-                    <Steps className='' model={items} activeIndex={activeIndex} onSelect={(e) => setActiveIndex(e.index)} readOnly={false}>   
+                    <Steps className='' model={items} activeIndex={activeIndex} 
+                    onSelect={(e) => setActiveIndex(e.index)} readOnly={false}>   
                     </Steps>
                     <Divider className='border-green-800 border-3' layout='horizontal'>
                         <div className='w-full bg-green-800 h-full'>
@@ -84,10 +85,10 @@ export const CompleteRegister =()=>{
                     </Divider>
                 </div>
                 
-                <div>
+                <div className='w-full'>
                     <form onSubmit={handleSubmit(onSubmit)}> 
                         <PanelCenter>
-                            <Card>
+                            <Card className='w-12 md:w-8 lg:w-7 xl:w-6 bg-gray-100'>
                                 {content}
                             </Card>
                         </PanelCenter>
