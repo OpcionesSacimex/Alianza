@@ -4,6 +4,7 @@ use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\DireccionController;
 use App\Http\Controllers\EconomicoController;
 use App\Http\Controllers\PersonaController;
+use App\Http\Controllers\UploadController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsuarioController;
@@ -23,3 +24,6 @@ Route::post('/direccion/createDireccion',[DireccionController::class,'create']);
 Route::post('/economico/createEconomico',[EconomicoController::class,'create']);
 Route::post('/cliente/createCliente',[ClienteController::class,'create']);
 Route::middleware('auth:api')->get('/cliente/get', [ClienteController::class,'getCliente']);
+
+Route::post('/documnetos/uploadDocuments',[UploadController::class,'uploadDocument']);
+Route::post('/subir','Controller@uploadDocuments')->name('subir');
