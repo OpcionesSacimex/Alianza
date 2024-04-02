@@ -49,7 +49,7 @@ export const CompleteRegister =()=>{
             </FrmPersona>)
             break;
             case 1: setContent(
-            <FrmDireccion control={control} errors={errors}>
+            <FrmDireccion control={control} errors={errors} getValues={getValues} setValue={setValue}>
                 <ButtonBackGO setActiveIndex={setActiveIndex} activeIndex={activeIndex} back={true} go={true}/>
             </FrmDireccion>)
             break;

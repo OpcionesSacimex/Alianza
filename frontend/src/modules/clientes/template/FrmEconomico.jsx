@@ -2,6 +2,7 @@ import {PanelGrid} from "../../../globalsComponents/panels/PanelGrid"
 import {Controller,useForm} from "react-hook-form"
 import {LabelForm,ErrorLabel} from "../../../globalsComponents/msg/LabelForm"
 import { InputNumber } from "primereact/inputnumber"
+import { InputText } from "primereact/inputtext"
 
 export const FrmEconomico=({children,control,errors})=>{
     return(
@@ -11,12 +12,12 @@ export const FrmEconomico=({children,control,errors})=>{
                     </p>
             <PanelGrid>
                 <div className="col-12">
-                    <Controller rules={{
+                    <Controller defaultValue={0} rules={{
                         required:"Es requerido"
                         }} control={control} name="ingreso_q" render={({field,fieldState})=>(
                             <>
                                 <span className="mt-4 p-float-label">
-                                    <InputNumber mode="currency" currency="USD" name={field.name} value={field.value||""} onChange={(e)=>field.onChange(e.value)} useGrouping={false}/>
+                                    <InputNumber mode="currency" currency="USD" name={field.name} value={field.value} onChange={(e)=>field.onChange(e.value)} useGrouping={false}/>
                                     <LabelForm htmlFor={field.name} status={fieldState.invalid} required={true}>
                                         Ingresos quincenales: 
                                     </LabelForm>
@@ -26,12 +27,12 @@ export const FrmEconomico=({children,control,errors})=>{
                     )}/>
                     </div>
                     <div className="col-12">
-                    <Controller rules={{
+                    <Controller defaultValue={0} rules={{
                             required:"Es requerido"
                         }} control={control} name="disponible_q" render={({field,fieldState})=>(
                             <>
                                 <span className="mt-2 p-float-label">
-                                    <InputNumber mode="currency" currency="USD" name={field.name} value={field.value||""} onChange={(e)=>field.onChange(e.value)} useGrouping={false}/>
+                                    <InputNumber mode="currency" currency="USD" name={field.name} value={field.value} onChange={(e)=>field.onChange(e.value)} useGrouping={false}/>
                                     <LabelForm htmlFor={field.name} status={fieldState.invalid} required={true}>
                                          ¿Cuánto te queda disponible?: 
                                     </LabelForm>

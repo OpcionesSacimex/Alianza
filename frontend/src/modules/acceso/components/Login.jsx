@@ -10,16 +10,14 @@ import { OverlayPanel } from 'primereact/overlaypanel';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { ContentDialog } from "../../../globalsComponents/dialog/ContentDialog"
 import { PasswordResetEmail } from "./PasswordResetEmail"
-import {getUserData, loginUser} from "../handle/handleAcceso"
+import { loginUser} from "../handle/handleAcceso"
 import {Controller,useForm} from "react-hook-form"
 import {LabelForm,ErrorLabel} from "../../../globalsComponents/msg/LabelForm"
 import {Toast} from "primereact/toast"
 import {useAuth} from "../../../hooks/useAuthToken"
-import { useUserInfo } from "../../../hooks/useUserAuth"
 import { useMountEffect } from "primereact/hooks"
 const Login=()=>{
     const navigate = useNavigate()
-    const {setUserInfo} = useUserInfo()
     const ov = useRef(null)
     const [visible,setVisible]=useState(false)
     const {auth,setAuth} = useAuth()
@@ -54,15 +52,14 @@ const Login=()=>{
                 <PasswordResetEmail/>
             </ContentDialog>
             <Toast className="mt-8" ref={toast} />
-            <Toast className="mt-8" ref={toastContact} position="bottom-left" content={({ message }) =>(
-                <>
-                    <Button severity="success" onClick={(e) => ov.current.toggle(e)} rounded={true}>
-                        <FontAwesomeIcon icon={"comments"}></FontAwesomeIcon>
-                        <OverlayPanel ref={ov}></OverlayPanel>
-                    </Button>
-                    
-                </>
-            )} />
+            
+            <Toast className="mt-8" ref={toastContact} position="bottom-left" content={({message})=>(
+                <Button severity="success" onClick={(e) => ov.current.toggle(e)} rounded={true}>
+                    <FontAwesomeIcon icon={"comments"}></FontAwesomeIcon>
+                </Button>
+            )}/>
+            <OverlayPanel ref={ov} dismissable={false} ></OverlayPanel>
+            
             <div className="mt-5 mb-6">
             <PanelCenter>
                 <Card>
@@ -120,9 +117,6 @@ const Login=()=>{
                     </form>
                 </Card>
             </PanelCenter>
-            <div className="card flex sticky top-0">
-                
-            </div>
             </div>
             
         </>

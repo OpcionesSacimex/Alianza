@@ -7,12 +7,15 @@ export const FrmMontos=({children,control,errors})=>{
     return(
         <>
         <div className="align-content-center">
+            <p className="text-center text-2xl text-green-800 font-bold">
+                Detalles del credito
+            </p>
             <PanelGrid>
                 <div className="col-12">
-                    <Controller control={control} name="pago_min" render={({field,fieldState})=>(
+                    <Controller defaultValue={0}  control={control} name="pago_min" render={({field,fieldState})=>(
                         <>
                             <span className="p-float-label">
-                                <InputNumber mode="currency" currency="USD" name={field.name} value={field.value||""} onChange={(e)=>{
+                                <InputNumber mode="currency" currency="USD" name={field.name} value={field.value} onChange={(e)=>{
                                     field.onChange(e.value)
                                 }}
                                 useGrouping={false}/>
