@@ -26,4 +26,4 @@ Route::post('/cliente/createCliente',[ClienteController::class,'create']);
 Route::middleware('auth:api')->get('/cliente/get', [ClienteController::class,'getCliente']);
 
 Route::post('/documnetos/uploadDocuments',[UploadController::class,'uploadDocument']);
-Route::post('/subir','Controller@uploadDocuments')->name('subir');
+Route::post('/subir','Controller@uploadDocuments')->name('subir'); //pendiente de probar
