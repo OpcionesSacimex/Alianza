@@ -12,10 +12,10 @@ import ClienteLayout from "./layouts/Home/ClienteLayout"
 import {library} from '@fortawesome/fontawesome-svg-core'
 import {
   faComments,faHandHoldingDollar,faCommentsDollar, faCircleArrowRight,
-  faCircleArrowLeft,faFileLines,faMapLocationDot
+  faCircleArrowLeft,faFileLines,faMapLocationDot,faFileInvoiceDollar,faClipboardCheck
 } from '@fortawesome/free-solid-svg-icons'
 library.add(faComments,faHandHoldingDollar,faCommentsDollar,faCircleArrowRight,
-  faCircleArrowLeft, faFileLines,faMapLocationDot)
+  faCircleArrowLeft, faFileLines,faMapLocationDot,faFileInvoiceDollar,faClipboardCheck)
 function App() {
   return useRoutes(
     [

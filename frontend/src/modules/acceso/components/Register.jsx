@@ -44,7 +44,7 @@ const Registrate=()=>{
             </ContentDialog>
             <div className="mt-5 mb-6">
                 <PanelCenter>
-                    <Card>
+                    <Card className="w-12 md:w-8 lg:w-7 xl:w-6 bg-gray-100">
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <PanelCenter>
                         <div className="flex flex-wrap align-items-center justify-content-center">
