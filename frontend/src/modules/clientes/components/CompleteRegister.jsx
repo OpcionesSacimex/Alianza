@@ -87,6 +87,7 @@ export const CompleteRegister =()=>{
     },[activeIndex])
 
     const onSubmit=(data)=>{
+        console.log(data)
         onAccept(data)
     }
     const onAccept=async(data)=>{
