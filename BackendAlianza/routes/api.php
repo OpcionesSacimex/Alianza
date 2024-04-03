@@ -22,7 +22,7 @@ Route::post('/usuario/formulario',[UsuarioController::class,'ingresarPersona']);
 Route::post('/persona/createUser',[PersonaController::class,'create']);
 Route::post('/direccion/createDireccion',[DireccionController::class,'create']);
 Route::post('/economico/createEconomico',[EconomicoController::class,'create']);
-Route::post('/cliente/createCliente',[ClienteController::class,'create']);
+Route::middleware('auth:api')->post('/cliente/createCliente', [ClienteController::class,'create']);
 Route::middleware('auth:api')->get('/cliente/get', [ClienteController::class,'getCliente']);
 
 Route::post('/documnetos/uploadDocuments',[UploadController::class,'uploadDocument']);
