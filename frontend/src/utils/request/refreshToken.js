@@ -19,7 +19,12 @@ export const refreshToken =async ()=>{
         window.localStorage.setItem("auth",JSON.stringify({
             token:false
         }))
-        return {token:false}
+        return {error:{
+            status:error.response.status,
+            message:error.response.data.message,
+            statusText:error.response.statusText
+        }}
+        
     }
     
 }

@@ -2,7 +2,6 @@ import React, {useContext, useEffect} from 'react'
 import {Navigate, useRoutes} from 'react-router-dom'
 import './App.css';
 import "primereact/resources/themes/lara-light-indigo/theme.css"
-import "primereact/resources/primereact.css"
 import "primeflex/primeflex.css"
 import {AccesoPage} from "./modules/acceso/pages/AccesoPage"
 import {ClientesPage} from "./modules/clientes/pages/ClientesPage"
@@ -12,10 +11,12 @@ import ClienteLayout from "./layouts/Home/ClienteLayout"
 import {library} from '@fortawesome/fontawesome-svg-core'
 import {
   faComments,faHandHoldingDollar,faCommentsDollar, faCircleArrowRight,
-  faCircleArrowLeft,faFileLines,faMapLocationDot,faFileInvoiceDollar,faClipboardCheck
+  faCircleArrowLeft,faFileLines,faMapLocationDot,faFileInvoiceDollar,faClipboardCheck,
+  faPrint,faPencilSquare,faPaperPlane
 } from '@fortawesome/free-solid-svg-icons'
 library.add(faComments,faHandHoldingDollar,faCommentsDollar,faCircleArrowRight,
-  faCircleArrowLeft, faFileLines,faMapLocationDot,faFileInvoiceDollar,faClipboardCheck)
+  faCircleArrowLeft, faFileLines,faMapLocationDot,faFileInvoiceDollar,faClipboardCheck,
+  faPrint,faPencilSquare,faPaperPlane)
 function App() {
   return useRoutes(
     [

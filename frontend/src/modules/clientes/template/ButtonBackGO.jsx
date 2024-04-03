@@ -10,7 +10,7 @@ export const ButtonBackGO=({activeIndex, setActiveIndex, go=false,back=false})=>
                     setActiveIndex(activeIndex-1)
                 }
         }} rounded text severity="info"> 
-            <FontAwesomeIcon icon="fa-solid fa-circle-arrow-left" />         
+            <FontAwesomeIcon className="buttonsGreen" icon="fa-solid fa-circle-arrow-left" />         
         </Button>
         </>:<></>
     }
@@ -19,7 +19,7 @@ export const ButtonBackGO=({activeIndex, setActiveIndex, go=false,back=false})=>
         <Button type="button" onClick={(e)=>{
             setActiveIndex(activeIndex+1)
         }} rounded text severity="infjo"> 
-            <FontAwesomeIcon icon="fa-solid fa-circle-arrow-right" />
+            <FontAwesomeIcon className="buttonsGreen" icon="fa-solid fa-circle-arrow-right" />
         </Button>
     </>:<></>
     }

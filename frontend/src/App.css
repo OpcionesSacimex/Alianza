@@ -14,7 +14,7 @@
     text-align: center;
 }
 
-.svg-inline--fa {
+.buttonsGreen{
   color:rgb(4, 61, 9);
   font-size: 2.5em;
   flex: 100%;
@@ -26,10 +26,7 @@
 .p-divider-solid.p-divider-horizontal:before {
   border-top-style: none !important;
 }
-/*
-border-top-left-radius: 20px;
-  border-bottom-left-radius: 20px;
-*/
+
 .slider-tem{
   height: 1rem !important;
   border-radius: 50px;

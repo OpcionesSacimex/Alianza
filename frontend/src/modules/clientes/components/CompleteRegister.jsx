@@ -1,8 +1,7 @@
 
-import React,{useState,useRef} from 'react';
+import React,{useState,useRef, useMemo} from 'react';
 import { Steps } from 'primereact/steps';
 import { PanelCenter } from '../../../globalsComponents/panels/PanelCenter';
-import {CreditoDeseado} from "../template/CreditoDeseado"
 import { Card } from 'primereact/card';
 import {StepsModel} from "../../../globalsComponents/steps/StepsModel"
 import {useUpdateEffect} from "primereact/hooks"
@@ -10,17 +9,17 @@ import { Divider } from 'primereact/divider';
 import {FrmPersona} from '../template/FrmPersona'
 import {FrmEconomico} from '../template/FrmEconomico'
 import { FrmMontos } from "../template/FrmMontos";
-import {Controller,useForm} from 'react-hook-form'
+import {useForm} from 'react-hook-form'
 import { ButtonBackGO } from '../template/ButtonBackGO';
 import { FrmDireccion } from '../template/FrmDireccion';
 import { FrmSolicitud } from '../template/FrmSolicitud';
 import { Ticket } from '../template/Ticket';
-
+import { createCliente } from '../handle/handleCliente';
+import {ConfirmDialogOP} from "../../../globalsComponents/dialog/ConfirmDialogOP"
 export const CompleteRegister =()=>{
     const {control,getValues,setValue,handleSubmit, formState:{errors}}=useForm()
     const [activeIndex, setActiveIndex] = useState(0);
     const [content,setContent]=useState(<></>)
-    const toast = useRef(null);
     const items = [
         {
             label: 'Datos Personales',
@@ -48,12 +47,6 @@ export const CompleteRegister =()=>{
             command:(e)=>{},
             template:(item)=>StepsModel(item,4,activeIndex,setActiveIndex)
         },
-        {
-            label:"Ticket",
-            icon:"clipboard-check",
-            command:(e)=>{},
-            template:(item)=>StepsModel(item,5,activeIndex,setActiveIndex)
-        }
     ]
     useUpdateEffect(()=>{
         switch(activeIndex){
@@ -83,7 +76,7 @@ export const CompleteRegister =()=>{
                 </FrmDireccion>)
                 break;
             case 5: setContent(
-                <Ticket control={control} errors={errors} getValues={getValues}>
+                <Ticket getValues={getValues} setActiveIndex={setActiveIndex}>
                 </Ticket>
             )
             break;
@@ -94,13 +87,17 @@ export const CompleteRegister =()=>{
     },[activeIndex])
 
     const onSubmit=(data)=>{
-        console.log(data)
+        onAccept(data)
+    }
+    const onAccept=async(data)=>{
+        const res = await createCliente(data)
+
     }
 
     return (
         <>
             <PanelCenter>
-                <div className="card w-full">
+                <div className={`card w-full ${activeIndex==5?'hidden':''}`}>
                     <Steps className='' model={items} activeIndex={activeIndex} 
                     onSelect={(e) => setActiveIndex(e.index)} readOnly={false}>   
                     </Steps>

@@ -12,7 +12,7 @@ export const StepsModel =(item, itemIndex,activeIndex, setActiveIndex)=>{
             style={{ backgroundColor: backgroundColor, color: textColor, marginTop: '-55px' }}
             onClick={() => setActiveIndex(itemIndex)}>
                 {
-                    item.icon?<FontAwesomeIcon icon={item.icon} className="text-2xl" />:<></>
+                    item.icon?<FontAwesomeIcon icon={item.icon} className="buttonsGreen text-2xl" />:<></>
                 }
             </span>
             <label className="p-fluid text-black">{item.label}</label>

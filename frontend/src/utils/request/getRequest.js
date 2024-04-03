@@ -20,7 +20,10 @@ export const getRefreshToken = async () => {
 export const getAllRegisters = async (URL) => {
     try {
         const resToken = await refreshToken()
-        const { token } =  resToken
+        const { token,error } =  resToken
+        if(error){
+            return {error}
+        }
         const res = await axios.get(URL,
             {
                 withCredentials: true,
