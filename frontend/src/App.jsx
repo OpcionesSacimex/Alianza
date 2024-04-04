@@ -1,7 +1,7 @@
 import React, {useContext, useEffect} from 'react'
 import {Navigate, useRoutes} from 'react-router-dom'
 import './App.css';
-import "primereact/resources/themes/lara-light-indigo/theme.css"
+import "primereact/resources/themes/lara-light-green/theme.css"
 import "primeflex/primeflex.css"
 import {AccesoPage} from "./modules/acceso/pages/AccesoPage"
 import {ClientesPage} from "./modules/clientes/pages/ClientesPage"

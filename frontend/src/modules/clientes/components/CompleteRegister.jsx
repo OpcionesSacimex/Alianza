@@ -1,5 +1,5 @@
 
-import React,{useState,useRef, useMemo} from 'react';
+import React,{useState,useRef} from 'react';
 import { Steps } from 'primereact/steps';
 import { PanelCenter } from '../../../globalsComponents/panels/PanelCenter';
 import { Card } from 'primereact/card';
@@ -15,11 +15,13 @@ import { FrmDireccion } from '../template/FrmDireccion';
 import { FrmSolicitud } from '../template/FrmSolicitud';
 import { Ticket } from '../template/Ticket';
 import { createCliente } from '../handle/handleCliente';
-import {ConfirmDialogOP} from "../../../globalsComponents/dialog/ConfirmDialogOP"
+import {confirmDialog} from "primereact/confirmdialog";
+import {Toast} from "primereact/toast"
 export const CompleteRegister =()=>{
-    const {control,getValues,setValue,handleSubmit, formState:{errors}}=useForm()
+    const {trigger,control,getValues,setValue,handleSubmit,reset, formState:{errors}}=useForm()
     const [activeIndex, setActiveIndex] = useState(0);
     const [content,setContent]=useState(<></>)
+    const toast=useRef(null)
     const items = [
         {
             label: 'Datos Personales',
@@ -48,31 +50,47 @@ export const CompleteRegister =()=>{
             template:(item)=>StepsModel(item,4,activeIndex,setActiveIndex)
         },
     ]
+
+    const onBack=(e)=>{
+        if(activeIndex>0){
+            setActiveIndex(activeIndex-1)
+        }
+    }
+    const onGo=(e)=>{
+        trigger()
+        switch(activeIndex){
+            
+        }
+    }
+    const validar=()=>{
+        
+    }
+
     useUpdateEffect(()=>{
         switch(activeIndex){
-            case 0: setContent(<FrmPersona control={control} errors={errors}>
-                <ButtonBackGO setActiveIndex={setActiveIndex} activeIndex={activeIndex} go={true}/>
+            case 0: setContent(<FrmPersona control={control} errors={{...errors}}>
+                <ButtonBackGO onGo={onGo} go={true}/>
             </FrmPersona>)
             break;
             case 1: setContent(
             <FrmEconomico control={control} errors={errors}>
-                <ButtonBackGO setActiveIndex={setActiveIndex} activeIndex={activeIndex} back={true} go={true}/>
+                <ButtonBackGO  onBack={onBack} onGo={onGo} back={true} go={true}/>
             </FrmEconomico>)
             break;
             case 2: setContent(
             <FrmMontos control={control} errors={errors} getValues={getValues}>
-                <ButtonBackGO setActiveIndex={setActiveIndex} activeIndex={activeIndex} back={true} go={true}/>
+                <ButtonBackGO onBack={onBack} onGo={onGo} back={true} go={true}/>
             </FrmMontos>)
             break;
             case 3: setContent(
                 <FrmSolicitud control={control} errors={errors}>
-                    <ButtonBackGO setActiveIndex={setActiveIndex} activeIndex={activeIndex} back={true} go={true}/>
+                    <ButtonBackGO onBack={onBack} onGo={onGo} back={true} go={true}/>
                 </FrmSolicitud>
             )
             break;
             case 4: setContent(
                 <FrmDireccion control={control} errors={errors} getValues={getValues} setValue={setValue}>
-                    <ButtonBackGO setActiveIndex={setActiveIndex} activeIndex={activeIndex} back={true} go={true}/>
+                    <ButtonBackGO onBack={onBack} onGo={onGo} back={true} go={true}/>
                 </FrmDireccion>)
                 break;
             case 5: setContent(
@@ -87,16 +105,25 @@ export const CompleteRegister =()=>{
     },[activeIndex])
 
     const onSubmit=(data)=>{
-        console.log(data)
-        onAccept(data)
+
+        confirmDialog({
+            message:"¿Confirmar solicitud de credito?",
+            accept:(e)=>{onAccept(data)},
+            reject:onCancel
+        })
+    }
+    const onCancel=()=>{
+        toast.current.show({ severity: 'warn', summary: 'Info', detail: 'Solicitud cancelada'})
     }
     const onAccept=async(data)=>{
         const res = await createCliente(data)
+        console.log(data)
 
     }
 
     return (
         <>
+        <Toast ref={toast}></Toast>
             <PanelCenter>
                 <div className={`card w-full ${activeIndex==5?'hidden':''}`}>
                     <Steps className='' model={items} activeIndex={activeIndex} 

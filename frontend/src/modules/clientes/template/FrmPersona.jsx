@@ -28,7 +28,7 @@ export const FrmPersona=({children,control,errors})=>{
                     </div>
                     <div className="col-12 lg:col-6">
                     <Controller rules={{
-                                required:"Es requerido"
+                                required:"El nombre es requerido"
                             }} control={control} name="ape_pat" render={({field,fieldState})=>(
                                 <>
                                     <span className="mt-2 p-float-label">
