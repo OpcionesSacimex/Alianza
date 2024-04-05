@@ -29,7 +29,6 @@ const Registrate=()=>{
 
 
     const validarCorreo=async(value)=>{
-        console.log(value)
         const cor = await getCorreoExistente({
             correo: value
         })

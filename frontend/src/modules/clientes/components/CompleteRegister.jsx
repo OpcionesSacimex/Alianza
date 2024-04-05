@@ -119,6 +119,7 @@ export const CompleteRegister =()=>{
     const onAccept=async(data)=>{
         const res = await createCliente(data)
         console.log(data)
+        console.log(res)
 
     }
 
@@ -126,7 +127,7 @@ export const CompleteRegister =()=>{
         <>
         <Toast ref={toast}></Toast>
             <PanelCenter>
-                <div className={`card w-full ${activeIndex==5?'hidden':''}`}>
+                <div className={`card w-full ${activeIndex===5?'hidden':''}`}>
                     <Steps className='' model={items} activeIndex={activeIndex} 
                     onSelect={(e) => setActiveIndex(e.index)} readOnly={false}>   
                     </Steps>
