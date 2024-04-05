@@ -24,8 +24,10 @@ Route::post('/usuario/email_verify',[ExistController::class,'validar_correo']);
 Route::post('/persona/createUser',[PersonaController::class,'create']);
 Route::post('/direccion/createDireccion',[DireccionController::class,'create']);
 Route::post('/economico/createEconomico',[EconomicoController::class,'create']);
-Route::middleware('auth:api')->post('/cliente/createCliente', [ClienteController::class,'create']);
-Route::middleware('auth:api')->get('/cliente/get', [ClienteController::class,'getCliente']);
+Route::middleware('auth:api')->post('/cliente/createCliente', [UsuarioController::class,'ingresarPersona']);
+
+//Route::middleware('auth:api')->get('/cliente/get', [ClienteController::class,'getCliente']);
+Route::middleware('auth:api')->post('/cliente/get', [UsuarioController::class,'ingresarPersona']);
 
 Route::post('/documnetos/uploadDocuments',[UploadController::class,'uploadDocument']);
 Route::post('/subir','Controller@uploadDocuments')->name('subir'); //pendiente de probar

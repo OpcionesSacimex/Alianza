@@ -46,24 +46,27 @@ class UsuarioController extends Controller
         Persona::create([
             "nombre"=>$request->nombre,
             "ape_pat"=>$request->ape_pat,
-            "apr_mat"=>$request->apr_mat,
+            "apr_mat"=>$request->ape_mat,
             "telefono"=>$request->telefono
         ]);
+
+       // $direccion = $request['direccion'];
+        //echo($direccion);
         Direccion::create([
-            "calle"=>$request->calle,
-            "no_exterior"=>$request->no_exterior,
-            "no_interior"=>$request->no_interior,
-            "cp"=>$request->cp,
-            "colonia"=>$request->colonia,
-            "latitud"=>$request->latitud, 
-            "longitud"=>$request->longitud
+            "calle"=>$request->direccion['calle'],
+            "no_exterior"=>$request->direccion['no_exterior'],
+            "no_interior"=>$request->direccion['no_interior'],
+            "cp"=>$request->direccion['cp'],
+            "colonia"=>$request->direccion['colonia'],
+            "latitud"=>'12345678',
+            "longitud"=>'12345678'
         ]);
         Economico::create([
-            "ingresos_q"=>$request->ingresos_q,
-            "disponible_q"=>$request->disponible_q,
-            "prestamo_f"=>$request->prestamo_f,
-            "plazo_f"=>$request->plazo_f,
-            "clabe_int"=>$request->clabe_int
+            "ingresos_q"=>$request->economico['ingreso_q'],
+            "disponible_q"=>$request->economico['disponible_q'],
+            "prestamo_f"=>$request->economico['prestamo_f'],
+            "plazo_f"=>$request->plazo,
+            "clabe_int"=>'12345678'
         ]);
 
         return response()->json([
