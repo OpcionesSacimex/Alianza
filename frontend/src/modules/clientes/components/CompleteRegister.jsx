@@ -1,153 +1,178 @@
 
-import React,{useState,useRef} from 'react';
+import React, { useState, useRef } from 'react';
 import { Steps } from 'primereact/steps';
 import { PanelCenter } from '../../../globalsComponents/panels/PanelCenter';
 import { Card } from 'primereact/card';
-import {StepsModel} from "../../../globalsComponents/steps/StepsModel"
-import {useUpdateEffect} from "primereact/hooks"
+import { StepsModel } from "../../../globalsComponents/steps/StepsModel"
+import { useUpdateEffect } from "primereact/hooks"
 import { Divider } from 'primereact/divider';
-import {FrmPersona} from '../template/FrmPersona'
-import {FrmEconomico} from '../template/FrmEconomico'
+import { FrmPersona } from '../template/FrmPersona'
+import { FrmEconomico } from '../template/FrmEconomico'
 import { FrmMontos } from "../template/FrmMontos";
-import {useForm} from 'react-hook-form'
+import { useForm, Controller } from 'react-hook-form'
 import { ButtonBackGO } from '../template/ButtonBackGO';
 import { FrmDireccion } from '../template/FrmDireccion';
 import { FrmSolicitud } from '../template/FrmSolicitud';
 import { Ticket } from '../template/Ticket';
 import { createCliente } from '../handle/handleCliente';
-import {confirmDialog} from "primereact/confirmdialog";
-import {Toast} from "primereact/toast"
-export const CompleteRegister =()=>{
-    const {trigger,control,getValues,setValue,handleSubmit,reset, formState:{errors}}=useForm()
+import { confirmDialog } from "primereact/confirmdialog";
+import { Toast } from "primereact/toast"
+import { classNames } from 'primereact/utils';
+export const CompleteRegister = () => {
+
+    const { control, trigger, getValues, setValue, handleSubmit, reset, formState: { errors } } = useForm()
     const [activeIndex, setActiveIndex] = useState(0);
-    const [content,setContent]=useState(<></>)
-    const toast=useRef(null)
+    const toast = useRef(null)
     const items = [
         {
             label: 'Datos Personales',
             icon: "file-lines",
-            command: (e) => {},
-            template:(item)=>StepsModel(item,0,activeIndex,setActiveIndex)
-        },{
-            label:"socio economico",
-            icon:"comments-dollar",
-            command:(e)=>{},
-            template:(item)=>StepsModel(item,1,activeIndex,setActiveIndex)
-        },{
+            command: (e) => { },
+            template: (item) => StepsModel(item, 0, activeIndex, setActiveIndex)
+        }, {
+            label: "socio economico",
+            icon: "comments-dollar",
+            command: (e) => { },
+            template: (item) => StepsModel(item, 1, activeIndex, setActiveIndex)
+        }, {
             label: 'Detalles del credito',
             icon: "hand-holding-dollar",
-            command: (e) => {},
-            template:(item)=>StepsModel(item,2,activeIndex,setActiveIndex)
-        },{
+            command: (e) => { },
+            template: (item) => StepsModel(item, 2, activeIndex, setActiveIndex)
+        }, {
             label: 'Solicitud de credito',
             icon: "file-invoice-dollar",
-            command: (e) => {},
-            template:(item)=>StepsModel(item,3,activeIndex,setActiveIndex)
-        },{
-            label:"Direccion",
-            icon:"map-location-dot",
-            command:(e)=>{},
-            template:(item)=>StepsModel(item,4,activeIndex,setActiveIndex)
+            command: (e) => { },
+            template: (item) => StepsModel(item, 3, activeIndex, setActiveIndex)
+        }, {
+            label: "Direccion",
+            icon: "map-location-dot",
+            command: (e) => { },
+            template: (item) => StepsModel(item, 4, activeIndex, setActiveIndex)
         },
     ]
 
-    const onBack=(e)=>{
-        if(activeIndex>0){
-            setActiveIndex(activeIndex-1)
+    const onBack = (e) => {
+        if (activeIndex > 0) {
+            setActiveIndex(activeIndex - 1)
         }
     }
-    const onGo=(e)=>{
-        setActiveIndex(activeIndex+1)
-        /*trigger()
-        switch(activeIndex){
-            
-        }*/
-    }
-    const validar=()=>{
-        
-    }
+    const onGo = (e) => {
+        //setActiveIndex(activeIndex+1)
+        trigger()
 
-    useUpdateEffect(()=>{
-        switch(activeIndex){
-            case 0: setContent(<FrmPersona control={control} errors={{...errors}}>
-                <ButtonBackGO onGo={onGo} go={true}/>
+    }
+    /* useUpdateEffect(() => {
+        switch (activeIndex) {
+            case 0: setContent(<FrmPersona control={control} errors={errors}>
+                <ButtonBackGO onGo={onGo} go={true} />
             </FrmPersona>)
-            break;
+                break;
             case 1: setContent(
-            <FrmEconomico control={control} errors={errors}>
-                <ButtonBackGO  onBack={onBack} onGo={onGo} back={true} go={true}/>
-            </FrmEconomico>)
-            break;
+                <FrmEconomico control={control} errors={errors}>
+                    <ButtonBackGO onBack={onBack} onGo={onGo} back={true} go={true} />
+                </FrmEconomico>)
+                break;
             case 2: setContent(
-            <FrmMontos control={control} errors={errors} getValues={getValues}>
-                <ButtonBackGO onBack={onBack} onGo={onGo} back={true} go={true}/>
-            </FrmMontos>)
-            break;
+                <FrmMontos control={control} errors={errors} getValues={getValues}>
+                    <ButtonBackGO onBack={onBack} onGo={onGo} back={true} go={true} />
+                </FrmMontos>)
+                break;
             case 3: setContent(
                 <FrmSolicitud control={control} errors={errors}>
-                    <ButtonBackGO onBack={onBack} onGo={onGo} back={true} go={true}/>
+                    <ButtonBackGO onBack={onBack} onGo={onGo} back={true} go={true} />
                 </FrmSolicitud>
             )
-            break;
+                break;
             case 4: setContent(
                 <FrmDireccion control={control} errors={errors} getValues={getValues} setValue={setValue}>
-                    <ButtonBackGO onBack={onBack} onGo={onGo} back={true} go={true}/>
+                    <ButtonBackGO onBack={onBack} onGo={onGo} back={true} go={true} />
                 </FrmDireccion>)
                 break;
             case 5: setContent(
                 <Ticket getValues={getValues} setActiveIndex={setActiveIndex}>
                 </Ticket>
             )
-            break;
-            default: setContent (<></>)
-            
-            break;
-        }
-    },[activeIndex])
+                break;
+            default: setContent(<></>)
 
-    const onSubmit=(data)=>{
+                break;
+        }
+    }, [activeIndex]) */
+
+    const onSubmit = (data) => {
 
         confirmDialog({
-            message:"¿Confirmar solicitud de credito?",
-            accept:(e)=>{onAccept(data)},
-            reject:onCancel
+            message: "¿Confirmar solicitud de credito?",
+            accept: (e) => { onAccept(data) },
+            reject: onCancel
         })
     }
-    const onCancel=()=>{
-        toast.current.show({ severity: 'warn', summary: 'Info', detail: 'Solicitud cancelada'})
+    const onCancel = () => {
+        toast.current.show({ severity: 'warn', summary: 'Info', detail: 'Solicitud cancelada' })
     }
-    const onAccept=async(data)=>{
+    const onAccept = async (data) => {
         const res = await createCliente(data)
         console.log(data)
         console.log(res)
 
     }
 
+
     return (
         <>
-        <Toast ref={toast}></Toast>
+            <Toast ref={toast}></Toast>
             <PanelCenter>
-                <div className={`card w-full ${activeIndex===5?'hidden':''}`}>
-                    <Steps className='' model={items} activeIndex={activeIndex} 
-                    onSelect={(e) => setActiveIndex(e.index)} readOnly={false}>   
+                <div className={`card w-full ${activeIndex === 5 ? 'hidden' : ''}`}>
+                    <Steps className='' model={items} activeIndex={activeIndex}
+                        onSelect={(e) => setActiveIndex(e.index)} readOnly={false}>
                     </Steps>
                     <Divider className='border-green-800 border-3' layout='horizontal'>
                         <div className='w-full bg-green-800 h-full'>
                         </div>
                     </Divider>
                 </div>
-                
+
                 <div className='w-full'>
-                    <form onSubmit={handleSubmit(onSubmit)}> 
+                    <form onSubmit={handleSubmit(onSubmit)} >
                         <PanelCenter>
                             <Card className='w-12 md:w-8 lg:w-7 xl:w-6 bg-gray-100'>
-                                {content}
+                                <div className={`${classNames({ 'hidden': activeIndex === 0 })}`}>
+                                    <FrmPersona control={control} errors={errors}>
+                                        <ButtonBackGO onGo={onGo} go={true} />
+                                    </FrmPersona>
+                                </div>
+                                <div className={`${classNames({ 'hidden': activeIndex === 1 })}`}>
+                                    <FrmEconomico control={control} errors={errors}>
+                                        <ButtonBackGO onBack={onBack} onGo={onGo} back={true} go={true} />
+                                    </FrmEconomico>
+                                </div>
+                                <div className={`${classNames({ 'hidden': activeIndex === 2 })}`}>
+                                    <FrmMontos control={control} errors={errors} getValues={getValues}>
+                                        <ButtonBackGO onBack={onBack} onGo={onGo} back={true} go={true} />
+                                    </FrmMontos>
+                                </div>
+                                <div className={`${classNames({ 'hidden': activeIndex === 3 })}`}>
+                                    <FrmSolicitud control={control} errors={errors}>
+                                        <ButtonBackGO onBack={onBack} onGo={onGo} back={true} go={true} />
+                                    </FrmSolicitud>
+                                </div>
+                                <div className={`${classNames({ 'hidden': activeIndex === 4 })}`}>
+                                    <FrmDireccion control={control} errors={errors} getValues={getValues} setValue={setValue}>
+                                        <ButtonBackGO onBack={onBack} onGo={onGo} back={true} go={true} />
+                                    </FrmDireccion>
+                                </div>
+
+                                <div className={`${classNames({ 'hidden': activeIndex === 5 })}`}>
+                                    <Ticket getValues={getValues} setActiveIndex={setActiveIndex}>
+                                    </Ticket>
+                                </div>
                             </Card>
                         </PanelCenter>
                     </form>
-                    
+
                 </div>
-                
+
             </PanelCenter>
         </>
     )

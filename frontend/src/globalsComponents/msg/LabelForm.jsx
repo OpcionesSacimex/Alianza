@@ -3,14 +3,12 @@ import React, {useState} from "react";
 import {useMountEffect, useUpdateEffect} from "primereact/hooks";
 export const LabelForm = ({children,htmlFor,status, required}) => {
     return (
-        <>
-            <label htmlFor={htmlFor} className={`text-xl ${classNames({ 'p-error': status })}`}>
-                {children}
-                {
-                    required? <span className="p-error"> *</span> : <></>
-                }
-            </label>
-        </>
+        <label htmlFor={htmlFor?htmlFor:undefined} className={`text-xl ${classNames({ 'p-error': status })}`}>
+            {children}
+            {
+                required? <span className="p-error"> *</span> : <></>
+            }
+        </label>
     )
 }
 
@@ -31,6 +29,7 @@ export const ErrorLabel=({name,errors,className})=> {
 
         // eslint-disable-next-line no-eval
         eval(`dato = errors${nombre}?.message`)
+        
         setErrorMsg(dato)
     },[errors])
     useMountEffect(()=>{
