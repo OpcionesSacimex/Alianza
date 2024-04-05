@@ -60,19 +60,45 @@ export const CompleteRegister = () => {
     const onGo = (e) => {
         //setActiveIndex(activeIndex+1)
         trigger()
+<<<<<<< Updated upstream
 
     }
     /* useUpdateEffect(() => {
         switch (activeIndex) {
             case 0: setContent(<FrmPersona control={control} errors={errors}>
                 <ButtonBackGO onGo={onGo} go={true} />
+=======
+        switch(activeIndex){
+            
+        }
+    }
+    const validar=()=>{
+        
+    }
+    useUpdateEffect(()=>{
+        console.log(errors)
+    },[{...errors}])
+
+    useUpdateEffect(()=>{
+        switch(activeIndex){
+            case 0: setContent(
+            <FrmPersona control={control} errors={{...errors}}>
+                <ButtonBackGO onGo={onGo} go={true}/>
+>>>>>>> Stashed changes
             </FrmPersona>)
                 break;
             case 1: setContent(
+<<<<<<< Updated upstream
                 <FrmEconomico control={control} errors={errors}>
                     <ButtonBackGO onBack={onBack} onGo={onGo} back={true} go={true} />
                 </FrmEconomico>)
                 break;
+=======
+            <FrmEconomico control={control} errors={errors} getValues={getValues}>
+                <ButtonBackGO onBack={onBack} onGo={onGo} back={true} go={true}/>
+            </FrmEconomico>)
+            break;
+>>>>>>> Stashed changes
             case 2: setContent(
                 <FrmMontos control={control} errors={errors} getValues={getValues}>
                     <ButtonBackGO onBack={onBack} onGo={onGo} back={true} go={true} />

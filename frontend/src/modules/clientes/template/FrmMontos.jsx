@@ -19,7 +19,7 @@ export const FrmMontos=({children,control,errors,getValues})=>{
 
     return(
         <>
-        <div className="align-content-center">
+        <div className="align-content-center ">
             <p className="text-center text-2xl text-green-800 font-bold">
                 Detalles del credito
             </p>
@@ -45,12 +45,12 @@ export const FrmMontos=({children,control,errors,getValues})=>{
                         },
                         max:{
                             value:maximo,
-                            message:"No puede exeder el monto maximo"
+                            message:"No puede exceder el monto maximo"
                         }
-                    }} defaultValue={0}  control={control} name="pago_min" render={({field,fieldState})=>(
+                    }} defaultValue={0} control={control} name="pago_min" render={({field,fieldState})=>(
                         <>
-                            <span className="p-float-label">
-                                <InputNumber mode="currency" currency="USD" name={field.name} value={field.value} onChange={(e)=>{
+                            <span className="p-float-label mt-4">
+                                <InputNumber max={maximo} mode="currency" currency="USD" name={field.name} value={field.value} onChange={(e)=>{
                                     field.onChange(e.value)
                                 }}
                                 useGrouping={false}/>
@@ -65,7 +65,7 @@ export const FrmMontos=({children,control,errors,getValues})=>{
                 <div className="col-12">
                     <Controller control={control} name="plazo" render={({field,fieldState})=>(
                         <>
-                            <PanelCenter className="mb-4">
+                            <PanelCenter className="mb-4 mt-2">
                                 <LabelForm>¿A cuantos meses?</LabelForm>
                             </PanelCenter>
                             
