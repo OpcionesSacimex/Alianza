@@ -3,23 +3,12 @@ import React, {useState} from "react";
 import {useMountEffect, useUpdateEffect} from "primereact/hooks";
 export const LabelForm = ({children,htmlFor,status, required}) => {
     return (
-<<<<<<< Updated upstream
         <label htmlFor={htmlFor?htmlFor:undefined} className={`text-xl ${classNames({ 'p-error': status })}`}>
             {children}
             {
                 required? <span className="p-error"> *</span> : <></>
             }
         </label>
-=======
-        <>
-            <label htmlFor={htmlFor} className={`text-lg mt-1 ${classNames({ 'p-error': status })}`}>
-                {children}
-                {
-                    required? <span className="p-error"> *</span> : <></>
-                }
-            </label>
-        </>
->>>>>>> Stashed changes
     )
 }
 
