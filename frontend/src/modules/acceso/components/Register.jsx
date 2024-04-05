@@ -12,7 +12,7 @@ import { useNavigate } from "react-router"
 import { Button } from "primereact/button"
 import {Controller,useForm} from "react-hook-form"
 import {LabelForm,ErrorLabel} from "../../../globalsComponents/msg/LabelForm"
-import {createUser} from "../handle/handleAcceso"
+import {createUser, getCorreoExistente} from "../handle/handleAcceso"
 import { InputMask } from 'primereact/inputmask';
 import { classNames } from "primereact/utils"
         
@@ -22,10 +22,20 @@ const Registrate=()=>{
     const [titulo,setTitulo] = useState("")
     const [content,setContent] = useState(<></>)
     const [password,setPassword]=useState("")
+    const [existe,setExiste] =useState(false)
 
-    const {control,setValue,getValues,reset,handleSubmit,formState:{submitCount,errors}} =useForm()
+    const {control,setValue,getValues,reset,handleSubmit,formState:{errors}} =useForm()
     const navigate=useNavigate()
 
+
+    const validarCorreo=async(value)=>{
+        console.log(value)
+        const cor = await getCorreoExistente({
+            correo: value
+        })
+        const {existe:ex} = cor
+        setExiste(ex)
+    }
     const onSubmit=async(data)=>{
         const res = await createUser(data)
         reset()
@@ -61,6 +71,7 @@ const Registrate=()=>{
                         <div className="col-12 mb-4">
                             <Controller rules={{
                                 required:"El correo es requerido",
+                                validate:(v)=>!existe||"Este correo ya fue registrado",
                                 pattern:{
                                     value:/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g,
                                     message:"No es un correo valido"
@@ -68,7 +79,11 @@ const Registrate=()=>{
                             }} control={control} name="correo" render={({field,fieldState})=>(
                                 <>
                                     <span className="p-float-label">
-                                        <InputText className={`${classNames({'p-invalid':fieldState.invalid,'border-1':fieldState.invalid, 'border-red-700':fieldState.invalid})}`} name={field.name} value={field.value||""} onChange={field.onChange} placeholder="ejemplo@ejemplo.com"/>
+                                        <InputText className={`${classNames({'p-invalid':fieldState.invalid,'border-1':fieldState.invalid, 'border-red-700':fieldState.invalid})}`} 
+                                        name={field.name} value={field.value||""} onChange={field.onChange} 
+                                        placeholder="ejemplo@ejemplo.com" onBlur={(e)=>{
+                                            validarCorreo(e.target.value)
+                                        }}/>
                                         <LabelForm htmlFor={field.name} status={fieldState.invalid} required={true}>
                                             Correo electrónico
                                         </LabelForm>
@@ -89,7 +104,6 @@ const Registrate=()=>{
                                     <span className="p-float-label">
                                         <InputMask className={`${classNames({'p-invalid':fieldState.invalid,'border-1':fieldState.invalid, 'border-red-700':fieldState.invalid})} uppercase`} 
                                         name={field.name} value={field.value} mask="99-aaaa" onChange={(e)=>{
-                                            console.log(e)
                                             field.onChange(e.value)}} placeholder="00-DEMO"/>
                                         <LabelForm htmlFor={field.name} status={fieldState.invalid} required={true} className="text-xl mb-4">
                                             Convenio

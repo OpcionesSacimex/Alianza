@@ -8,6 +8,7 @@ use App\Http\Controllers\UploadController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\Usuario\ExistController;
 use Whoops\Run;
 
 //acceso y usuario
@@ -18,7 +19,8 @@ Route::middleware('auth:api')->post('/usuario/logout', [UsuarioController::class
 Route::post('/usuario/createUser',[UsuarioController::class,'create']);
 
 Route::post('/usuario/formulario',[UsuarioController::class,'ingresarPersona']);
-
+Route::post('/usuario/email_verify',[ExistController::class,'validar_correo']);
+//clientes
 Route::post('/persona/createUser',[PersonaController::class,'create']);
 Route::post('/direccion/createDireccion',[DireccionController::class,'create']);
 Route::post('/economico/createEconomico',[EconomicoController::class,'create']);
