@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { Button } from "primereact/button"
 
-export const ButtonBackGO=({activeIndex, setActiveIndex, go=false,back=false, onBack,onGo})=>{
+export const ButtonBackGO=({go=false,back=false, onBack,onGo})=>{
     return (<>
     {
         back?<>

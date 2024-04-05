@@ -22,7 +22,7 @@ export const FrmPersona=({children,control,errors})=>{
                                             Nombre(s): 
                                         </LabelForm>
                                     </span>
-                                    <ErrorLabel name={field.name} errors={errors}></ErrorLabel>
+                                    <ErrorLabel name={field.name} errors={{...errors}}></ErrorLabel>
                                 </>
                     )}/>
                     </div>
