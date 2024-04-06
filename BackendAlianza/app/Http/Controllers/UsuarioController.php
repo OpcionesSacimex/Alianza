@@ -41,6 +41,20 @@ class UsuarioController extends Controller
                 'expires_in' => auth('api')->factory()->getTTL()
             ]);
     }
+    public function searchC(Request $request){
+        $credentials = $request->only(['correo','password']);
+
+        $token = auth('api')->attempt($credentials);
+        $id = $request->user()->id;
+        $user = Usuario::with('cliente')->find($id);
+
+        if ($token==false){
+            abort(401,'Unauthorized');
+        }
+        
+        return response()->json($user); 
+    }
+
     public function ingresarPersona(Request $request){
         $id = $request->user()->id;
         Persona::create([

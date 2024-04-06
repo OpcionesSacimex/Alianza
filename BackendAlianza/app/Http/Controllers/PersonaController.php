@@ -20,4 +20,18 @@ class PersonaController extends Controller
             'nombre'=> 'nombre'
         ],200);
     }
+
+   /*  public function updateC (Request $request){
+        Persona::update([
+            "nombre"=>$request->input('nombre'),
+            "ape_pat"=>$request->input('ape_pat'),
+            "apr_mat"=>$request->input('ape_mat'),
+            "telefono"=>$request->input('telefono')
+        ]);
+
+        return response()->json([
+            'status'=>true,
+            'nombre'=> 'nombre'
+        ],200);
+    } */
 }

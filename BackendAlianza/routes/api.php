@@ -26,7 +26,10 @@ Route::post('/direccion/createDireccion',[DireccionController::class,'create']);
 Route::post('/economico/createEconomico',[EconomicoController::class,'create']);
 Route::middleware('auth:api')->post('/cliente/createCliente', [UsuarioController::class,'ingresarPersona']);
 
-//Route::middleware('auth:api')->get('/cliente/get', [ClienteController::class,'getCliente']);
+Route::middleware('auth:api')->get('/cliente/search', [ClienteController::class,'getCliente']);
+Route::middleware('auth:api')->get('/cliente/update', [ClienteController::class,'updateClient']);
+Route::post('/usuario/search',[UsuarioController::class,'searchC']);
+
 Route::middleware('auth:api')->post('/cliente/get', [UsuarioController::class,'ingresarPersona']);
 
 Route::post('/documnetos/uploadDocuments',[UploadController::class,'uploadDocument']);
