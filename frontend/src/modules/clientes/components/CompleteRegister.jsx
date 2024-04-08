@@ -1,5 +1,5 @@
 
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Steps } from 'primereact/steps';
 import { PanelCenter } from '../../../globalsComponents/panels/PanelCenter';
 import { Card } from 'primereact/card';
@@ -117,6 +117,9 @@ export const CompleteRegister = () => {
         console.log(res)
 
     }
+    useEffect(()=>{
+        console.log(activeIndex)
+    },[activeIndex])
 
 
     return (
@@ -137,33 +140,33 @@ export const CompleteRegister = () => {
                     <form onSubmit={handleSubmit(onSubmit)} >
                         <PanelCenter>
                             <Card className='w-12 md:w-8 lg:w-7 xl:w-6 bg-gray-100'>
-                                <div className={`${classNames({ 'hidden': activeIndex === 0 })}`}>
+                                <div className={`${classNames({ 'hidden': activeIndex !== 0 })}`}>
                                     <FrmPersona control={control} errors={errors}>
                                         <ButtonBackGO onGo={onGo} go={true} />
                                     </FrmPersona>
                                 </div>
-                                <div className={`${classNames({ 'hidden': activeIndex === 1 })}`}>
+                                <div className={`${classNames({ 'hidden': activeIndex !== 1 })}`}>
                                     <FrmEconomico control={control} errors={errors} getValues={getValues}>
                                         <ButtonBackGO onBack={onBack} onGo={onGo} back={true} go={true} />
                                     </FrmEconomico>
                                 </div>
-                                <div className={`${classNames({ 'hidden': activeIndex === 2 })}`}>
+                                <div className={`${classNames({ 'hidden': activeIndex !== 2 })}`}>
                                     <FrmMontos control={control} errors={errors} getValues={getValues}>
                                         <ButtonBackGO onBack={onBack} onGo={onGo} back={true} go={true} />
                                     </FrmMontos>
                                 </div>
-                                <div className={`${classNames({ 'hidden': activeIndex === 3 })}`}>
+                                <div className={`${classNames({ 'hidden': activeIndex !== 3 })}`}>
                                     <FrmSolicitud control={control} errors={errors}>
                                         <ButtonBackGO onBack={onBack} onGo={onGo} back={true} go={true} />
                                     </FrmSolicitud>
                                 </div>
-                                <div className={`${classNames({ 'hidden': activeIndex === 4 })}`}>
+                                <div className={`${classNames({ 'hidden': activeIndex !== 4 })}`}>
                                     <FrmDireccion control={control} errors={errors} getValues={getValues} setValue={setValue}>
                                         <ButtonBackGO onBack={onBack} onGo={onGo} back={true} go={true} />
                                     </FrmDireccion>
                                 </div>
 
-                                <div className={`${classNames({ 'hidden': activeIndex === 5 })}`}>
+                                <div className={`${classNames({ 'hidden': activeIndex !== 5 })}`}>
                                     <Ticket getValues={getValues} setActiveIndex={setActiveIndex}>
                                     </Ticket>
                                 </div>
