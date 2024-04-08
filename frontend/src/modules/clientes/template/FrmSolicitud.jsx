@@ -1,16 +1,19 @@
 import { PanelGrid } from "../../../globalsComponents/panels/PanelGrid"
 import { useMountEffect } from "primereact/hooks"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { InputNumber } from "primereact/inputnumber"
-import { LabelForm } from "../../../globalsComponents/msg/LabelForm"
+import { ErrorLabel, LabelForm } from "../../../globalsComponents/msg/LabelForm"
 import { Controller } from "react-hook-form"
 
-export const FrmSolicitud = ({ children, control, errors }) => {
+export const FrmSolicitud = ({ children, control, errors,getValues }) => {
     const [prestamoMax, setPrestamoMax] = useState(0)
 
-    useMountEffect(() => {
-
-    })
+    useEffect(()=>{
+        const pago=getValues("pago_min")
+        const plazo=getValues("plazo")
+        console.log(NaN === (pago*plazo*2))
+        setPrestamoMax((pago*plazo*2)||0)
+    },[getValues("pago_min"),getValues("plazo")])
     return (
         <>
             <div className="align-content-center">
@@ -40,7 +43,7 @@ export const FrmSolicitud = ({ children, control, errors }) => {
                                             Prestamo solicitado
                                         </LabelForm>
                                     </span>
-
+                                    <ErrorLabel name={field.name} errors={errors}></ErrorLabel>
                                 </>
                             )} />
                         )} />

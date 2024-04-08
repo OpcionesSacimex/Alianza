@@ -58,47 +58,10 @@ export const CompleteRegister = () => {
         }
     }
     const onGo = (e) => {
-        //setActiveIndex(activeIndex+1)
         trigger()
+        setActiveIndex(activeIndex+1)
 
     }
-    /* useUpdateEffect(() => {
-        switch (activeIndex) {
-            case 0: setContent(<FrmPersona control={control} errors={errors}>
-                <ButtonBackGO onGo={onGo} go={true} />
-            </FrmPersona>)
-                break;
-            case 1: setContent(
-                <FrmEconomico control={control} errors={errors}>
-                    <ButtonBackGO onBack={onBack} onGo={onGo} back={true} go={true} />
-                </FrmEconomico>)
-                break;
-            case 2: setContent(
-                <FrmMontos control={control} errors={errors} getValues={getValues}>
-                    <ButtonBackGO onBack={onBack} onGo={onGo} back={true} go={true} />
-                </FrmMontos>)
-                break;
-            case 3: setContent(
-                <FrmSolicitud control={control} errors={errors}>
-                    <ButtonBackGO onBack={onBack} onGo={onGo} back={true} go={true} />
-                </FrmSolicitud>
-            )
-                break;
-            case 4: setContent(
-                <FrmDireccion control={control} errors={errors} getValues={getValues} setValue={setValue}>
-                    <ButtonBackGO onBack={onBack} onGo={onGo} back={true} go={true} />
-                </FrmDireccion>)
-                break;
-            case 5: setContent(
-                <Ticket getValues={getValues} setActiveIndex={setActiveIndex}>
-                </Ticket>
-            )
-                break;
-            default: setContent(<></>)
-
-                break;
-        }
-    }, [activeIndex]) */
 
     const onSubmit = (data) => {
 
@@ -115,12 +78,8 @@ export const CompleteRegister = () => {
         const res = await createCliente(data)
         console.log(data)
         console.log(res)
-
+    
     }
-    useEffect(()=>{
-        console.log(activeIndex)
-    },[activeIndex])
-
 
     return (
         <>
@@ -141,27 +100,27 @@ export const CompleteRegister = () => {
                         <PanelCenter>
                             <Card className='w-12 md:w-8 lg:w-7 xl:w-6 bg-gray-100'>
                                 <div className={`${classNames({ 'hidden': activeIndex !== 0 })}`}>
-                                    <FrmPersona control={control} errors={errors}>
+                                    <FrmPersona control={control} errors={{...errors}}>
                                         <ButtonBackGO onGo={onGo} go={true} />
                                     </FrmPersona>
                                 </div>
                                 <div className={`${classNames({ 'hidden': activeIndex !== 1 })}`}>
-                                    <FrmEconomico control={control} errors={errors} getValues={getValues}>
+                                    <FrmEconomico control={control} errors={{...errors}} getValues={getValues}>
                                         <ButtonBackGO onBack={onBack} onGo={onGo} back={true} go={true} />
                                     </FrmEconomico>
                                 </div>
                                 <div className={`${classNames({ 'hidden': activeIndex !== 2 })}`}>
-                                    <FrmMontos control={control} errors={errors} getValues={getValues}>
+                                    <FrmMontos control={control} errors={{...errors}} getValues={getValues}>
                                         <ButtonBackGO onBack={onBack} onGo={onGo} back={true} go={true} />
                                     </FrmMontos>
                                 </div>
                                 <div className={`${classNames({ 'hidden': activeIndex !== 3 })}`}>
-                                    <FrmSolicitud control={control} errors={errors}>
+                                    <FrmSolicitud control={control} errors={{...errors}} getValues={getValues}>
                                         <ButtonBackGO onBack={onBack} onGo={onGo} back={true} go={true} />
                                     </FrmSolicitud>
                                 </div>
                                 <div className={`${classNames({ 'hidden': activeIndex !== 4 })}`}>
-                                    <FrmDireccion control={control} errors={errors} getValues={getValues} setValue={setValue}>
+                                    <FrmDireccion control={control} errors={{...errors}} getValues={getValues} setValue={setValue}>
                                         <ButtonBackGO onBack={onBack} onGo={onGo} back={true} go={true} />
                                     </FrmDireccion>
                                 </div>

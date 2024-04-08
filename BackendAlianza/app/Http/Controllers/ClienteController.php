@@ -57,6 +57,7 @@ class ClienteController extends Controller
                 "telefono"=>$request->input('telefono')
             ]);
         }else{
+            PersonaController->create();
             $persona->create([
                 "nombre"=>$request->nombre,
                 "ape_pat"=>$request->ape_pat,

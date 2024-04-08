@@ -2,20 +2,20 @@ import {Controller} from "react-hook-form"
 import {LabelForm,ErrorLabel} from "../../../globalsComponents/msg/LabelForm"
 import { InputNumber } from "primereact/inputnumber"
 import { PanelGrid } from "../../../globalsComponents/panels/PanelGrid"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Slider } from 'primereact/slider'; 
 import { PanelCenter } from "../../../globalsComponents/panels/PanelCenter"
-import { useMountEffect } from "primereact/hooks"
 import { xpfrom } from "../../../utils/calcule/Porcentaje"
 export const FrmMontos=({children,control,errors,getValues})=>{
     const [minimo,setMinimo]=useState(0)
     const [maximo,setMaximo]=useState(0)
 
-    useMountEffect(()=>{
+   
+    useEffect(()=>{
         const cap_pago=getValues("economico.disponible_q")
         setMinimo(xpfrom({value:cap_pago,porcentaje:10}))
         setMaximo(xpfrom({value:cap_pago,porcentaje:40}))
-    })
+    },[getValues("economico.disponible_q")])
 
     return(
         <>
@@ -46,11 +46,12 @@ export const FrmMontos=({children,control,errors,getValues})=>{
                         max:{
                             value:maximo,
                             message:"No puede exceder el monto maximo"
-                        }
+                        },
+                        required:"El pago es requerido"
                     }} defaultValue={0} control={control} name="pago_min" render={({field,fieldState})=>(
                         <>
                             <span className="p-float-label mt-4">
-                                <InputNumber max={maximo} mode="currency" currency="USD" name={field.name} value={field.value} onChange={(e)=>{
+                                <InputNumber max={maximo} mode="currency" currency="USD" name={field.name} value={field.value ||''} onChange={(e)=>{
                                     field.onChange(e.value)
                                 }}
                                 useGrouping={false}/>
