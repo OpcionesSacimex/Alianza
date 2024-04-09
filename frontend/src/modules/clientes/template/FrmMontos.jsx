@@ -47,14 +47,14 @@ export const FrmMontos=({children,control,errors,getValues})=>{
                             value:maximo,
                             message:"No puede exceder el monto maximo"
                         },
+                        validate:(val)=>val!==0 || "Monto no puede ser 0",
                         required:"El pago es requerido"
                     }} defaultValue={0} control={control} name="pago_min" render={({field,fieldState})=>(
                         <>
                             <span className="p-float-label mt-4">
                                 <InputNumber max={maximo} mode="currency" currency="USD" name={field.name} value={field.value ||''} onChange={(e)=>{
                                     field.onChange(e.value)
-                                }}
-                                useGrouping={false}/>
+                                }} useGrouping={false}/>
                                 <LabelForm htmlFor={field.name} status={fieldState.invalid} required={true}>
                                     Pago quincenal deseado: 
                                 </LabelForm>

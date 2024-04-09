@@ -40,7 +40,7 @@ export const FrmEconomico = ({ children, control, errors, getValues}) => {
                             }} control={control} name={`${f.name}.disponible_q`} render={({ field, fieldState }) => (
                                 <>
                                     <span className="mt-2 p-float-label">
-                                        <InputNumber max={getValues(`${f.name}.ingreso_q`)-1} mode="currency" value={field.value} currency="USD" name={field.name} onChange={(e) => field.onChange(e.value)} />
+                                        <InputNumber max={getValues(`${f.name}.ingreso_q`)?getValues(`${f.name}.ingreso_q`)-1:0} mode="currency" value={field.value} currency="USD" name={field.name} onChange={(e) => field.onChange(e.value)} />
                                         <LabelForm htmlFor={field.name} status={fieldState.invalid} required={true}>
                                             ¿Con cuánto te quedas?:
                                         </LabelForm>

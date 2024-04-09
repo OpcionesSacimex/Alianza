@@ -6,11 +6,12 @@ import {Toast} from "primereact/toast";
 import "leaflet/dist/leaflet.css";
 import "leaflet/dist/leaflet.js";
 import "leaflet-geosearch/dist/geosearch.css"
-import "leaflet-geosearch/dist/geosearch.umd"
+import "leaflet-geosearch/dist/geosearch.umd.js"
 import markerIcon from "leaflet/dist/images/marker-icon.png"
 import L from "leaflet"
 import { OpenStreetMapProvider } from 'leaflet-geosearch';
 import {PanelGrid} from "../panels/PanelGrid";
+import { DropDownAutoShow } from "../select/DropDownShow";
 //import {DropDownAutoShow} from "../../selectors/DropDownAutoShow";
 
 
@@ -53,7 +54,7 @@ export const OpenMap = ({setPosition,position,buscar=true,size="400px"}) => {
         clearTimeout(timeOut)
         timeOut = setTimeout(()=>{
             const obtener = async ()=>{
-                const results = await provider.search({ query: e.target.value });
+                const results = await provider.search({ query: `${e.target.value}, México` });
                 setUbicaciones(results)
             }
             obtener()
@@ -109,6 +110,13 @@ export const OpenMap = ({setPosition,position,buscar=true,size="400px"}) => {
                                         </div>
                                             */
                                         }
+                                        <div className="col-12">
+                                        <DropDownAutoShow onChangeInput={buscarDir} dropOnchange={(e)=>{
+                                                setSelectedDir(e.value)
+                                                getPoligono(e.value)
+                                        }} options={ubicaciones} optionLabel="label" optionValue="bounds"></DropDownAutoShow>
+                                        </div>
+                                        
                                         
                                     </PanelGrid>
                                 </>

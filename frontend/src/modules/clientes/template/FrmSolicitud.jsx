@@ -11,7 +11,6 @@ export const FrmSolicitud = ({ children, control, errors,getValues }) => {
     useEffect(()=>{
         const pago=getValues("pago_min")
         const plazo=getValues("plazo")
-        console.log(NaN === (pago*plazo*2))
         setPrestamoMax((pago*plazo*2)||0)
     },[getValues("pago_min"),getValues("plazo")])
     return (
