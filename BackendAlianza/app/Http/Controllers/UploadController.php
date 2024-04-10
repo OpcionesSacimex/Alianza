@@ -24,7 +24,7 @@ class UploadController extends Controller
                     $file->move($path, $fileName);
                     return response()->json(['status'=>true,],200);
             }catch(Exception $error){
-                return response()->json(['status'=>$error,],200);
+                return response()->json(['error'=>'Verificar el tipo de archivo, solo se admiten PDF, JPG, PNG',],200);
             }
     
             
