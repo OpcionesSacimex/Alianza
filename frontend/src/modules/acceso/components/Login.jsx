@@ -96,7 +96,7 @@ const Login=()=>{
                                 required:"La contraeña es requerida"
                             }} name="password" control={control} render={({field,fieldState})=>(
                                 <>
-                                    <span className="p-float-label">
+                                    <span className="p-float-label p-icon-field p-icon-field-right">
                                         <Password feedback={false} name={field.name} value={field.value||''} onChange={field.onChange} placeholder="Contraseña" toggleMask />
                                         <LabelForm htmlFor={field.name} required={true} status={fieldState.invalid}>Contraseña</LabelForm>
                                     </span>

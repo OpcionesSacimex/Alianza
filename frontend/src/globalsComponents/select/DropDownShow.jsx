@@ -3,6 +3,9 @@ import { useEffect, useRef, useState } from "react";
 import { Dropdown } from "primereact/dropdown"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useMountEffect } from "primereact/hooks";
+import {IconField} from "primereact/iconfield"
+import { InputIcon } from 'primereact/inputicon';
+ 
 export const DropDownAutoShow = ({ onChangeInput, dropOnchange, options = [], optionLabel, optionValue }) => {
     const ov = useRef()
     const dd = useRef()
@@ -22,18 +25,17 @@ export const DropDownAutoShow = ({ onChangeInput, dropOnchange, options = [], op
     }, [options])
     return (
         <>
-            <div className="">
-            <span className="p-icon-field p-icon-field-right">
+            <IconField iconPosition="right">
+                <InputIcon>
                 <FontAwesomeIcon icon="chevron-down"></FontAwesomeIcon>
+                </InputIcon>
+            
                 <InputText className="dd-input" value={query} onClick={(e) => dd.current.show()}
                     onChange={e => {
                         setQuery(e.value)
                         onChangeInput(e)
                     }}></InputText>
-
-            </span>
-
-            </div>
+            </IconField>
 
             <Dropdown className="dd-hidden" editable ref={dd} options={model} onChange={e => {
                 const data = {
@@ -43,9 +45,9 @@ export const DropDownAutoShow = ({ onChangeInput, dropOnchange, options = [], op
                 dropOnchange(data)
                 dd.current.hide()
             }} optionLabel={optionLabel} optionValue={optionValue}>
-                
+
             </Dropdown>
-            
+
 
         </>
     )
