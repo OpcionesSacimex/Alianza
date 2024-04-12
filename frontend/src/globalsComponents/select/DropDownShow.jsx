@@ -1,31 +1,52 @@
-import {InputText} from "primereact/inputtext"
-import {Dropdown} from "primereact/dropdown"
-import {Menu} from "primereact/menu"
-import { OverlayPanel } from 'primereact/overlaypanel';
+import { InputText } from "primereact/inputtext"
 import { useEffect, useRef, useState } from "react";
-
-export const DropDownAutoShow = ({onChangeInput,dropOnchange,options=[],optionLabel,optionValue})=>{
-    const ov=useRef()
-    const [model,setModel]=useState([])
-    useEffect(()=>{
-        const md= options.map(item=>{
-            return({
-                label:item[optionLabel],
-                command:()=>{
-                    dropOnchange({value:item[optionValue]})
+import { Dropdown } from "primereact/dropdown"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useMountEffect } from "primereact/hooks";
+export const DropDownAutoShow = ({ onChangeInput, dropOnchange, options = [], optionLabel, optionValue }) => {
+    const ov = useRef()
+    const dd = useRef()
+    const [query, setQuery] = useState('')
+    const [model, setModel] = useState([])
+    useEffect(() => {
+        const md = options.map(item => {
+            return ({
+                label: item[optionLabel],
+                [optionValue]: {
+                    [optionValue]: item[optionValue],
+                    label: item[optionLabel],
                 }
             })
         })
         setModel(md)
-    },[options])
+    }, [options])
     return (
         <>
-            <InputText onClick={(e)=>{
-                ov.current.toggle(e)
-            }} onChange={onChangeInput}></InputText>
-            <OverlayPanel className="w-auto h-1" ref={ov} appendTo={'self'}>
-                <Menu className="w-full" model={model}/>
-            </OverlayPanel>
+            <div className="">
+            <span className="p-icon-field p-icon-field-right">
+                <FontAwesomeIcon icon="chevron-down"></FontAwesomeIcon>
+                <InputText className="dd-input" value={query} onClick={(e) => dd.current.show()}
+                    onChange={e => {
+                        setQuery(e.value)
+                        onChangeInput(e)
+                    }}></InputText>
+
+            </span>
+
+            </div>
+
+            <Dropdown className="dd-hidden" editable ref={dd} options={model} onChange={e => {
+                const data = {
+                    value: e.target.value[optionValue]
+                }
+                setQuery(e.target.value[optionLabel])
+                dropOnchange(data)
+                dd.current.hide()
+            }} optionLabel={optionLabel} optionValue={optionValue}>
+                
+            </Dropdown>
+            
+
         </>
     )
 }

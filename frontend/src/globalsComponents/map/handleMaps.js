@@ -27,7 +27,6 @@ export const getDirOpenMap=async (lat, lng, onError)=> {
 }
 
 export const boundRectangleCenter=(bounds)=>{
-    console.log(bounds)
     const x1 = bounds[0][0]
     const y1 = bounds[0][1]
     const x2 = bounds[1][0]

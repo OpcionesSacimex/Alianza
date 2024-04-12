@@ -120,9 +120,14 @@ export const CompleteRegister = () => {
                                     </FrmSolicitud>
                                 </div>
                                 <div className={`${classNames({ 'hidden': activeIndex !== 4 })}`}>
-                                    <FrmDireccion control={control} errors={{...errors}} getValues={getValues} setValue={setValue}>
+                                    {
+                                        activeIndex === 4?<>
+                                        <FrmDireccion control={control} errors={{...errors}} getValues={getValues} setValue={setValue}>
                                         <ButtonBackGO onBack={onBack} onGo={onGo} back={true} go={true} />
                                     </FrmDireccion>
+                                        </>:<></>
+                                    }
+                                    
                                 </div>
 
                                 <div className={`${classNames({ 'hidden': activeIndex !== 5 })}`}>

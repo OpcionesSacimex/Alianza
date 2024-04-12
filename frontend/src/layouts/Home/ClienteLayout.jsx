@@ -33,7 +33,6 @@ const ClienteLayout = ()=>{
     }
 
     const closeSession = () => {
-        //logoutUser()
         setUserInfo({})
         logout()
     }

@@ -47,3 +47,10 @@
 .slider-tem .p-slider-handle{
   top:1%;
 }
+
+.dd-hidden input{
+  display: none;
+}
+.dd-hidden .p-dropdown-trigger{
+  display: none;
+}

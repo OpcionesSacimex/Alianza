@@ -43,7 +43,7 @@ const Login=()=>{
         }   
     }
     useMountEffect(()=>{
-        toastContact.current.show({sticky: true})
+        //toastContact.current.show({sticky: true})
     })
     
     return (
@@ -53,12 +53,18 @@ const Login=()=>{
             </ContentDialog>
             <Toast className="mt-8" ref={toast} />
             
-            <Toast className="mt-8" ref={toastContact} position="bottom-left" content={({message})=>(
+            {
+                /*
+                <Toast className="mt-8" ref={toastContact} position="bottom-left" content={({message})=>(
                 <Button severity="success" onClick={(e) => ov.current.toggle(e)} rounded={true}>
                     <FontAwesomeIcon icon={"comments"}></FontAwesomeIcon>
                 </Button>
             )}/>
             <OverlayPanel ref={ov} dismissable={false} ></OverlayPanel>
+                
+                */
+            }
+            
             
             <div className="mt-5 mb-6">
             <PanelCenter>

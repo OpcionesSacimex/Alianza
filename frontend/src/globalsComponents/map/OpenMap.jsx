@@ -6,7 +6,7 @@ import {Toast} from "primereact/toast";
 import "leaflet/dist/leaflet.css";
 import "leaflet/dist/leaflet.js";
 import "leaflet-geosearch/dist/geosearch.css"
-import "leaflet-geosearch/dist/geosearch.umd.js"
+import "leaflet-geosearch/dist/geosearch.umd"
 import markerIcon from "leaflet/dist/images/marker-icon.png"
 import L from "leaflet"
 import { OpenStreetMapProvider } from 'leaflet-geosearch';
@@ -47,14 +47,17 @@ export const OpenMap = ({setPosition,position,buscar=true,size="400px"}) => {
         setPosition(boundRectangleCenter(value))
     }
     useMountEffect(()=>{
-        iniciar({onUbicacion:onUbicacion,onError:onErrorHubicate,onNoPermision:onNoPermision})
+        if(!position){
+            iniciar({onUbicacion:onUbicacion,onError:onErrorHubicate,onNoPermision:onNoPermision})
+        }
+        //iniciar({onUbicacion:onUbicacion,onError:onErrorHubicate,onNoPermision:onNoPermision})
     })
 
     const buscarDir = async (e)=>{
         clearTimeout(timeOut)
         timeOut = setTimeout(()=>{
             const obtener = async ()=>{
-                const results = await provider.search({ query: `${e.target.value}, México` });
+                const results = await provider.search({ query: `${e.target.value?e.target.value + ', México':''}` });
                 setUbicaciones(results)
             }
             obtener()
@@ -88,8 +91,6 @@ export const OpenMap = ({setPosition,position,buscar=true,size="400px"}) => {
         }),
         [],
     )
-
-
     return (
         <>
             <Toast ref={toast}></Toast>
@@ -100,16 +101,7 @@ export const OpenMap = ({setPosition,position,buscar=true,size="400px"}) => {
                             buscar?
                                 <>
                                     <PanelGrid>
-                                        {
-                                            /*
-<div className="col-12">
-                                            <DropDownAutoShow onChangeInput={buscarDir} dropOnchange={(e)=>{
-                                                setSelectedDir(e.value)
-                                                getPoligono(e.value)
-                                            }} optionValue="bounds" optionLabel="label" value={selectedDir} options={ubicaciones}/>
-                                        </div>
-                                            */
-                                        }
+                                        
                                         <div className="col-12">
                                         <DropDownAutoShow onChangeInput={buscarDir} dropOnchange={(e)=>{
                                                 setSelectedDir(e.value)
