@@ -22,6 +22,7 @@ class PersonaController extends Controller
     }
 
     public function updateUser(Request $request) {
+        $id = $request->user()->id;
         $userData = [
             "nombre"=>$request->nombre,
             "ape_pat"=>$request->ape_pat,
@@ -30,7 +31,7 @@ class PersonaController extends Controller
         ];
 
         Persona::updateOrCreate(
-            ['id' => 6], // Condiciones de búsqueda para el usuario existente
+            ['id' => $id], // Condiciones de búsqueda para el usuario existente
             $userData // Datos a actualizar o crear
         );
 
