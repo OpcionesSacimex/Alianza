@@ -22,6 +22,7 @@ Route::post('/usuario/formulario',[UsuarioController::class,'ingresarPersona']);
 Route::post('/usuario/email_verify',[ExistController::class,'validar_correo']);
 //clientes
 Route::post('/persona/createUser',[PersonaController::class,'create']);
+Route::post('/persona/updateUser',[PersonaController::class,'updateUser']);
 Route::post('/direccion/createDireccion',[DireccionController::class,'create']);
 Route::post('/economico/createEconomico',[EconomicoController::class,'create']);
 Route::middleware('auth:api')->post('/cliente/createCliente', [UsuarioController::class,'ingresarPersona']);

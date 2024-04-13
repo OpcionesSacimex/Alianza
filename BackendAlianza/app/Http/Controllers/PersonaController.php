@@ -21,17 +21,19 @@ class PersonaController extends Controller
         ],200);
     }
 
-   /*  public function updateC (Request $request){
-        Persona::update([
-            "nombre"=>$request->input('nombre'),
-            "ape_pat"=>$request->input('ape_pat'),
-            "apr_mat"=>$request->input('ape_mat'),
-            "telefono"=>$request->input('telefono')
-        ]);
+    public function updateUser(Request $request) {
+        $userData = [
+            "nombre"=>$request->nombre,
+            "ape_pat"=>$request->ape_pat,
+            "apr_mat"=>$request->apr_mat,
+            "telefono"=>$request->telefono
+        ];
 
-        return response()->json([
-            'status'=>true,
-            'nombre'=> 'nombre'
-        ],200);
-    } */
+        Persona::updateOrCreate(
+            ['id' => 6], // Condiciones de búsqueda para el usuario existente
+            $userData // Datos a actualizar o crear
+        );
+
+        return response()->json(['message' => 'Usuario actualizado o creado correctamente'], 200);
+    }
 }
