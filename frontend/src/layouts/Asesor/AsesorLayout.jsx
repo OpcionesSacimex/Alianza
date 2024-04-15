@@ -56,14 +56,18 @@ const AsesorLayout = () => {
             <div className="card flex justify-content-center">
                 <TieredMenu model={userMenu} popup ref={menu} breakpoint="767px" />
                 <Button onClick={(e) => menu.current.toggle(e)} text>
-                    <FontAwesomeIcon icon="bell" className="text-white">
+                    <div className="p-overlay-badge p-1">
+                    <FontAwesomeIcon icon="bell" className="text-white p-overlay-badge text-2xl">
                         
                     </FontAwesomeIcon>
                     <Badge value="4" />
+                    </div>
+                    
+                    
                 </Button>
                 <TieredMenu model={userMenu} popup ref={menu} breakpoint="767px" />
                 <Button onClick={(e) => menu.current.toggle(e)} text>
-                    <Avatar label="P"></Avatar>
+                    <Avatar label="P" shape="circle"></Avatar>
                 </Button>
                 
             </div>
