@@ -81,7 +81,7 @@ export const FrmMontos=({children,control,errors,getValues})=>{
                     )}/>               
                 </div>
                 <div className="col-12"> 
-                    <div className="align-content-center p-buttonset mt-4">
+                    <div className="align-content-center p-button-group mt-4">
                         {children}
                     </div>
                 </div>

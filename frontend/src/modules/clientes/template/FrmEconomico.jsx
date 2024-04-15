@@ -12,7 +12,7 @@ export const FrmEconomico = ({ children, control, errors, getValues}) => {
                 <Controller name="economico" control={control} render={({ field: f, fieldState: fs }) => (
                     <>
                         <div className="col-12">
-                            <Controller defaultValue={0} rules={{
+                            <Controller rules={{
                                 min:{
                                     value:1500,
                                     message:"El monto minimo debe ser mayor a 1500 quincenales"
@@ -23,7 +23,7 @@ export const FrmEconomico = ({ children, control, errors, getValues}) => {
                                     <span className="mt-4 p-float-label">
                                         <InputNumber mode="currency" currency="USD" name={field.name} value={field.value} onChange={(e) => field.onChange(e.value)} useGrouping={false} />
                                         <LabelForm htmlFor={field.name} status={fieldState.invalid} required={true}>
-                                            Ingresos quincenales:
+                                            Nómina quincenal:
                                         </LabelForm>
                                     </span>
                                     <ErrorLabel name={field.name} errors={{...errors}}></ErrorLabel>
@@ -31,7 +31,7 @@ export const FrmEconomico = ({ children, control, errors, getValues}) => {
                             )} />
                         </div>
                         <div className="col-12 mt-1">
-                            <Controller defaultValue={0} rules={{
+                            <Controller rules={{
                                 required: "El saldo disponible es requerido",
                                 min:{
                                     value:1500,
@@ -53,7 +53,7 @@ export const FrmEconomico = ({ children, control, errors, getValues}) => {
                 )} />
 
                 <div className="col-12">
-                    <div className="align-content-center p-buttonset mt-4">
+                    <div className="align-content-center p-button-group mt-4">
                         {children}
                     </div>
                 </div>

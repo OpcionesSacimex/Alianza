@@ -140,7 +140,7 @@ const Registrate=()=>{
                             }} name="password" control={control} render={({field,fieldState})=>(
                                 <>
                                     <span className="p-float-label">
-                                        <Password className={`${classNames({'p-invalid':fieldState.invalid,'border-1':fieldState.invalid, 'border-red-700':fieldState.invalid})}`} 
+                                        <Password className={`icon-right ${classNames({'p-invalid':fieldState.invalid,'border-1':fieldState.invalid, 'border-red-700':fieldState.invalid})}`} 
                                         value={password} onChange={e=>{setPassword(e.target.value)}} name="pass" 
                                         strongLabel="Fuerte" weakLabel="Debil" mediumLabel="Medio" promptLabel="Confirme su contraseña"  toggleMask />
                                         <LabelForm htmlFor={"pass"} status={fieldState.invalid} required={true}>Confirmar Contraseña</LabelForm>

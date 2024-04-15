@@ -118,7 +118,7 @@ export const FrmDireccion =({children,control,errors,getValues,setValue})=>{
                     )}/>
                 </div>
                 <div className="col-12"> 
-                    <div className="align-content-center p-buttonset mt-4">
+                    <div className="align-content-center p-button-group mt-4">
                         {children}
                     </div>
                 </div>

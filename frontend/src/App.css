@@ -54,3 +54,7 @@
 .dd-hidden .p-dropdown-trigger{
   display: none;
 }
+
+.icon-right svg {
+  right:0
+}
