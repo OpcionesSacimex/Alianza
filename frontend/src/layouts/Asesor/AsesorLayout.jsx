@@ -16,6 +16,7 @@ const AsesorLayout = () => {
     const {auth,logout} = useAuth()
     const {userInfo,setUserInfo} = useUserInfo()
     const menu=useRef()
+    const noti=useRef()
 
     const [visible,setVisible] =useState(false)
 
@@ -23,6 +24,12 @@ const AsesorLayout = () => {
 
     const userMenu = [{
         label: "Cerrar session"
+    }]
+
+    const userNoti = [{
+        label: "Solicitudes nuevas"
+    },{
+        label: "Solicitudes actualizadas"
     }]
 
     const getInfoUserLogged = async () => {
@@ -54,8 +61,8 @@ const AsesorLayout = () => {
     const end = ()=>{
         return (
             <div className="card flex justify-content-center">
-                <TieredMenu model={userMenu} popup ref={menu} breakpoint="767px" />
-                <Button onClick={(e) => menu.current.toggle(e)} text>
+                <TieredMenu model={userNoti} popup ref={noti} breakpoint="767px" />
+                <Button onClick={(e) => noti.current.toggle(e)} text>
                     <div className="p-overlay-badge p-1">
                     <FontAwesomeIcon icon="bell" className="text-white p-overlay-badge text-2xl">
                         
