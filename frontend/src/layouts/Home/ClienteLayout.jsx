@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useRef } from "react"
 import {useUserInfo} from "../../hooks/useUserAuth"
 import { Navigate, useNavigate, useOutlet } from "react-router";
 import { PanelCenter } from "../../globalsComponents/panels/PanelCenter";
@@ -8,12 +8,16 @@ import { PanelGrid } from "../../globalsComponents/panels/PanelGrid";
 import { useAuth } from "../../hooks/useAuthToken";
 import { useMountEffect } from "primereact/hooks";
 import { getUserData } from "../../modules/acceso/handle/handleAcceso";
+import { TieredMenu } from "primereact/tieredmenu";
+import { Button } from "primereact/button";
+import { Avatar } from "primereact/avatar";
 
 const ClienteLayout = ()=>{
     const outlet = useOutlet();
     const logo= `${URLStorage}/img/image.png`
     const {auth,logout} = useAuth()
     const {userInfo,setUserInfo} = useUserInfo()
+    const menu=useRef()
 
     const navigate=useNavigate();
     const getInfoUserLogged = async () => {
@@ -36,6 +40,10 @@ const ClienteLayout = ()=>{
         setUserInfo({})
         logout()
     }
+    const userMenu = [{
+        label: "Cerrar session",
+        command:closeSession
+    }]
 
     useMountEffect(() => {
         const asyncrona = async () => {
@@ -67,6 +75,10 @@ const ClienteLayout = ()=>{
                         <label className="font-bold text-white font-italic"> Tu crédito de confianza. </label>
                     </div>
                     </PanelCenter>    
+                    <TieredMenu model={userMenu} popup ref={menu} breakpoint="767px" />
+                <Button onClick={(e) => menu.current.toggle(e)} text>
+                    <Avatar label="U" shape="circle"></Avatar>
+                </Button>
                 </div>  
             </>      
         )

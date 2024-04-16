@@ -22,8 +22,14 @@ const AsesorLayout = () => {
 
     const navigate=useNavigate();
 
+    const closeSession = () => {
+        setUserInfo({})
+        logout()
+    }
+
     const userMenu = [{
-        label: "Cerrar session"
+        label: "Cerrar session",
+        command:closeSession
     }]
 
     const userNoti = [{
@@ -69,20 +75,14 @@ const AsesorLayout = () => {
                     </FontAwesomeIcon>
                     <Badge value="4" />
                     </div>
-                    
-                    
                 </Button>
                 <TieredMenu model={userMenu} popup ref={menu} breakpoint="767px" />
                 <Button onClick={(e) => menu.current.toggle(e)} text>
-                    <Avatar label="P" shape="circle"></Avatar>
+                    <Avatar label="A" shape="circle"></Avatar>
                 </Button>
                 
             </div>
         )
-    }
-    const closeSession = () => {
-        setUserInfo({})
-        logout()
     }
     useMountEffect(() => {
         const asyncrona = async () => {
