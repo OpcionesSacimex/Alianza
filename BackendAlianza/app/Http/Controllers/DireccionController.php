@@ -8,7 +8,8 @@ use App\Models\Direccion;
 class DireccionController extends Controller
 {
     public function create (Request $request){
-        Direccion::create([
+        $id = $request->user()->id;
+        $userData = [
             "calle"=>$request->calle,
             "no_exterior"=>$request->no_exterior,
             "no_interior"=>$request->no_interior,
@@ -16,11 +17,11 @@ class DireccionController extends Controller
             "colonia"=>$request->colonia,
             "latitud"=>$request->latitud, 
             "longitud"=>$request->longitud
-        ]);
-
-        return response()->json([
-            'status'=>true,
-            'nombre'=> 'nombre'
-        ],200);
+        ];
+        Direccion::updateOrCreate(
+            ['id' => $id], // Condiciones de búsqueda para el usuario existente
+            $userData // Datos a actualizar o crear
+        );
+        return response()->json(['message' => 'Usuario actualizado o creado correctamente'], 200);
     }
 }
