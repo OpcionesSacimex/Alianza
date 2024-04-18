@@ -16,7 +16,7 @@ const HomeLayout = () => {
             <div style={{width:"15rem"}}>
             <PanelGrid>
                 <div className="col-12 md:col-2">
-                    <a href="https://convenio.opcionessacimex.com">
+                    <a href="#">
                         <img className="sm:h-3rem h-1.5rem sm:w-15rem w-7rem" alt="logo" src={logo} ></img>
                     </a>
                 </div>

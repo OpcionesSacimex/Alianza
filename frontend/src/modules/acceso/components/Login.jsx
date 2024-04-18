@@ -53,19 +53,6 @@ const Login=()=>{
             </ContentDialog>
             <Toast className="mt-8" ref={toast} />
             
-            {
-                /*
-                <Toast className="mt-8" ref={toastContact} position="bottom-left" content={({message})=>(
-                <Button severity="success" onClick={(e) => ov.current.toggle(e)} rounded={true}>
-                    <FontAwesomeIcon icon={"comments"}></FontAwesomeIcon>
-                </Button>
-            )}/>
-            <OverlayPanel ref={ov} dismissable={false} ></OverlayPanel>
-                
-                */
-            }
-            
-            
             <div className="mt-5 mb-6">
             <PanelCenter>
                 <Card className="w-12 md:w-8 lg:w-7 xl:w-6 bg-gray-100">

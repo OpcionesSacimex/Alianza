@@ -67,7 +67,7 @@ const AsesorLayout = () => {
     const end = ()=>{
         return (
             <div className="card flex justify-content-center">
-                <TieredMenu model={userNoti} popup ref={noti} breakpoint="767px" />
+                <TieredMenu model={userNoti} popup ref={noti} />
                 <Button onClick={(e) => noti.current.toggle(e)} text>
                     <div className="p-overlay-badge p-1">
                     <FontAwesomeIcon icon="bell" className="text-white p-overlay-badge text-2xl">
