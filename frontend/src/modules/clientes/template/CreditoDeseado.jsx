@@ -4,7 +4,7 @@ export const CreditoDeseado =()=>{
     return (
         <>
          <PanelCenter>
-            <label className="text-xl mb-4">Credito maximo</label>
+            <label className="text-xl mb-4">Crédito máximo</label>
                 <label className="text-green-800 font-bold">$500,000.00 MXN</label>
                     <div className="mt-5">
                         <div className="p-inputgroup flex-1">

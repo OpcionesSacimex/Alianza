@@ -21,33 +21,33 @@ export const FrmMontos=({children,control,errors,getValues})=>{
         <>
         <div className="align-content-center ">
             <p className="text-center text-2xl text-green-800 font-bold">
-                Detalles del credito
+                Detalles del crédito
             </p>
             <PanelGrid className="mt-6">
                 <div className="col-6">
                     <span className="p-float-label">
                         <InputNumber name="minimo" disabled value={minimo} currency="USD" mode="currency"></InputNumber>
-                        <LabelForm htmlFor="minimo">Pago minimo:</LabelForm>
+                        <LabelForm htmlFor="minimo">Pago mínimo:</LabelForm>
                     </span>
                     
                 </div>
                 <div className="col-6">
                     <span className="p-float-label">
                         <InputNumber disabled value={maximo} currency="USD" mode="currency"></InputNumber>
-                        <LabelForm htmlFor="minimo">Pago maximo:</LabelForm>
+                        <LabelForm htmlFor="minimo">Pago máximo:</LabelForm>
                     </span>
                 </div>
                 <div className="col-12">
                     <Controller rules={{
                         min:{
                             value:minimo,
-                            message:"No puede ser menor al monto minimo"
+                            message:"No puede ser menor al monto mínimo."
                         },
                         max:{
                             value:maximo,
-                            message:"No puede exceder el monto maximo"
+                            message:"No puede exceder el monto máximo."
                         },
-                        validate:(val)=>val!==0 || "Monto no puede ser 0",
+                        validate:(val)=>val!==0 || "El monto no puede ser 0",
                         required:"El pago es requerido"
                     }} defaultValue={0} control={control} name="pago_min" render={({field,fieldState})=>(
                         <>
@@ -56,7 +56,7 @@ export const FrmMontos=({children,control,errors,getValues})=>{
                                     field.onChange(e.value)
                                 }} useGrouping={false}/>
                                 <LabelForm htmlFor={field.name} status={fieldState.invalid} required={true}>
-                                    Pago quincenal deseado: 
+                                 Pago quincenal deseado:
                                 </LabelForm>
                             </span>
                             <ErrorLabel name={field.name} errors={errors}></ErrorLabel>
@@ -67,7 +67,7 @@ export const FrmMontos=({children,control,errors,getValues})=>{
                     <Controller control={control} name="plazo" render={({field,fieldState})=>(
                         <>
                             <PanelCenter className="mb-4 mt-2">
-                                <LabelForm>¿A cuantos meses?</LabelForm>
+                                <LabelForm>¿A cuántos meses?</LabelForm>
                             </PanelCenter>
                             
                             <Slider className="slider-tem" value={field.value} min={3} max={12} onChange={(e)=>{

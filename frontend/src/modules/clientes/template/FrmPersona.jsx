@@ -14,7 +14,7 @@ export const FrmPersona=({children,control,errors})=>{
                 <PanelGrid>
                     <div className="col-12">
                     <Controller rules={{
-                                required:"El nombre es requerido requerido"
+                                required:"El nombre es requerido."
                             }} control={control} name="nombre" render={({field,fieldState})=>(
                                 <>
                                     <span className="mt-4 p-float-label">
@@ -29,7 +29,7 @@ export const FrmPersona=({children,control,errors})=>{
                     </div>
                     <div className="col-12 lg:col-6">
                     <Controller rules={{
-                                required:"El primer apellido es requerido"
+                                required:"El primer apellido es requerido."
                             }} control={control} name="ape_pat" render={({field,fieldState})=>(
                                 <>
                                     <span className="mt-2 p-float-label">
@@ -45,7 +45,7 @@ export const FrmPersona=({children,control,errors})=>{
 
                     <div className="col-12 lg:col-6">
                     <Controller rules={{
-                                required:"Su segundo apellido es requerido"
+                                required:"Su segundo apellido es requerido."
                             }} control={control} name="ape_mat" render={({field,fieldState})=>(
                                 <>
                                     <span className="mt-2 p-float-label">
@@ -61,13 +61,13 @@ export const FrmPersona=({children,control,errors})=>{
                     
                     <div className="col-12">
                     <Controller rules={{
-                                required:"El telefono es requerido"
+                                required:"El teléfono es requerido."
                             }} control={control} name="telefono" render={({field,fieldState})=>(
                                 <>
                                     <span className="mt-2 p-float-label">
                                         <InputMask  name={field.name} value={field.value || ''} placeholder="999 999 99 99" onChange={(e)=>field.onChange(e.value)} mask="999 999 99 99"/>
                                         <LabelForm htmlFor={field.name} status={fieldState.invalid} required={true}>
-                                            Número telefonico: 
+                                            Número telefónico:
                                         </LabelForm>
                                     </span>
                                     <ErrorLabel name={field.name} errors={{...errors}}></ErrorLabel>

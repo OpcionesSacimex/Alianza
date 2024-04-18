@@ -15,7 +15,7 @@ export const FrmEconomico = ({ children, control, errors, getValues}) => {
                             <Controller rules={{
                                 min:{
                                     value:1500,
-                                    message:"El monto minimo debe ser mayor a 1500 quincenales"
+                                    message:"El monto mínimo debe ser mayor a 1500 quincenales."
                                 },
                                 required: "El ingreso quincenal es requerido"
                             }} control={control} name={`${f.name}.ingreso_q`} render={({ field, fieldState }) => (
@@ -32,10 +32,10 @@ export const FrmEconomico = ({ children, control, errors, getValues}) => {
                         </div>
                         <div className="col-12 mt-1">
                             <Controller rules={{
-                                required: "El saldo disponible es requerido",
+                                required: "El saldo disponible es requerido.",
                                 min:{
                                     value:1500,
-                                    message:"El saldo disponible no debe ser menor a $3,000.00 mensuales o $1,500.00 quincenales"
+                                    message:"El saldo disponible no debe ser menor a $3,000.00 mensuales o $1,500.00 quincenales."
                                 },
                             }} control={control} name={`${f.name}.disponible_q`} render={({ field, fieldState }) => (
                                 <>

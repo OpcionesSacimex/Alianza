@@ -35,7 +35,7 @@ export const FrmDireccion =({children,control,errors,getValues,setValue})=>{
     return(
         <>
             <p className="text-center text-2xl text-green-800 font-bold">
-                Ubicacion
+                Ubicación
             </p>
             
             <PanelGrid>
@@ -59,7 +59,7 @@ export const FrmDireccion =({children,control,errors,getValues,setValue})=>{
                                         <span className="p-float-label">
                                             <InputText name={`${field.name}`} value={`${field.value ||''}`} onChange={field.onChange} />
                                             <LabelForm htmlFor={field.name} required={true} status={fieldState.invalid}>
-                                                Calle
+                                                Calle:
                                             </LabelForm>
                                         </span>
                                     </>
@@ -83,7 +83,7 @@ export const FrmDireccion =({children,control,errors,getValues,setValue})=>{
                                         <span className="p-float-label">
                                             <InputText name={`${field.name}`} value={`${field.value ||''}`} onChange={field.onChange} />
                                             <LabelForm htmlFor={field.name} required={true} status={fieldState.invalid}>
-                                                Codigo postal
+                                                Código postal:
                                             </LabelForm>
                                         </span>
                                     </>
@@ -95,7 +95,7 @@ export const FrmDireccion =({children,control,errors,getValues,setValue})=>{
                                    <span className="p-float-label">
                                         <InputText name={`${field.name}`} value={`${field.value ||''}`} onChange={field.onChange} />
                                         <LabelForm htmlFor={field.name} required={true} status={fieldState.invalid}>
-                                            Numero interior
+                                        Número interior:
                                         </LabelForm>
                                    </span>
                                 </>
@@ -107,7 +107,7 @@ export const FrmDireccion =({children,control,errors,getValues,setValue})=>{
                                         <span className="p-float-label">
                                             <InputText name={`${field.name}`} value={`${field.value ||''}`} onChange={field.onChange} />
                                             <LabelForm htmlFor={field.name} required={true} status={fieldState.invalid}>
-                                                Numero exterior
+                                            Número exterior:
                                             </LabelForm>
                                         </span>
                                     </>

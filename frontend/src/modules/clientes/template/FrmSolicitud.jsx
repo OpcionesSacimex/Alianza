@@ -17,13 +17,13 @@ export const FrmSolicitud = ({ children, control, errors,getValues }) => {
         <>
             <div className="align-content-center">
                 <p className="text-center text-2xl text-green-800 font-bold">
-                    Solicitud de credito
+                    Solicitud de crédito
                 </p>
                 <PanelGrid className="mt-6">
                     <div className="col-12">
                         <span className="p-float-label">
                             <InputNumber mode="currency" currency="USD" disabled value={prestamoMax}></InputNumber>
-                            <LabelForm>Credito maximo:</LabelForm>
+                            <LabelForm>Crédito máximo:</LabelForm>
                         </span>
 
                     </div>
@@ -32,14 +32,14 @@ export const FrmSolicitud = ({ children, control, errors,getValues }) => {
                             <Controller defaultValue={0} rules={{
                                 max: {
                                     value: prestamoMax,
-                                    message: "No es posible exccer el monto maximo"
+                                    message: "No es posible exceder el monto máximo."
                                 }
                             }} name={`${f.name}.prestamo_f`} control={control} render={({ field, fieldState }) => (
                                 <>
                                     <span className="p-float-label">
                                         <InputNumber mode="currency" currency="USD" name={field.name} value={field.value} onChange={(e) => field.onChange(e.value)}></InputNumber>
                                         <LabelForm htmlFor={field.name} status={fieldState.invalid} required>
-                                            Prestamo solicitado
+                                            Préstamo solicitado.
                                         </LabelForm>
                                     </span>
                                     <ErrorLabel name={field.name} errors={errors}></ErrorLabel>
