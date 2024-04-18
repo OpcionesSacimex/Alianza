@@ -8,14 +8,14 @@ export const StepsModel =(item, itemIndex,activeIndex, setActiveIndex)=>{
     return (
         <div className="mt-2">
             <PanelCenter>
-            <span className="inline-flex align-items-center justify-content-center align-items-center border-circle border-primary h-4rem w-4rem z-1 cursor-pointer mt-1"
+            <span className="inline-flex align-items-center justify-content-center align-items-center border-circle border-primary h-3rem w-3rem z-1 cursor-pointer mt-1"
             style={{ backgroundColor: backgroundColor, color: textColor, marginTop: '-55px' }}
             onClick={() => setActiveIndex(itemIndex)}>
                 {
-                    item.icon?<FontAwesomeIcon icon={item.icon} className="buttonsGreen text-2xl" />:<></>
+                    item.icon?<FontAwesomeIcon icon={item.icon} className="buttonsGreen text-xl" />:<></>
                 }
             </span>
-            <label className="p-fluid text-black">{item.label}</label>
+            <label className="p-fluid text-black text-xl">{item.label}</label>
             </PanelCenter>
             
         </div>

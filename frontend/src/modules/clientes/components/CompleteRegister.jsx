@@ -25,27 +25,27 @@ export const CompleteRegister = () => {
     const toast = useRef(null)
     const items = [
         {
-            label: 'Datos Personales',
+            label: 'Datos personales',
             icon: "file-lines",
             command: (e) => { },
             template: (item) => StepsModel(item, 0, activeIndex, setActiveIndex)
         }, {
-            label: "socio economico",
+            label: "Socioeconómico",
             icon: "comments-dollar",
             command: (e) => { },
             template: (item) => StepsModel(item, 1, activeIndex, setActiveIndex)
         }, {
-            label: 'Detalles del credito',
+            label: 'Detalles del crédito',
             icon: "hand-holding-dollar",
             command: (e) => { },
             template: (item) => StepsModel(item, 2, activeIndex, setActiveIndex)
         }, {
-            label: 'Solicitud de credito',
+            label: 'Solicitud de crédito',
             icon: "file-invoice-dollar",
             command: (e) => { },
             template: (item) => StepsModel(item, 3, activeIndex, setActiveIndex)
         }, {
-            label: "Direccion",
+            label: "Dirección",
             icon: "map-location-dot",
             command: (e) => { },
             template: (item) => StepsModel(item, 4, activeIndex, setActiveIndex)
@@ -66,7 +66,7 @@ export const CompleteRegister = () => {
     const onSubmit = (data) => {
 
         confirmDialog({
-            message: "¿Confirmar solicitud de credito?",
+            message: "¿Confirmar solicitud de crédito?",
             accept: (e) => { onAccept(data) },
             reject: onCancel
         })

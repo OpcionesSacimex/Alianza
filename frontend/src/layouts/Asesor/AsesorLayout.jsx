@@ -73,7 +73,7 @@ const AsesorLayout = () => {
                     <FontAwesomeIcon icon="bell" className="text-white p-overlay-badge text-2xl">
                         
                     </FontAwesomeIcon>
-                    <Badge value="4" />
+                    <Badge className="bg-red-700 text-white" value="4" />
                     </div>
                 </Button>
                 <TieredMenu model={userMenu} popup ref={menu} breakpoint="767px" />
