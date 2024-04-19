@@ -1,6 +1,6 @@
 import { Navigate, useNavigate, useOutlet } from "react-router";
 import { useAuth } from "../../hooks/useAuthToken";
-import { getUserData } from "../../modules/acceso/handle/handleAcceso";
+import { getUserData, logOutUser } from "../../modules/acceso/handle/handleAcceso";
 import { useUserInfo } from "../../hooks/useUserAuth";
 import { useMountEffect } from "primereact/hooks";
 import { Toolbar } from "primereact/toolbar";
@@ -22,7 +22,8 @@ const AsesorLayout = () => {
 
     const navigate=useNavigate();
 
-    const closeSession = () => {
+    const closeSession = async () => {
+        await logOutUser()
         setUserInfo({})
         logout()
     }

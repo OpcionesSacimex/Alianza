@@ -14,11 +14,11 @@ import {library} from '@fortawesome/fontawesome-svg-core'
 import {
   faComments,faHandHoldingDollar,faCommentsDollar, faCircleArrowRight,
   faCircleArrowLeft,faFileLines,faMapLocationDot,faFileInvoiceDollar,faClipboardCheck,
-  faPrint,faPencilSquare,faPaperPlane,faChevronDown,faBars,faBell
+  faPrint,faPencilSquare,faPaperPlane,faChevronDown,faBars,faBell,faRightToBracket
 } from '@fortawesome/free-solid-svg-icons'
 library.add(faComments,faHandHoldingDollar,faCommentsDollar,faCircleArrowRight,
   faCircleArrowLeft, faFileLines,faMapLocationDot,faFileInvoiceDollar,faClipboardCheck,
-  faPrint,faPencilSquare,faPaperPlane,faChevronDown,faBars,faBell)
+  faPrint,faPencilSquare,faPaperPlane,faChevronDown,faBars,faBell,faRightToBracket)
 function App() {
   return useRoutes(
     [

@@ -7,10 +7,11 @@ import { URLStorage } from "../../utils/URLBackend";
 import { PanelGrid } from "../../globalsComponents/panels/PanelGrid";
 import { useAuth } from "../../hooks/useAuthToken";
 import { useMountEffect } from "primereact/hooks";
-import { getUserData } from "../../modules/acceso/handle/handleAcceso";
+import { getUserData, logOutUser } from "../../modules/acceso/handle/handleAcceso";
 import { TieredMenu } from "primereact/tieredmenu";
 import { Button } from "primereact/button";
 import { Avatar } from "primereact/avatar";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const ClienteLayout = ()=>{
     const outlet = useOutlet();
@@ -36,14 +37,15 @@ const ClienteLayout = ()=>{
 
     }
 
-    const closeSession = () => {
+    const closeSession = async () => {
+        await logOutUser()
         setUserInfo({})
         logout()
     }
-    const userMenu = [{
+/*     const userMenu = [{
         label: "Cerrar session",
         command:closeSession
-    }]
+    }] */
 
     useMountEffect(() => {
         const asyncrona = async () => {
@@ -66,7 +68,7 @@ const ClienteLayout = ()=>{
             </>
         )
     }
-    const end =() => {
+    const center =() => {
         return (
             <>
                 <div className="">
@@ -75,20 +77,25 @@ const ClienteLayout = ()=>{
                         <label className="font-bold text-white font-italic"> Tu crédito de confianza. </label>
                     </div>
                     </PanelCenter>    
-                    <TieredMenu model={userMenu} popup ref={menu} breakpoint="767px" />
-                <Button onClick={(e) => menu.current.toggle(e)} text>
-                    <Avatar label="U" shape="circle"></Avatar>
-                </Button>
+
                 </div>  
             </>      
         )
+    }
+    const end=()=>{
+        return(
+            <Button onClick={closeSession} className="bg-white text-green-800">
+                <FontAwesomeIcon icon="right-to-bracket" />
+            </Button>
+        )
+
     }
     if(auth.token===false){
         return <Navigate replace to="/"/>
     }else{
         return (
             <div> 
-                    <Toolbar className='bg-green-800 shadow-3 z-5 sticky top-0' style={{height:"6rem"}} start={start} end={end}/>
+                    <Toolbar className='bg-green-800 shadow-3 z-5 sticky top-0' style={{height:"6rem"}} start={start} center={center} end={end}/>
                     {outlet}
                 </div>
         )
