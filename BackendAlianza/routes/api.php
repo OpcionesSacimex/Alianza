@@ -29,7 +29,7 @@ Route::post('/economico/createEconomico',[EconomicoController::class,'create']);
 Route::middleware('auth:api')->post('/cliente/createCliente', [UsuarioController::class,'ingresarPersona']);
 
 Route::middleware('auth:api')->get('/cliente/search', [ClienteController::class,'getCliente']);
-Route::middleware('auth:api')->get('/cliente/update', [ClienteController::class,'updateClient']);
+Route::middleware('auth:api')->get('/cliente/create', [ClienteController::class,'create']);
 Route::post('/usuario/search',[UsuarioController::class,'searchC']);
 
 Route::middleware('auth:api')->post('/cliente/get', [UsuarioController::class,'ingresarPersona']);

@@ -58,6 +58,7 @@ class UsuarioController extends Controller
     public function ingresarPersona(Request $request){
         $id = $request->user()->id;
         Persona::create([
+            "id"=>$request->user()->id,
             "nombre"=>$request->nombre,
             "ape_pat"=>$request->ape_pat,
             "apr_mat"=>$request->ape_mat,
@@ -67,6 +68,7 @@ class UsuarioController extends Controller
        // $direccion = $request['direccion'];
         //echo($direccion);
         Direccion::create([
+            "id"=>$request->user()->id,
             "calle"=>$request->direccion['calle'],
             "no_exterior"=>$request->direccion['no_exterior'],
             "no_interior"=>$request->direccion['no_interior'],
@@ -76,6 +78,7 @@ class UsuarioController extends Controller
             "longitud"=>'12345678'
         ]);
         Economico::create([
+            "id"=>$request->user()->id,
             "ingresos_q"=>$request->economico['ingreso_q'],
             "disponible_q"=>$request->economico['disponible_q'],
             "prestamo_f"=>$request->economico['prestamo_f'],
@@ -90,8 +93,7 @@ class UsuarioController extends Controller
     public function getUser(Request $request){
         $id = $request->user()->id;
         $user = Usuario::with('rol')->find($id);
-        return response()->json($user);
-        
+        return response()->json([$user,'id'=> $id]);
     }
     public function logout()
     {

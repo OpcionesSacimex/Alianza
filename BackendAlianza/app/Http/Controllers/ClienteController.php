@@ -1,15 +1,15 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Cliente;
+use App\Models\Usuario;
 
 class ClienteController extends Controller
 {
     public function getCliente(Request $request){
         $id = $request->user()->id;
-        $user = Cliente::with('usuario','persona','direccion','economico')->find($id);
+        $user = Usuario::with('usuario','persona','direccion','economico')->find($id);
         return response()->json($user);
     }
     public function create (Request $request){
