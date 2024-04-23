@@ -11,7 +11,7 @@ class StatusController extends Controller
     public function allStatus()
     {
         $datos = Status_docs::all();
-    
-        return $datos;
+        return response()->json($datos);
+        //return $datos;
     }
 }

@@ -12,6 +12,6 @@ class DocumentoController extends Controller
     {
         $datos = tipo_doc::all();
     
-        return $datos;
+        return response()->json($datos);
     }
 }
