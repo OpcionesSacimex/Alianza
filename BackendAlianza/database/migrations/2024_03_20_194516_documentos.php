@@ -14,16 +14,9 @@ return new class extends Migration
         Schema::create('documentos', function (Blueprint $table) {
             $table->id();
             $table->foreignId("cliente_id")->nullable(true)->references('id')->on('cliente');
-            $table->string("credencial",100);
-            $table->string("croquis",100);
-            $table->string("foto",100);
-            $table->string("comp_dom",100);
-            $table->boolean("status");
+            $table->foreignId("status_docs_id")->nullable(false)->references('id')->on('status_docs');
+            $table->foreignId('tipo_doc_id')->nullable(false)->references('id')->on('tipo_doc');
             $table->string("observaciones",100);
-            $table->string("comprobante_peso",100);
-            $table->string("comprobante_total",100);
-            $table->string("ine",100);
-            $table->string("autorizacion",100);
     });
     }
 
