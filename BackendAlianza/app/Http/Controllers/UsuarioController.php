@@ -93,7 +93,7 @@ class UsuarioController extends Controller
     public function getUser(Request $request){
         $id = $request->user()->id;
         $user = Usuario::with('rol')->find($id);
-        return response()->json([$user,'id'=> $id]);
+        return response()->json($user);
     }
     public function logout()
     {
