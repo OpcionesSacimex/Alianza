@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\cliente\DocumentoController;
+use App\Http\Controllers\cliente\StatusController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\DireccionController;
 use App\Http\Controllers\EconomicoController;
@@ -23,6 +25,8 @@ Route::post('/usuario/email_verify',[ExistController::class,'validar_correo']);
 //clientes
 Route::middleware('auth:api')->post('/persona/updateUser', [PersonaController::class,'updateUser']);
 Route::post('/persona/createUser',[PersonaController::class,'create']);
+Route::get('/cliente/tipo_doc',[DocumentoController::class,'allTipo']);
+Route::get('/cliente/status_docs',[StatusController::class,'allStatus']);
 //Route::post('/persona/updateUser',[PersonaController::class,'updateUser']);
 Route::post('/direccion/createDireccion',[DireccionController::class,'create']);
 Route::post('/economico/createEconomico',[EconomicoController::class,'create']);
