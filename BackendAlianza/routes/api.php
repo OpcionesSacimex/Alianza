@@ -45,3 +45,5 @@ Route::post('/subir','Controller@uploadDocuments')->name('subir'); //pendiente d
 //Conbenios
 
 Route::get('/convenios/getAll',[ConvenioController::class,'allConvenios']);
+Route::get('/convenios/existe',[ConvenioController::class,'existe']);
+Route::get('/convenios/data',[ConvenioController::class,'getConvenioData']);
