@@ -1,11 +1,9 @@
-import { Navigate, useNavigate, useOutlet } from "react-router"
+import { useNavigate, useOutlet } from "react-router"
 import { useAuth } from "../hooks/useAuthToken"
 import { useUserInfo } from "../hooks/useUserAuth";
-import React from "react";
 import { getUserData } from "../modules/acceso/handle/handleAcceso";
 import { useMountEffect } from "primereact/hooks";
 const AuthLaout = ()=>{
-    const outlet =useOutlet()
     const { logout, auth, setAuth } = useAuth();
     const {userInfo,setUserInfo}= useUserInfo();
     const navigate=useNavigate();
@@ -32,8 +30,7 @@ const AuthLaout = ()=>{
     }
 
     const closeSession = () => {
-        //logoutUser()
-        //setUserInfo({})
+        setUserInfo({})
         logout()
     }
 

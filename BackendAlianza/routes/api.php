@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\Usuario\ExistController;
+use App\Http\Controllers\convenio\ConvenioController;
 use Whoops\Run;
 
 //acceso y usuario
@@ -40,3 +41,7 @@ Route::middleware('auth:api')->post('/cliente/get', [UsuarioController::class,'i
 
 Route::post('/documnetos/uploadDocuments',[UploadController::class,'uploadDocument']);
 Route::post('/subir','Controller@uploadDocuments')->name('subir'); //pendiente de probar
+
+//Conbenios
+
+Route::get('/convenios/getAll',[ConvenioController::class,'allConvenios']);
