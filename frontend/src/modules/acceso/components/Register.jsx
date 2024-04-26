@@ -5,28 +5,61 @@ import {InputText} from "primereact/inputtext"
 import {Password} from "primereact/password"
 import {Card} from "primereact/card"
 import { ContentDialog } from "../../../globalsComponents/dialog/ContentDialog"
-import { useEffect, useState } from "react"
+import {useRef, useState } from "react"
 import {AvisoPrivacidad} from "./AvisoPrivacidad"
 import {Terminos} from "./Terminos"
 import { useNavigate } from "react-router"
 import { Button } from "primereact/button"
 import {Controller,useForm} from "react-hook-form"
 import {LabelForm,ErrorLabel} from "../../../globalsComponents/msg/LabelForm"
-import {createUser, getCorreoExistente} from "../handle/handleAcceso"
-import { InputMask } from 'primereact/inputmask';
+import {createUser, getConvenioExistente, getCorreoExistente} from "../handle/handleAcceso"
+import { Toast } from 'primereact/toast';
 import { classNames } from "primereact/utils"
         
 
 const Registrate=()=>{
+
+    const toast = useRef(null)
     const [visible,setVisible]=useState(false)
     const [titulo,setTitulo] = useState("")
     const [content,setContent] = useState(<></>)
     const [password,setPassword]=useState("")
     const [existe,setExiste] =useState(false)
+    const [existeConvenio,setExisteConvenio]=useState(false)
 
-    const {control,setValue,getValues,reset,handleSubmit,formState:{errors}} =useForm()
+    const {control,reset,handleSubmit,formState:{errors}} =useForm()
     const navigate=useNavigate()
 
+
+    const inputValidate = (e,onChange)=>{
+        e.target.value = e.target.value.toUpperCase()
+        let ragex = /^\d{1,3}-[a-z A-Z0-9]{0,15}$/
+        let num = /^\d{0,3}-{0,1}$/
+        let gion = /-{1}/
+        if(e.target.value.length <= 3){
+            if(gion.test(e.target.value || e.target.value === "")){
+                if(ragex.test(e.target.value || e.target.value === "")){
+                    onChange(e.target.value)
+                }
+            }
+            if(num.test(e.target.value || e.target.value === "")){
+                onChange(e.target.value)
+            }
+            if((e.target.value.length === 3) && !gion.test(e.target.value) && num.test(e.target.value)){
+                onChange(`${e.target.value}-`)
+            }
+        }else{
+            if(ragex.test(e.target.value || e.target.value === "")){
+                onChange(e.target.value)
+            }
+        }
+        
+    }
+    const validarConvenio=async(value)=>{
+        const con = await getConvenioExistente(value)
+        const {existe:ex} = con
+        setExisteConvenio(ex)
+    }
 
     const validarCorreo=async(value)=>{
         const cor = await getCorreoExistente({
@@ -37,6 +70,11 @@ const Registrate=()=>{
     }
     const onSubmit=async(data)=>{
         const res = await createUser(data)
+        if(!res.error){
+            toast.current.show({severity:'success', summary: "Registro exitoso", detail: 'Gracias'})
+        }else{
+            toast.current.show({severity:'error', summary: "Ah ocurrido un error", detail: res.error})
+        }
         reset()
         setPassword("")
     }
@@ -55,6 +93,7 @@ const Registrate=()=>{
                 </div>
                 
             </ContentDialog>
+            <Toast ref={toast}></Toast>
             <div className="mt-5 mb-6">
                 <PanelCenter>
                     <Card className="w-12 md:w-8 lg:w-7 xl:w-6 bg-gray-100">
@@ -95,15 +134,23 @@ const Registrate=()=>{
                             <Controller rules={{
                                 required: "El convenio es requerido",
                                 pattern:{
-                                    value:/^[0-9]{2}-[a-zA-Z]{4}/,
+                                    value:/^\d{1,3}-[a-z A-Z0-9]{1,15}$/,
                                     message:"El convenio debe contener 2 numeros y 4 letras"
-                                }
+                                },
+                                validate:(v)=>existeConvenio||"Este convenio no es valido",
                             }} control={control} name="convenio" render={({field,fieldState})=>(
                                 <>
                                     <span className="p-float-label">
-                                        <InputMask className={`${classNames({'p-invalid':fieldState.invalid,'border-1':fieldState.invalid, 'border-red-700':fieldState.invalid})} uppercase`} 
-                                        name={field.name} value={field.value} mask="99-aaaa" onChange={(e)=>{
-                                            field.onChange(e.value)}} placeholder="00-DEMO"/>
+                                        <InputText maxLength={16} className={`${classNames({'p-invalid':fieldState.invalid,'border-1':fieldState.invalid, 'border-red-700':fieldState.invalid})} uppercase`} 
+                                            name={field.name} value={field.value || ''} onChange={(e)=>inputValidate(e,field.onChange)}
+                                            placeholder="00-DEMO" onBlur={e=>{
+                                                field.onChange(e.target.value.trim())
+                                                if(!/^\d{1,3}-[a-z A-Z0-9]{1,15}$/.test(e.target.value)){
+                                                    field.onChange(undefined)
+                                                }
+                                                validarConvenio(e.target.value)
+                                            }}/>
+                                        
                                         <LabelForm htmlFor={field.name} status={fieldState.invalid} required={true} className="text-xl mb-4">
                                             Convenio
                                         </LabelForm> 

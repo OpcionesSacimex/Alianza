@@ -1,11 +1,12 @@
 import {URLBackend} from "../../../utils/URLBackend"
-import { getAllRegisters } from "../../../utils/request/getRequest"
+import { getAllNotTokenQuery, getAllRegisters} from "../../../utils/request/getRequest"
 import {postNotTokenJson, postTokenJson,} from "../../../utils/request/postRequest"
 
 const createUserURL = `${URLBackend}/usuario/createUser`
 const userLoginURL = `${URLBackend}/usuario/login`
 const getUserURL = `${URLBackend}/usuario/user`
 const validarteCorreoURL =`${URLBackend}/usuario/email_verify`
+const validarteConvenioURL =`${URLBackend}/convenios/existe`
 const logOutUserURL =`${URLBackend}/usuario/logout`
 
 export const createUser = async(data)=>{
@@ -24,4 +25,8 @@ export const getUserData = async()=>{
 }
 export const getCorreoExistente = async(data)=>{
     return await postNotTokenJson(validarteCorreoURL,data)
+}
+
+export const getConvenioExistente = async(data)=>{
+    return await getAllNotTokenQuery(validarteConvenioURL,[["convenio",data]])
 }
