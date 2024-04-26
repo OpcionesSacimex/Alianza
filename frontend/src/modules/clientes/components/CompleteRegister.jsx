@@ -60,7 +60,6 @@ export const CompleteRegister = () => {
     const onGo = (e) => {
         trigger()
         setActiveIndex(activeIndex+1)
-
     }
 
     const onSubmit = (data) => {

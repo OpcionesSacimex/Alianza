@@ -72,7 +72,7 @@ const AsesorLayout = () => {
                 <Button onClick={(e) => noti.current.toggle(e)} text>
                     <div className="p-overlay-badge p-1">
                     <FontAwesomeIcon icon="bell" className="text-white p-overlay-badge text-2xl">
-                        
+                            
                     </FontAwesomeIcon>
                     <Badge className="bg-red-700 text-white" value="4" />
                     </div>

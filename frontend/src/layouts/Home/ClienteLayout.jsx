@@ -84,7 +84,7 @@ const ClienteLayout = ()=>{
     }
     const end=()=>{
         return(
-            <Button onClick={closeSession} className="bg-white text-green-800">
+            <Button onClick={closeSession} className="bg-white text-red-600 shadow-0 hover:shadow-8">
                 <FontAwesomeIcon icon="right-to-bracket" />
             </Button>
         )
@@ -95,9 +95,9 @@ const ClienteLayout = ()=>{
     }else{
         return (
             <div> 
-                    <Toolbar className='bg-green-800 shadow-3 z-5 sticky top-0' style={{height:"6rem"}} start={start} center={center} end={end}/>
-                    {outlet}
-                </div>
+                <Toolbar className='bg-green-800 shadow-3 z-5 sticky top-0' style={{height:"6rem"}} start={start} center={center} end={end}/>
+                {outlet}
+            </div>
         )
     }
     

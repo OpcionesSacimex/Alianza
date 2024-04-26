@@ -1,6 +1,7 @@
 import React from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
 import {CompleteRegister} from "../components/CompleteRegister"
+import { CompleteRegisterpt2 } from '../components/CompleteRegisterpt2'
 export const ClientesPage = () => {
     return (
         <div>
