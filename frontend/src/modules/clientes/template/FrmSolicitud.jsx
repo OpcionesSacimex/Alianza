@@ -6,6 +6,7 @@ import { ErrorLabel, LabelForm } from "../../../globalsComponents/msg/LabelForm"
 import { Controller } from "react-hook-form"
 
 export const FrmSolicitud = ({ children, control, errors,getValues }) => {
+    
     const [prestamoMax, setPrestamoMax] = useState(0)
 
     useEffect(()=>{

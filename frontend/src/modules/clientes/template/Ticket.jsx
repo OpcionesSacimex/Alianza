@@ -8,7 +8,21 @@ import { Header } from "./Header"
 import { Card } from "primereact/card"
 import moment from "moment"
 import "moment/locale/es"
+import { useState } from "react"
+import { useMountEffect, useUpdateEffect } from "primereact/hooks"
+import { getConvenioCliente } from "../handle/handleCliente"
+import { calcularCredito } from "../../../utils/calcule/Creditos"
 export const Ticket = ({ getValues, setActiveIndex }) => {
+
+    const [convenio,setConvenio] = useState(undefined)
+    const [prestamo,setPrestamo] = useState(0)
+    const [retencion,setRetencion] = useState(0)
+    const [quincena,setQuincena] = useState(0)
+    const nf = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        minimumFractionDigits: 2,
+        currency:"USD"
+      }) 
 
     const print = (e) => {
         const ticket = document.createElement('div')
@@ -36,6 +50,32 @@ export const Ticket = ({ getValues, setActiveIndex }) => {
             ]
         })
     }
+    const getAndSetConvenio=async()=>{
+        const res = await getConvenioCliente("040-SETSHA")
+        if(!res.error){
+            setConvenio(res)
+        }else{
+
+        }
+    }
+    useUpdateEffect(()=>{
+        const quince =  getValues('economico.prestamo_f')/2
+        const preF = parseFloat(calcularCredito({
+            tasa: (((convenio?.tasa || 26.4)/12)/100) ,
+            pagoQuincenal:getValues('pago_min') ||0,
+            meses:getValues('plazo')
+        }))
+        const reten = ((preF/getValues('plazo'))/2)*(convenio?.retenciones || 0)
+        setQuincena((preF/getValues('plazo'))/2)
+        setRetencion(reten)
+        setPrestamo(preF)
+    },[getValues('economico.prestamo_f'),getValues('plazo')])
+    useMountEffect(()=>{
+        const obtener = async()=>{
+            await getAndSetConvenio()
+        }
+        obtener()
+    })
 
     const Comprobante = () => {
         return (
@@ -49,9 +89,9 @@ export const Ticket = ({ getValues, setActiveIndex }) => {
                 </div>
                 <PanelCenter id="comprobante">
                     <p className="text-center text-xl text-green-800 font-bold">
-                        Monto actual
+                        Monto actual:
                     </p>
-                    <label>${parseFloat(getValues('economico.prestamo_f')).toFixed(2)}</label>
+                    <label>{nf.format(prestamo)}</label>
                     <p className="text-center text-xl text-green-800 font-bold">
                         A un plazo de:
                     </p>
@@ -63,11 +103,16 @@ export const Ticket = ({ getValues, setActiveIndex }) => {
                         </Divider>
                     </div>
                     <p className="text-center text-xl">
-                        2 Pagos retenidos:
+                        {convenio?.retenciones} Pagos retenidos: {nf.format(retencion)}
                     </p>
-                    <p className="text-center text-xl">
-                        Cobertura de riesgo:
+                    {
+                        /*
+                        <p className="text-center text-xl">
+                        Cobertura de riesgo: ${nf.f0}
                     </p>
+                        */
+                    }
+                    
                     <p className="text-center text-xl">
                         Consulta a buro de credito: $30.00
                     </p>
@@ -78,10 +123,10 @@ export const Ticket = ({ getValues, setActiveIndex }) => {
                         </Divider>
                     </div>
                     <p className="text-center text-xl text-green-800 font-bold">
-                        Recibes
+                        Recibes: {nf.format(prestamo-retencion)}
                     </p>
                     <p className="text-center text-xl">
-                        Pagando quincenalmente:
+                        Pagando quincenalmente: {nf.format(quincena)}
                     </p>
                     <div className="w-full">
                         <Divider className='border-green-800 border-3' layout='horizontal'>

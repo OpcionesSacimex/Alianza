@@ -6,11 +6,32 @@ import { useEffect, useState } from "react"
 import { Slider } from 'primereact/slider'; 
 import { PanelCenter } from "../../../globalsComponents/panels/PanelCenter"
 import { xpfrom } from "../../../utils/calcule/Porcentaje"
+import { useMountEffect } from "primereact/hooks"
+import { getConvenioCliente } from "../handle/handleCliente"
 export const FrmMontos=({children,control,errors,getValues})=>{
     const [minimo,setMinimo]=useState(0)
     const [maximo,setMaximo]=useState(0)
+    const [plazoMin,setPlazoMin]=useState(0)
+    const [plazoMax,setPlazoMax]=useState(0)
+    
 
-   
+    const obtenerPlazos = async()=>{
+        const res=await getConvenioCliente("040-SETSHA")
+        if(!res.error){
+            const {plazoMinimo,plazoMaximo} = res
+            setPlazoMin(plazoMinimo)
+            setPlazoMax(plazoMaximo)
+        }else{
+
+        }
+    }
+
+    useMountEffect(()=>{
+        const obtener = async ()=>{
+            await obtenerPlazos()
+        }
+        obtener()
+    })
     useEffect(()=>{
         const cap_pago=getValues("economico.disponible_q")
         setMinimo(xpfrom({value:cap_pago,porcentaje:10}))
@@ -70,7 +91,7 @@ export const FrmMontos=({children,control,errors,getValues})=>{
                                 <LabelForm>¿A cuántos meses?</LabelForm>
                             </PanelCenter>
                             
-                            <Slider className="slider-tem" value={field.value} min={3} max={12} onChange={(e)=>{
+                            <Slider className="slider-tem" value={field.value} min={plazoMin} max={plazoMax} onChange={(e)=>{
                                 field.onChange(e.value)
                                 }}
                             ></Slider>
