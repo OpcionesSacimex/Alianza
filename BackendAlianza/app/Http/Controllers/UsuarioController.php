@@ -19,7 +19,9 @@ class UsuarioController extends Controller
         Usuario::create([
             "correo"=>$request->correo,
             "password"=>bcrypt($request->password), //encrip
-            "rol_id"=>1
+            "rol_id"=>1,
+            "convenio"=>$request->convenio
+            
         ]);
         
         return response()->json([
