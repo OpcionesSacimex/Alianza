@@ -12,12 +12,15 @@ import { useState } from "react"
 import { useMountEffect, useUpdateEffect } from "primereact/hooks"
 import { getConvenioCliente } from "../handle/handleCliente"
 import { calcularCredito } from "../../../utils/calcule/Creditos"
+import { useUserInfo } from "../../../hooks/useUserAuth"
 export const Ticket = ({ getValues, setActiveIndex }) => {
 
+    const {userInfo,} = useUserInfo()
     const [convenio,setConvenio] = useState(undefined)
     const [prestamo,setPrestamo] = useState(0)
     const [retencion,setRetencion] = useState(0)
     const [quincena,setQuincena] = useState(0)
+
     const nf = new Intl.NumberFormat('en-US', {
         style: 'currency',
         minimumFractionDigits: 2,
@@ -51,7 +54,7 @@ export const Ticket = ({ getValues, setActiveIndex }) => {
         })
     }
     const getAndSetConvenio=async()=>{
-        const res = await getConvenioCliente("040-SETSHA")
+        const res = await getConvenioCliente(userInfo?.convenio)
         if(!res.error){
             setConvenio(res)
         }else{
@@ -105,14 +108,6 @@ export const Ticket = ({ getValues, setActiveIndex }) => {
                     <p className="text-center text-xl">
                         {convenio?.retenciones} Pagos retenidos: {nf.format(retencion)}
                     </p>
-                    {
-                        /*
-                        <p className="text-center text-xl">
-                        Cobertura de riesgo: ${nf.f0}
-                    </p>
-                        */
-                    }
-                    
                     <p className="text-center text-xl">
                         Consulta a buro de credito: $30.00
                     </p>

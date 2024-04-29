@@ -8,7 +8,9 @@ import { PanelCenter } from "../../../globalsComponents/panels/PanelCenter"
 import { xpfrom } from "../../../utils/calcule/Porcentaje"
 import { useMountEffect } from "primereact/hooks"
 import { getConvenioCliente } from "../handle/handleCliente"
+import { useUserInfo } from "../../../hooks/useUserAuth"
 export const FrmMontos=({children,control,errors,getValues})=>{
+    const {userInfo,} = useUserInfo()
     const [minimo,setMinimo]=useState(0)
     const [maximo,setMaximo]=useState(0)
     const [plazoMin,setPlazoMin]=useState(0)
@@ -16,7 +18,7 @@ export const FrmMontos=({children,control,errors,getValues})=>{
     
 
     const obtenerPlazos = async()=>{
-        const res=await getConvenioCliente("040-SETSHA")
+        const res=await getConvenioCliente(userInfo?.convenio)
         if(!res.error){
             const {plazoMinimo,plazoMaximo} = res
             setPlazoMin(plazoMinimo)
@@ -25,6 +27,7 @@ export const FrmMontos=({children,control,errors,getValues})=>{
 
         }
     }
+    
 
     useMountEffect(()=>{
         const obtener = async ()=>{
@@ -37,7 +40,7 @@ export const FrmMontos=({children,control,errors,getValues})=>{
         setMinimo(xpfrom({value:cap_pago,porcentaje:10}))
         setMaximo(xpfrom({value:cap_pago,porcentaje:40}))
     },[getValues("economico.disponible_q")])
-
+    
     return(
         <>
         <div className="align-content-center ">
@@ -73,9 +76,9 @@ export const FrmMontos=({children,control,errors,getValues})=>{
                     }} defaultValue={0} control={control} name="pago_min" render={({field,fieldState})=>(
                         <>
                             <span className="p-float-label mt-4">
-                                <InputNumber max={maximo} mode="currency" currency="USD" name={field.name} value={field.value ||''} onChange={(e)=>{
+                                <InputNumber max={maximo} currency="USD" mode="currency" name={field.name} value={field.value ||''} onChange={(e)=>{
                                     field.onChange(e.value)
-                                }} useGrouping={false}/>
+                                }}/>
                                 <LabelForm htmlFor={field.name} status={fieldState.invalid} required={true}>
                                  Pago quincenal deseado:
                                 </LabelForm>
@@ -85,7 +88,7 @@ export const FrmMontos=({children,control,errors,getValues})=>{
                     )}/>
                 </div>
                 <div className="col-12">
-                    <Controller control={control} name="plazo" render={({field,fieldState})=>(
+                    <Controller defaultValue={plazoMin} control={control} name="plazo" render={({field,fieldState})=>(
                         <>
                             <PanelCenter className="mb-4 mt-2">
                                 <LabelForm>¿A cuántos meses?</LabelForm>

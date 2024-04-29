@@ -4,16 +4,39 @@ import { useEffect, useState } from "react"
 import { InputNumber } from "primereact/inputnumber"
 import { ErrorLabel, LabelForm } from "../../../globalsComponents/msg/LabelForm"
 import { Controller } from "react-hook-form"
+import { calcularCredito } from "../../../utils/calcule/Creditos"
+import { getConvenioCliente } from "../handle/handleCliente"
+import { useUserInfo } from "../../../hooks/useUserAuth"
 
 export const FrmSolicitud = ({ children, control, errors,getValues }) => {
-    
+    const {userInfo,} = useUserInfo()
+    const [convenio,setConvenio] =useState({})
     const [prestamoMax, setPrestamoMax] = useState(0)
 
+    const getAndSetConvenio=async()=>{
+        const res = await getConvenioCliente(userInfo?.convenio)
+        if(!res.error){
+            setConvenio(res)
+        }else{
+
+        }
+    }
     useEffect(()=>{
         const pago=getValues("pago_min")
         const plazo=getValues("plazo")
-        setPrestamoMax((pago*plazo*2)||0)
+        const pf = parseFloat(calcularCredito({
+            tasa: (((convenio?.tasa || 26.4)/12)/100) ,
+            pagoQuincenal:pago ||0,
+            meses:plazo
+        }))
+        setPrestamoMax(pf)
     },[getValues("pago_min"),getValues("plazo")])
+    useMountEffect(()=>{
+        const obtener = async()=>{
+            await getAndSetConvenio()
+        }
+        obtener()
+    })
     return (
         <>
             <div className="align-content-center">

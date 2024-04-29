@@ -16,7 +16,7 @@ import { DropDownAutoShow } from "../select/DropDownShow";
 
 
 export const OpenMap = ({setPosition,position,buscar=true,size="400px"}) => {
-    const toast = useRef()
+    const toast = useRef(null)
 
     const provider = new OpenStreetMapProvider();
     const [ubicaciones, setUbicaciones] = useState([]);

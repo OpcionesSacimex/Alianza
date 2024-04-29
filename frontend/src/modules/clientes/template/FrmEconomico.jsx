@@ -21,7 +21,7 @@ export const FrmEconomico = ({ children, control, errors, getValues}) => {
                             }} control={control} name={`${f.name}.ingreso_q`} render={({ field, fieldState }) => (
                                 <>
                                     <span className="mt-4 p-float-label">
-                                        <InputNumber mode="currency" currency="USD" name={field.name} value={field.value} onChange={(e) => field.onChange(e.value)} useGrouping={false} />
+                                        <InputNumber mode="currency" currency="USD" name={field.name} value={field.value} onChange={(e) => field.onChange(e.value)}/>
                                         <LabelForm htmlFor={field.name} status={fieldState.invalid} required={true}>
                                             Nómina quincenal:
                                         </LabelForm>
