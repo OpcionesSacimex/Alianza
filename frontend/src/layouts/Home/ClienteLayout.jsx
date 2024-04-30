@@ -6,33 +6,31 @@ import { Toolbar } from "primereact/toolbar";
 import { URLStorage } from "../../utils/URLBackend";
 import { PanelGrid } from "../../globalsComponents/panels/PanelGrid";
 import { useAuth } from "../../hooks/useAuthToken";
-import { useMountEffect } from "primereact/hooks";
+import { useMountEffect, useUpdateEffect } from "primereact/hooks";
 import { getUserData, logOutUser } from "../../modules/acceso/handle/handleAcceso";
-import { TieredMenu } from "primereact/tieredmenu";
 import { Button } from "primereact/button";
-import { Avatar } from "primereact/avatar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const ClienteLayout = ()=>{
     const outlet = useOutlet();
     const logo= `${URLStorage}/img/image.png`
-    const {auth,logout} = useAuth()
+    const {logout, auth, setAuth} = useAuth()
     const {userInfo,setUserInfo} = useUserInfo()
-    const menu=useRef()
 
     const navigate=useNavigate();
     const getInfoUserLogged = async () => {
-        if (auth.token !== false) {         
+        if (auth.token !== false) {
             const res = await getUserData()
-            const user = res
-            setUserInfo(user)
             if(res.error){
                 closeSession()
             }else{
-                if(user.rol.id!==1){
+                setUserInfo(res)
+                if(res.rol.id!==1){
                     navigate("/dashboard",{replace:true})
                 }
             }
+        }else{
+            setUserInfo({})
         }
 
     }
@@ -42,10 +40,6 @@ const ClienteLayout = ()=>{
         setUserInfo({})
         logout()
     }
-/*     const userMenu = [{
-        label: "Cerrar session",
-        command:closeSession
-    }] */
 
     useMountEffect(() => {
         const asyncrona = async () => {
@@ -53,6 +47,7 @@ const ClienteLayout = ()=>{
         }
         asyncrona()
     })
+    
     const start = ()=>{
         return (
             <>

@@ -6,16 +6,20 @@ import { useEffect, useState } from "react"
 import { Slider } from 'primereact/slider'; 
 import { PanelCenter } from "../../../globalsComponents/panels/PanelCenter"
 import { xpfrom } from "../../../utils/calcule/Porcentaje"
-import { useMountEffect } from "primereact/hooks"
+import { useMountEffect, useUpdateEffect } from "primereact/hooks"
 import { getConvenioCliente } from "../handle/handleCliente"
 import { useUserInfo } from "../../../hooks/useUserAuth"
+import { getUserData } from "../../acceso/handle/handleAcceso"
+import { useAuth } from "../../../hooks/useAuthToken"
 export const FrmMontos=({children,control,errors,getValues})=>{
-    const {userInfo,} = useUserInfo()
+    const {auth} =useAuth()
+    const {userInfo} = useUserInfo()
     const [minimo,setMinimo]=useState(0)
     const [maximo,setMaximo]=useState(0)
     const [plazoMin,setPlazoMin]=useState(0)
     const [plazoMax,setPlazoMax]=useState(0)
     
+
 
     const obtenerPlazos = async()=>{
         const res=await getConvenioCliente(userInfo?.convenio)
@@ -29,12 +33,12 @@ export const FrmMontos=({children,control,errors,getValues})=>{
     }
     
 
-    useMountEffect(()=>{
+    useUpdateEffect(()=>{
         const obtener = async ()=>{
             await obtenerPlazos()
         }
         obtener()
-    })
+    },[userInfo])
     useEffect(()=>{
         const cap_pago=getValues("economico.disponible_q")
         setMinimo(xpfrom({value:cap_pago,porcentaje:10}))

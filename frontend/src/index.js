@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from "react-router-dom";
 import './index.css';
@@ -9,6 +9,8 @@ import {AutenticateContextProvider} from "./context/AutenticateContext"
 import {TokenProvider} from "./context/TokenProvider"
 import './App.css';
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
+
 root.render(
   <React.StrictMode>
     <BrowserRouter>

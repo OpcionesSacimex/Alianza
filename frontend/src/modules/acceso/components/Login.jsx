@@ -20,7 +20,7 @@ const Login=()=>{
     const navigate = useNavigate()
     const ov = useRef(null)
     const [visible,setVisible]=useState(false)
-    const {auth,setAuth} = useAuth()
+    const {login} = useAuth()
 
     const toast = useRef()
     const toastContact = useRef()
@@ -36,7 +36,7 @@ const Login=()=>{
     const onSubmit=async(data)=>{
         const user = await loginUser(data)
         if(!user.error){
-            setAuth(user)
+            await login(user)
             navigate("/dashboard",{replace:true})
         }else{
             toast.current.show({severity:'warn', summary: user.error, detail: 'Usuario o contraseña incorecta'})

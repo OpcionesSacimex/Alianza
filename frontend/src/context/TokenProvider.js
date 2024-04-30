@@ -10,15 +10,8 @@ export const TokenProvider = ({ children }) => {
   })
   const navigate = useNavigate();
 
-  const login = async (data) => {
+  const login = async(data) => {
     setAuth(data)
-    try {
-      navigate("/cliente/dashboard", { replace: true });
-    }
-    catch (error) {
-     
-    }
-
   }
 
   const logout = async () => {
@@ -26,7 +19,7 @@ export const TokenProvider = ({ children }) => {
       token:false
     })
     try {
-      navigate("/login", { replace: true });
+      navigate("/home/login", { replace: true });
     } catch (error) {
      
     }
