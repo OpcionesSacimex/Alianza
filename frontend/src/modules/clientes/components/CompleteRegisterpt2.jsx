@@ -28,7 +28,7 @@ export const CompleteRegisterpt2 = () => {
         },
         {
             label: 'Sube tus documentos',
-            icon: "file-invoice-dollar",
+            icon: "folder-open",
             command: (e) => { },
             template: (item) => StepsModel(item, 1, activeIndex, setActiveIndex)
         }, 

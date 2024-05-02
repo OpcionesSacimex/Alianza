@@ -44,11 +44,6 @@ export const CompleteRegister = () => {
             icon: "file-invoice-dollar",
             command: (e) => { },
             template: (item) => StepsModel(item, 3, activeIndex, setActiveIndex)
-        }, {
-            label: "Dirección",
-            icon: "map-location-dot",
-            command: (e) => { },
-            template: (item) => StepsModel(item, 4, activeIndex, setActiveIndex)
         },
     ]
 
@@ -118,17 +113,6 @@ export const CompleteRegister = () => {
                                         <ButtonBackGO onBack={onBack} onGo={onGo} back={true} go={true} />
                                     </FrmSolicitud>
                                 </div>
-                                <div className={`${classNames({ 'hidden': activeIndex !== 4 })}`}>
-                                    {
-                                        activeIndex === 4?<>
-                                        <FrmDireccion control={control} errors={{...errors}} getValues={getValues} setValue={setValue}>
-                                        <ButtonBackGO onBack={onBack} onGo={onGo} back={true} go={true} />
-                                    </FrmDireccion>
-                                        </>:<></>
-                                    }
-                                    
-                                </div>
-
                                 <div className={`${classNames({ 'hidden': activeIndex !== 5 })}`}>
                                     <Ticket getValues={getValues} setActiveIndex={setActiveIndex}>
                                     </Ticket>
