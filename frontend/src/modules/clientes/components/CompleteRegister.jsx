@@ -109,7 +109,7 @@ export const CompleteRegister = () => {
                                     </FrmEconomico>
                                 </div>
                                 <div className={`${classNames({ 'hidden': activeIndex !== 2 })}`}>
-                                    <FrmMontos control={control} errors={{...errors}} getValues={getValues}>
+                                    <FrmMontos control={control} errors={{...errors}} getValues={getValues} setValue={setValue}>
                                         <ButtonBackGO onBack={onBack} onGo={onGo} back={true} go={true} />
                                     </FrmMontos>
                                 </div>
