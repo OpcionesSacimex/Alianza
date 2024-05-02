@@ -4,14 +4,12 @@ import { Steps } from 'primereact/steps';
 import { PanelCenter } from '../../../globalsComponents/panels/PanelCenter';
 import { Card } from 'primereact/card';
 import { StepsModel } from "../../../globalsComponents/steps/StepsModel"
-import { useUpdateEffect } from "primereact/hooks"
 import { Divider } from 'primereact/divider';
 import { FrmPersona } from '../template/FrmPersona'
 import { FrmEconomico } from '../template/FrmEconomico'
 import { FrmMontos } from "../template/FrmMontos";
-import { useForm, Controller } from 'react-hook-form'
+import { useForm} from 'react-hook-form'
 import { ButtonBackGO } from '../template/ButtonBackGO';
-import { FrmDireccion } from '../template/FrmDireccion';
 import { FrmSolicitud } from '../template/FrmSolicitud';
 import { Ticket } from '../template/Ticket';
 import { createCliente } from '../handle/handleCliente';
@@ -53,7 +51,6 @@ export const CompleteRegister = () => {
         }
     }
     const onGo = (e) => {
-        trigger()
         setActiveIndex(activeIndex+1)
     }
 
@@ -90,14 +87,14 @@ export const CompleteRegister = () => {
                 </div>
 
                 <div className='w-full'>
-                    <form onSubmit={handleSubmit(onSubmit)} >
+                    
                         <PanelCenter>
                             <Card className='w-12 md:w-8 lg:w-7 xl:w-6 bg-gray-100'>
                                 <div className={`${classNames({ 'hidden': activeIndex !== 0 })}`}>
-                                    <FrmPersona control={control} errors={{...errors}}>
-                                        <ButtonBackGO onGo={onGo} go={true} />
+                                    <FrmPersona onGo={onGo}>
                                     </FrmPersona>
                                 </div>
+                                <form onSubmit={handleSubmit(onSubmit)} >
                                 <div className={`${classNames({ 'hidden': activeIndex !== 1 })}`}>
                                     <FrmEconomico control={control} errors={{...errors}} getValues={getValues}>
                                         <ButtonBackGO onBack={onBack} onGo={onGo} back={true} go={true} />
@@ -117,10 +114,10 @@ export const CompleteRegister = () => {
                                     <Ticket getValues={getValues} setActiveIndex={setActiveIndex}>
                                     </Ticket>
                                 </div>
+                                </form>
+                                
                             </Card>
                         </PanelCenter>
-                    </form>
-
                 </div>
 
             </PanelCenter>

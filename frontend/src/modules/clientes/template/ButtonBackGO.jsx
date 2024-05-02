@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { Button } from "primereact/button"
 
-export const ButtonBackGO=({go=false,back=false, onBack,onGo})=>{
+export const ButtonBackGO=({go=false,back=false, onBack,onGo, type="button"})=>{
     return (<>
     {
         back?<>
@@ -12,7 +12,7 @@ export const ButtonBackGO=({go=false,back=false, onBack,onGo})=>{
     }
     {
         go?<>
-        <Button type="button" onClick={onGo} rounded text severity="info"> 
+        <Button type={type} onClick={onGo} rounded text severity="info"> 
             <FontAwesomeIcon className="buttonsGreen" icon="fa-solid fa-circle-arrow-right" />
         </Button>
     </>:<></>
