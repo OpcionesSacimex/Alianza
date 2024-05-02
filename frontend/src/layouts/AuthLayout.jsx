@@ -1,45 +1,54 @@
 import { useNavigate, useOutlet } from "react-router"
 import { useAuth } from "../hooks/useAuthToken"
 import { useUserInfo } from "../hooks/useUserAuth";
-import { getUserData } from "../modules/acceso/handle/handleAcceso";
-import { useMountEffect } from "primereact/hooks";
+import { getUserData, logOutUser } from "../modules/acceso/handle/handleAcceso";
+import { useUpdateEffect } from "primereact/hooks";
+
 const AuthLaout = ()=>{
-    const { logout, auth, setAuth } = useAuth();
+    const { logout, auth} = useAuth();
     const {userInfo,setUserInfo}= useUserInfo();
     const navigate=useNavigate();
     const getInfoUserLogged = async () => {
         if (auth.token !== false) {
-            const res = await getUserData()
-            if(res.error){
+            let uinf = {...userInfo}
+            if(!userInfo.id){
+                const res = await getUserData()
+                uinf = res
+                await setUserInfo(uinf)
+            }
+            
+            if(!uinf.id){
                 closeSession()
             }else{
-                const user = res
-                setUserInfo(user)
-                switch(user.rol.id){
-                    case 1: navigate("/dashboard/clientes",{replace:true});
+                switch(uinf.rol.id){
+                    case 1: navegar("/dashboard/clientes");
                     break;
-                    case 2: navigate("/dashboard/asesores",{replace:true})
+                    case 2: navegar("/dashboard/asesores")
                     break;
-                    case 3: navigate("/dashboard/admins",{replace:true})
+                    case 3: navegar("/dashboard/admins")
                     break;
-                    default: closeSession()
+                    default: await closeSession()
                 }
             }
         }
 
     }
+    const navegar = (link)=>{
+        navigate(link,{replace:false})
+    }
 
-    const closeSession = () => {
+    const closeSession = async() => {
+        await logOutUser()
         setUserInfo({})
         logout()
     }
 
-    useMountEffect(() => {
+    useUpdateEffect(() => {
         const asyncrona = async () => {
             await getInfoUserLogged()
         }
         asyncrona()
-    })
+    },)
 }
 
 export default AuthLaout

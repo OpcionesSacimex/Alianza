@@ -1,8 +1,15 @@
-import React,{useState,createContext} from "react"
-
+import React,{useState,createContext, useMemo} from "react"
 const AutenticateContext = createContext()
 export const AutenticateContextProvider = ({children})=>{
     const [userInfo,setUserInfo] = useState({})
-    return <AutenticateContext.Provider value={{userInfo,setUserInfo}} >{children}</AutenticateContext.Provider>
+    const value = useMemo(
+        () => ({
+            userInfo,
+            setUserInfo
+        }),
+        [userInfo]
+      )
+    
+    return <AutenticateContext.Provider value={value} >{children}</AutenticateContext.Provider>
 }
 export default AutenticateContext
