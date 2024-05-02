@@ -4,16 +4,29 @@ import { Controller, useForm } from "react-hook-form"
 import { LabelForm, ErrorLabel } from "../../../globalsComponents/msg/LabelForm"
 import { InputMask } from "primereact/inputmask"
 import { ButtonBackGO } from "./ButtonBackGO"
-export const FrmPersona = ({ children,onGo }) => {
+import { crearPersonaCliente } from "../handle/handleCliente"
+import { Toast } from "primereact/toast"
+import { useRef } from "react"
+export const FrmPersona = ({ onGo }) => {
 
-    const { control, trigger, getValues, setValue, handleSubmit, reset, formState: { errors } } = useForm()
+    const toast = useRef(null)
+    const { control, getValues, setValue, handleSubmit, reset, formState: { errors } } = useForm()
 
-    const onSubmit = (data) => {
-        console.log(data)
-        onGo()
+    const onSubmit = async(data) => {
+        data.telefono = data.telefono.replace(/ /g, "")
+        const res=await crearPersonaCliente(data)
+        if(!res.error){
+            //toast.current.show({severity:'success', summary: 'Exitoso',detail:"Actualizacion exitosa", life: 4000})
+            onGo()
+        }else{
+            toast.current.show({severity:'error', summary: 'Error', detail:res.error, life: 4000})
+        }
+        
+        
     }
     return (
         <>
+        <Toast ref={toast}></Toast>
             <div className="align-content-center">
                 <p className="text-center text-2xl text-green-800 font-bold">
                     Ingresa tus datos y descubre lo que tenemos para ti.

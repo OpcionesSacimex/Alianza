@@ -13,7 +13,7 @@ class PersonaController extends Controller
         $userData = [
             "nombre"=>$request->nombre,
             "ape_pat"=>$request->ape_pat,
-            "apr_mat"=>$request->apr_mat,
+            "ape_mat"=>$request->ape_mat,
             "telefono"=>$request->telefono
         ];
         Persona::updateOrCreate(
