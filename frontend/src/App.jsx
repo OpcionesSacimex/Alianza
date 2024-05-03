@@ -20,7 +20,7 @@ import {
 library.add(faComments,faHandHoldingDollar,faCommentsDollar,faCircleArrowRight,
   faCircleArrowLeft, faFileLines,faMapLocationDot,faFileInvoiceDollar,faClipboardCheck,
   faPrint,faPencilSquare,faPaperPlane,faChevronDown,faBars,faBell,faRightToBracket, faFolderOpen,faSpinner)
-function App() {
+function App() {  
   return useRoutes(
     [
       {

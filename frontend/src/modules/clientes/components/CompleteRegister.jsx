@@ -43,6 +43,7 @@ export const CompleteRegister = () => {
             command: (e) => { },
             template: (item) => StepsModel(item, 3, activeIndex, setActiveIndex)
         },
+        
     ]
 
     const onBack = (e) => {
@@ -110,7 +111,7 @@ export const CompleteRegister = () => {
                                         <ButtonBackGO onBack={onBack} onGo={onGo} back={true} go={true} />
                                     </FrmSolicitud>
                                 </div>
-                                <div className={`${classNames({ 'hidden': activeIndex !== 5 })}`}>
+                                <div className={`${classNames({ 'hidden': activeIndex !== 4 })}`}>
                                     <Ticket getValues={getValues} setActiveIndex={setActiveIndex}>
                                     </Ticket>
                                 </div>

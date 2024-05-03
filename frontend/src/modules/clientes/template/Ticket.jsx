@@ -13,8 +13,10 @@ import { useMountEffect, useUpdateEffect } from "primereact/hooks"
 import { getConvenioCliente } from "../handle/handleCliente"
 import { calcularCredito } from "../../../utils/calcule/Creditos"
 import { useUserInfo } from "../../../hooks/useUserAuth"
+import { CompleteRegisterpt2 } from "../components/CompleteRegisterpt2"
+import { useNavigate } from "react-router"
 export const Ticket = ({ getValues, setActiveIndex }) => {
-
+    const navigate=useNavigate()
     const {userInfo,} = useUserInfo()
     const [convenio,setConvenio] = useState(undefined)
     const [prestamo,setPrestamo] = useState(0)
@@ -151,7 +153,8 @@ export const Ticket = ({ getValues, setActiveIndex }) => {
                         </Button>
                     </div>
                     <div className="col">
-                        <Button className="flex-wrap align-items-center justify-content-center">
+                        <Button type="button" onClick={(e)=>{
+                            navigate('/dashboard/clientes/parte2',{replace:true})}} className="flex-wrap align-items-center justify-content-center">
                             <FontAwesomeIcon icon="paper-plane" />
                             Enviar
                         </Button>
