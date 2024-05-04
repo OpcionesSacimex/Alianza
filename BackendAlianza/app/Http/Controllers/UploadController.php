@@ -65,12 +65,13 @@ class UploadController extends Controller
                 $comprobante_ing->move(storage_path('app/public'), $comprobante_ingNom);
                 $comprobante_ing2->move(storage_path('app/public'),$comprobante_ing2Nom);
                 $comprobante_ing3->move(storage_path('app/public'),$comprobante_ing3Nom);
-                
+            
                 $mergedPdfName = uniqid('merged_pdf_') . '.pdf';
+                //echo($mergedPdfName);
                 $this->mergePDFs([$comprobante_ingNom, $comprobante_ing2Nom, $comprobante_ing3Nom], $mergedPdfName);
-
                 
-                return response()->json(['status' => true, 'message' => 'Archivos subidos correctamente', 'merged_pdf' => $mergedPdfName], 200);
+                
+                return response()->json(['status' => true, 'message' => 'Archivos subidos correctamente'], 200);
             } catch (\Exception $error) {
                 return response()->json(['error' => 'Error al subir los archivos: ' . $error->getMessage()], 400);
             }
@@ -112,23 +113,23 @@ class UploadController extends Controller
             return response()->json(['error' => $errorMessage], 400);
         }
     } 
-    private function mergePDF(array $pdfFiles, string $outputFileName)
+    private function mergePDFs(array $pdfFiles, string $outputFileName)
     {
     // Create instance of Fpdi
         $pdf = new Fpdi();
 
         // Merge PDFs
         foreach ($pdfFiles as $file) {
+            $pdf->addPage();
             $pdf->setSourceFile(storage_path('app/public/' . $file));
             $tplIdx = $pdf->importPage(1, '/MediaBox');
-            $pdf->addPage();
             $pdf->useTemplate($tplIdx);
         }
 
         // Output merged PDF to storage
         $pdf->Output('F', storage_path('app/public/' . $outputFileName));
     }   
-    public function mergePDFs() {
+    public function mergePDF() {
  
         $files = ['file-1.pdf', 'file-2.pdf'];
         $pdf = new Fpdi();
