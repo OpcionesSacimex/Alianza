@@ -11,9 +11,8 @@ import "moment/locale/es"
 import { useState } from "react"
 import { useMountEffect, useUpdateEffect } from "primereact/hooks"
 import { getConvenioCliente } from "../handle/handleCliente"
-import { calcularCredito } from "../../../utils/calcule/Creditos"
+import { calcularInteres, calcularQuincena } from "../../../utils/calcule/Creditos"
 import { useUserInfo } from "../../../hooks/useUserAuth"
-import { CompleteRegisterpt2 } from "../components/CompleteRegisterpt2"
 import { useNavigate } from "react-router"
 export const Ticket = ({ getValues, setActiveIndex }) => {
     const navigate=useNavigate()
@@ -64,14 +63,12 @@ export const Ticket = ({ getValues, setActiveIndex }) => {
         }
     }
     useUpdateEffect(()=>{
-        const quince =  getValues('economico.prestamo_f')/2
-        const preF = parseFloat(calcularCredito({
-            tasa: (((convenio?.tasa || 26.4)/12)/100) ,
-            pagoQuincenal:getValues('pago_min') ||0,
-            meses:getValues('plazo')
-        }))
-        const reten = ((preF/getValues('plazo'))/2)*(convenio?.retenciones || 0)
-        setQuincena((preF/getValues('plazo'))/2)
+        const pres =  getValues('economico.prestamo_f')
+        const preF = parseFloat(calcularInteres(pres,(convenio?.tasa || 26.4)/100,getValues("plazo")))
+
+        const reten = (calcularQuincena(preF,getValues("plazo"))*(convenio?.retenciones || 0))
+
+        setQuincena(calcularQuincena(preF,getValues("plazo")))
         setRetencion(reten)
         setPrestamo(preF)
     },[getValues('economico.prestamo_f'),getValues('plazo')])

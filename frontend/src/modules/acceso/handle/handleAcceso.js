@@ -8,6 +8,7 @@ const getUserURL = `${URLBackend}/usuario/user`
 const validarteCorreoURL =`${URLBackend}/usuario/email_verify`
 const validarteConvenioURL =`${URLBackend}/convenios/existe`
 const logOutUserURL =`${URLBackend}/usuario/logout`
+const passwordResetURL =`${URLBackend}/usuario/reset`
 
 export const createUser = async(data)=>{
     return await postNotTokenJson(createUserURL,data)
@@ -29,4 +30,17 @@ export const getCorreoExistente = async(data)=>{
 
 export const getConvenioExistente = async(data)=>{
     return await getAllNotTokenQuery(validarteConvenioURL,[["convenio",data]])
+}
+
+export const validateUsuario = async(data)=>{
+    const rand = Boolean(Math.round(Math.random()));
+    return {valido:rand}
+}
+
+export const validateResetPassowrd = async (data)=>{
+    const rand = Boolean(Math.round(Math.random()));
+    return {valido:rand}
+}
+export const resetPasswordUser = async (data)=>{
+    return await postNotTokenJson(passwordResetURL,data)
 }

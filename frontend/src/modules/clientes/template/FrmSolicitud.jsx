@@ -29,7 +29,7 @@ export const FrmSolicitud = ({ children, control, errors,getValues }) => {
             pagoQuincenal:pago ||0,
             meses:plazo
         }))
-        setPrestamoMax(pf)
+        setPrestamoMax(Math.round(pf/500)*500)
     },[getValues("pago_min"),getValues("plazo")])
     useMountEffect(()=>{
         const obtener = async()=>{
@@ -61,7 +61,7 @@ export const FrmSolicitud = ({ children, control, errors,getValues }) => {
                             }} name={`${f.name}.prestamo_f`} control={control} render={({ field, fieldState }) => (
                                 <>
                                     <span className="p-float-label">
-                                        <InputNumber mode="currency" currency="USD" name={field.name} value={field.value} onChange={(e) => field.onChange(e.value)}></InputNumber>
+                                        <InputNumber max={prestamoMax} mode="currency" currency="USD" name={field.name} value={field.value} onChange={(e) => field.onChange(e.value)}></InputNumber>
                                         <LabelForm htmlFor={field.name} status={fieldState.invalid} required>
                                             Préstamo solicitado.
                                         </LabelForm>

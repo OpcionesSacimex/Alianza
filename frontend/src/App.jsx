@@ -1,5 +1,5 @@
 import React, {useContext, useEffect} from 'react'
-import {Navigate, useRoutes} from 'react-router-dom'
+import {Navigate, createBrowserRouter, useRoutes} from 'react-router-dom'
 import './App.css';
 import "primereact/resources/themes/lara-light-green/theme.css"
 import "primeflex/primeflex.css"
