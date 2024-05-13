@@ -8,7 +8,8 @@ use App\Models\Usuario;
 Use App\Models\Direccion;
 use App\Models\Economico;
 Use App\Models\Persona;
-
+use App\Http\Utils\CorreoService;
+use App\Http\Utils\KeyService;
 class UsuarioController extends Controller
 {
     public function __construct()
@@ -16,13 +17,18 @@ class UsuarioController extends Controller
         $this->middleware('auth:api', ['except' => ['login','create']]);
     }
     public function create(Request $request){
+        $correo = new CorreoService();
+        $key = (new KeyService())->KEY_GENERATE(20);
         Usuario::create([
             "correo"=>$request->correo,
             "password"=>bcrypt($request->password), //encrip
             "rol_id"=>1,
-            "convenio"=>$request->convenio
-            
+            "convenio"=>$request->convenio,
+            "remember_token"=>$key
         ]);
+       $correo->enviarCorreo($request->correo,"VarificarCorreo","Verificar usuario",
+       ["key"=>$key,
+        "origen"=>env("ORIGIN_URL") . "home/validate"]);
         
         return response()->json([
             'status'=>true,

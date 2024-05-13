@@ -11,22 +11,23 @@ import "moment/locale/es"
 import { useState } from "react"
 import { useMountEffect, useUpdateEffect } from "primereact/hooks"
 import { getConvenioCliente } from "../handle/handleCliente"
-import { calcularInteres, calcularQuincena } from "../../../utils/calcule/Creditos"
+import { calcularINT, calcularQuincena, cobertura_riesgo, redondeoToC } from "../../../utils/calcule/Creditos"
 import { useUserInfo } from "../../../hooks/useUserAuth"
 import { useNavigate } from "react-router"
 export const Ticket = ({ getValues, setActiveIndex }) => {
-    const navigate=useNavigate()
-    const {userInfo,} = useUserInfo()
-    const [convenio,setConvenio] = useState(undefined)
-    const [prestamo,setPrestamo] = useState(0)
-    const [retencion,setRetencion] = useState(0)
-    const [quincena,setQuincena] = useState(0)
+    const navigate = useNavigate()
+    const { userInfo, } = useUserInfo()
+    const [convenio, setConvenio] = useState(undefined)
+    const [prestamo, setPrestamo] = useState(0)
+    const [retencion, setRetencion] = useState(0)
+    const [quincena, setQuincena] = useState(0)
+    const [CR, setCR] = useState(0)
 
     const nf = new Intl.NumberFormat('en-US', {
         style: 'currency',
         minimumFractionDigits: 2,
-        currency:"USD"
-      }) 
+        currency: "USD"
+    })
 
     const print = (e) => {
         const ticket = document.createElement('div')
@@ -46,7 +47,7 @@ export const Ticket = ({ getValues, setActiveIndex }) => {
         ticket.append(date)
         ticket.append(header)
         ticket.append(card)
-        
+
         PRINT({
             printable: ticket, type: 'html', css: [
                 'https://unpkg.com/primereact@10.6.2/resources/themes/lara-light-indigo/theme.css',
@@ -54,26 +55,31 @@ export const Ticket = ({ getValues, setActiveIndex }) => {
             ]
         })
     }
-    const getAndSetConvenio=async()=>{
+    const getAndSetConvenio = async () => {
         const res = await getConvenioCliente(userInfo?.convenio)
-        if(!res.error){
+        if (!res.error) {
             setConvenio(res)
-        }else{
+        } else {
 
         }
     }
-    useUpdateEffect(()=>{
-        const pres =  getValues('economico.prestamo_f')
-        const preF = parseFloat(calcularInteres(pres,(convenio?.tasa || 26.4)/100,getValues("plazo")))
+    useUpdateEffect(() => {
+        const pres = getValues('economico.prestamo_f')
+        const plazo = getValues("plazo")
+        const preF = redondeoToC(calcularINT(pres, (convenio?.tasa || 26.4), plazo))
+        const qui = redondeoToC(calcularQuincena(preF, plazo))
+        const reten = (qui * (convenio?.retenciones || 0))
+        setQuincena(qui)
+        setRetencion(redondeoToC(reten))
+        setPrestamo(qui * (plazo * 2))
+    }, [getValues('economico.prestamo_f'), getValues('plazo')])
+    useUpdateEffect(() => {
+        console.log(cobertura_riesgo(getValues('economico.prestamo_f'), getValues('plazo')))
+        setCR(cobertura_riesgo(getValues('economico.prestamo_f'), getValues('plazo')))
+    }, [{ ...getValues('economico') }, getValues('plazo')])
 
-        const reten = (calcularQuincena(preF,getValues("plazo"))*(convenio?.retenciones || 0))
-
-        setQuincena(calcularQuincena(preF,getValues("plazo")))
-        setRetencion(reten)
-        setPrestamo(preF)
-    },[getValues('economico.prestamo_f'),getValues('plazo')])
-    useMountEffect(()=>{
-        const obtener = async()=>{
+    useMountEffect(() => {
+        const obtener = async () => {
             await getAndSetConvenio()
         }
         obtener()
@@ -91,7 +97,13 @@ export const Ticket = ({ getValues, setActiveIndex }) => {
                 </div>
                 <PanelCenter id="comprobante">
                     <p className="text-center text-xl text-green-800 font-bold">
-                        Monto actual:
+                        Monto solicitado:
+                    </p>
+                    <label>
+                        {nf.format(getValues('economico.prestamo_f'))}
+                    </label>
+                    <p className="text-center text-xl text-green-800 font-bold">
+                        Terminas Pagando:
                     </p>
                     <label>{nf.format(prestamo)}</label>
                     <p className="text-center text-xl text-green-800 font-bold">
@@ -105,11 +117,15 @@ export const Ticket = ({ getValues, setActiveIndex }) => {
                         </Divider>
                     </div>
                     <p className="text-center text-xl">
-                        {convenio?.retenciones} Pagos retenidos: {nf.format(retencion)}
+                        {convenio?.retenciones} Pagos retenidos: <label className="font-bold text-red-700">{nf.format(retencion)}</label>
                     </p>
                     <p className="text-center text-xl">
-                        Consulta a buro de credito: $30.00
+                        Cobertura de riesgo: <label className="font-bold text-red-700">{nf.format(CR)}</label>
                     </p>
+                    <p className="text-center text-xl">
+                        Consulta a buro de credito: <label className="font-bold text-red-700">$30.00</label>
+                    </p>
+
                     <div className="w-full">
                         <Divider className='border-green-800 border-3' layout='horizontal'>
                             <div className='w-full bg-green-800 h-full'>
@@ -117,10 +133,10 @@ export const Ticket = ({ getValues, setActiveIndex }) => {
                         </Divider>
                     </div>
                     <p className="text-center text-xl text-green-800 font-bold">
-                        Recibes: {nf.format(prestamo-retencion)}
+                        Recibes: {nf.format(getValues('economico.prestamo_f') - retencion - CR)}
                     </p>
                     <p className="text-center text-xl">
-                        Pagando quincenalmente: {nf.format(quincena)}
+                        Pagando quincenalmente: <label className="font-bold text-green-800">{nf.format(quincena)}</label>
                     </p>
                     <div className="w-full">
                         <Divider className='border-green-800 border-3' layout='horizontal'>
@@ -150,8 +166,9 @@ export const Ticket = ({ getValues, setActiveIndex }) => {
                         </Button>
                     </div>
                     <div className="col">
-                        <Button type="button" onClick={(e)=>{
-                            navigate('/dashboard/clientes/parte2',{replace:true})}} className="flex-wrap align-items-center justify-content-center">
+                        <Button type="button" onClick={(e) => {
+                            navigate('/dashboard/clientes/parte2', { replace: true })
+                        }} className="flex-wrap align-items-center justify-content-center">
                             <FontAwesomeIcon icon="paper-plane" />
                             Enviar
                         </Button>

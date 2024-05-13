@@ -17,16 +17,21 @@ class Usuario extends Authenticatable implements JWTSubject
         "correo",
         "password",
         'rol_id',
-        "convenio"
+        "convenio",
+        "remember_token"
     ];
     protected $hidden = [
         'password',
         'remember_token',
+        "remember_token"
+    ];
+    protected $casts = [
+        'verify_at' => 'datetime',
     ];
     protected $table="usuario";
     protected $primaryKey = "id";
     public $incrementing = true;
-    public $timestamps = false;
+    public $timestamps = true;
 
     public function asesor ():HasOne{
         return $this->hasOne(Asesor::class);

@@ -46,7 +46,7 @@ export const postNotTokenJson = async (URL, data) => {
             {
                 withCredentials: true,
                 headers: {
-                    "Content-Type": 'application/json'
+                    "Content-Type": 'application/json',
                 },
             })
         if (res.error) {
@@ -56,6 +56,7 @@ export const postNotTokenJson = async (URL, data) => {
         }
         
     } catch (error) {
+        console.log(error)
         return { error: error.message }
     }
 }
