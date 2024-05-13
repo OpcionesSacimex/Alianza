@@ -6,6 +6,23 @@ import { InputText } from "primereact/inputtext"
 import { LabelForm } from "../../../globalsComponents/msg/LabelForm"
 import { useUpdateEffect } from "primereact/hooks"
 import { getDirOpenMap } from "../../../globalsComponents/map/handleMaps"
+import PRINT from "print-js"
+import { Button } from "primereact/button"
+
+const saveimg =(e) =>{
+    const guardar = document.createElement('div')
+        const m = document.getElementById('mapa')
+        const mapass = m.cloneNode(true)
+        guardar.append(mapass)
+
+        PRINT({
+            printable: guardar, type: 'html', css: [
+                'https://unpkg.com/primereact@10.6.2/resources/themes/lara-light-indigo/theme.css',
+                'https://unpkg.com/primeflex@latest/primeflex.css',
+              ] 
+        })
+}
+
 export const FrmDireccion =({children,control,errors,getValues,setValue})=>{
 
     const [position,setPosition]=useState()
@@ -37,9 +54,8 @@ export const FrmDireccion =({children,control,errors,getValues,setValue})=>{
             <p className="text-center text-2xl text-green-800 font-bold">
                 Ubicación
             </p>
-            
             <PanelGrid>
-                <div className="col-12 z-0">
+                <div id="" className="col-12 z-0">
                     <Controller control={control} name={`direccion.ubicacion`} render={({field,fieldState})=>(
                         <>
                             <OpenMap setPosition={(e)=>{
@@ -101,7 +117,7 @@ export const FrmDireccion =({children,control,errors,getValues,setValue})=>{
                                 </>
                             )} />
                             </div>
-                            <div className="col-12 lg:col-6">
+                            <div id="try" className="col-12 lg:col-6">
                                 <Controller name={`${f.name}.no_exterior`} control={control} render={({field,fieldState})=>(
                                     <>
                                         <span className="p-float-label">
@@ -122,7 +138,9 @@ export const FrmDireccion =({children,control,errors,getValues,setValue})=>{
                         {children}
                     </div>
                 </div>
+                <Button onClick={saveimg}> </Button>
             </PanelGrid>
         </>
     )
+
 }

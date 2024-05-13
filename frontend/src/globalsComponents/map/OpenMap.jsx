@@ -114,7 +114,7 @@ export const OpenMap = ({setPosition,position,buscar=true,size="400px"}) => {
                                 </>
                                 :<></>
                         }
-                        <div style={{height:size}}>
+                        <div id="mapa" style={{height:size}}>
                             <MapContainer style={{height:"100%", width:"100%"}} center={position} zoom={19} scrollWheelZoom={true} >
 
                                 <TileLayer
