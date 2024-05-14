@@ -6,18 +6,18 @@ import { useEffect, useState } from "react"
 import { Slider } from 'primereact/slider'; 
 import { PanelCenter } from "../../../globalsComponents/panels/PanelCenter"
 import { xpfrom } from "../../../utils/calcule/Porcentaje"
-import { getConvenioCliente } from "../handle/handleCliente"
 import { useUserInfo } from "../../../hooks/useUserAuth"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { classNames } from "primereact/utils"
+import { useConvenio } from "../../../hooks/useConvenio"
 export const FrmMontos=({children,control,errors,getValues,setValue})=>{
-    const {userInfo} = useUserInfo()
+    const {convenio} = useConvenio()
     const [minimo,setMinimo]=useState(0)
     const [maximo,setMaximo]=useState(0)
     const [plazoMin,setPlazoMin]=useState(0)
     const [plazoMax,setPlazoMax]=useState(0)
 
-    const obtenerPlazos = async()=>{
+    /*const obtenerPlazos = async()=>{
         if(userInfo.convenio){
             const res=await getConvenioCliente(userInfo?.convenio)
             if(!res.error){
@@ -30,15 +30,25 @@ export const FrmMontos=({children,control,errors,getValues,setValue})=>{
             }
         }
         
-    }
+    }*/
     
-
     useEffect(()=>{
+        if(convenio.plazoMaximo){
+            const {plazoMinimo,plazoMaximo} = convenio
+            setPlazoMin(plazoMinimo)
+            if(getValues("plazo")===0){
+                setValue('plazo',plazoMaximo)
+            }
+            setPlazoMax(plazoMaximo)
+        }
+    },[{...convenio}])
+
+    /*useEffect(()=>{
         const obtener = async ()=>{
             await obtenerPlazos()
         }
         obtener()
-    },[userInfo])
+    },[userInfo])*/
 
     useEffect(()=>{
         const cap_pago=getValues("economico.disponible_q")
@@ -81,7 +91,7 @@ export const FrmMontos=({children,control,errors,getValues,setValue})=>{
                     }} defaultValue={0} control={control} name="pago_min" render={({field,fieldState})=>(
                         <>
                             <span className="p-float-label mt-4">
-                                <InputNumber autoFocus={true} onFocus={obtenerPlazos} max={maximo} currency="USD" mode="currency" name={field.name} value={field.value ||''} onChange={(e)=>{
+                                <InputNumber autoFocus={true} max={maximo} currency="USD" mode="currency" name={field.name} value={field.value ||''} onChange={(e)=>{
                                     field.onChange(e.value)
                                 }}/>
                                 <LabelForm htmlFor={field.name} status={fieldState.invalid} required={true}>
@@ -115,6 +125,10 @@ export const FrmMontos=({children,control,errors,getValues,setValue})=>{
                                         </>
                                     }
                                 </label>
+                                {
+                                    field.value===0?<label>Por favor espere en lo que actulizamos sus datos</label>:<></>
+                                }
+                                
                             </PanelCenter>
                         </>
                     )}/>               

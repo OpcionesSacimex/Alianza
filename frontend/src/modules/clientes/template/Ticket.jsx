@@ -74,7 +74,6 @@ export const Ticket = ({ getValues, setActiveIndex }) => {
         setPrestamo(qui * (plazo * 2))
     }, [getValues('economico.prestamo_f'), getValues('plazo')])
     useUpdateEffect(() => {
-        console.log(cobertura_riesgo(getValues('economico.prestamo_f'), getValues('plazo')))
         setCR(cobertura_riesgo(getValues('economico.prestamo_f'), getValues('plazo')))
     }, [{ ...getValues('economico') }, getValues('plazo')])
 

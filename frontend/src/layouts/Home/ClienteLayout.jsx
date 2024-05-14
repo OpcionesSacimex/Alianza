@@ -10,12 +10,14 @@ import { useMountEffect, useUpdateEffect } from "primereact/hooks";
 import { getUserData, logOutUser } from "../../modules/acceso/handle/handleAcceso";
 import { Button } from "primereact/button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
+import {useConvenio} from "../../hooks/useConvenio"
+import { getConvenioCliente } from "../../modules/clientes/handle/handleCliente";
 const ClienteLayout = ()=>{
     const outlet = useOutlet();
     const logo= `${URLStorage}/img/image.png`
-    const {logout, auth, setAuth} = useAuth()
-    const {userInfo,setUserInfo} = useUserInfo()
+    const {logout, auth} = useAuth()
+    const {setUserInfo} = useUserInfo()
+    const {setConvenio}= useConvenio()
 
     const navigate=useNavigate();
     const getInfoUserLogged = async () => {
@@ -25,12 +27,15 @@ const ClienteLayout = ()=>{
                 closeSession()
             }else{
                 setUserInfo(res)
+                const conve=await getConvenioCliente(res?.convenio)
+                setConvenio(conve)
                 if(res.rol.id!==1){
                     navigate("/dashboard",{replace:true})
                 }
             }
         }else{
             setUserInfo({})
+            setConvenio(undefined)
         }
 
     }
