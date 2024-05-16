@@ -15,11 +15,11 @@ import {
   faComments,faHandHoldingDollar,faCommentsDollar, faCircleArrowRight,
   faCircleArrowLeft,faFileLines,faMapLocationDot,faFileInvoiceDollar,faClipboardCheck,
   faPrint,faPencilSquare,faPaperPlane,faChevronDown,faBars,faBell,faRightToBracket,faFolderOpen,
-  faSpinner
+  faSpinner, faUserCheck,faHandshakeSimple
 } from '@fortawesome/free-solid-svg-icons'
 library.add(faComments,faHandHoldingDollar,faCommentsDollar,faCircleArrowRight,
   faCircleArrowLeft, faFileLines,faMapLocationDot,faFileInvoiceDollar,faClipboardCheck,
-  faPrint,faPencilSquare,faPaperPlane,faChevronDown,faBars,faBell,faRightToBracket, faFolderOpen,faSpinner)
+  faPrint,faPencilSquare,faPaperPlane,faChevronDown,faBars,faBell,faRightToBracket, faFolderOpen,faSpinner, faUserCheck, faHandshakeSimple)
 function App() {  
   return useRoutes(
     [

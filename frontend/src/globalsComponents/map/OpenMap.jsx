@@ -15,7 +15,7 @@ import { DropDownAutoShow } from "../select/DropDownShow";
 //import {DropDownAutoShow} from "../../selectors/DropDownAutoShow";
 
 
-export const OpenMap = ({setPosition,position,buscar=true,size="400px"}) => {
+export const OpenMap = ({setMap,setPosition,position,buscar=true,size="400px"}) => {
     const toast = useRef(null)
 
     const provider = new OpenStreetMapProvider();
@@ -75,6 +75,7 @@ export const OpenMap = ({setPosition,position,buscar=true,size="400px"}) => {
                 const {latlng:{lat,lng}} = e
                 setPosition([lat,lng])
             },
+
         })
         return null
     }
@@ -114,9 +115,8 @@ export const OpenMap = ({setPosition,position,buscar=true,size="400px"}) => {
                                 </>
                                 :<></>
                         }
-                        <div id="mapa" style={{height:size}}>
+                        <div style={{height:size}}>
                             <MapContainer style={{height:"100%", width:"100%"}} center={position} zoom={19} scrollWheelZoom={true} >
-
                                 <TileLayer
                                     attribution='&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
                                     url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"/>

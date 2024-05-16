@@ -6,15 +6,15 @@ export const ButtonBackGO=({go=false,back=false, onBack,onGo, type="button"})=>{
     {
         back?<>
             <Button type="button" onClick={onBack} rounded text severity="info"> 
-            <FontAwesomeIcon className="buttonsGreen" icon="fa-solid fa-circle-arrow-left" />         
-        </Button>
+                <FontAwesomeIcon className="flechas" icon="fa-solid fa-circle-arrow-left" />         
+            </Button>
         </>:<></>
     }
     {
         go?<>
-        <Button type={type} onClick={onGo} rounded text severity="info"> 
-            <FontAwesomeIcon className="buttonsGreen" icon="fa-solid fa-circle-arrow-right" />
-        </Button>
+            <Button type={type} onClick={onGo} rounded text severity="info"> 
+                <FontAwesomeIcon className="flechas" icon="fa-solid fa-circle-arrow-right" />
+            </Button>
     </>:<></>
     }
     </>

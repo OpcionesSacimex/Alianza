@@ -9,14 +9,20 @@
     font-family: 'Presidencia Fina', 'sans-serif';
     font-size: 1.5em;
     outline: none;
-    padding: 10px 5px 10px 0px;
+    padding: 10px 0px 10px 0px;
     text-align: center;
 }
 
 .buttonsGreen{
   color:rgb(4, 61, 9);
-  font-size: 2.5em;
   flex: 100%;
+  
+}
+
+.flechas{
+  color:rgb(4, 61, 9);
+  flex: 100%;
+  font-size: 3rem;
 }
 
 .p-steps-item:before{
@@ -27,7 +33,7 @@
 }
 
 .slider-tem{
-  height: 1rem !important;
+  height: rem !important;
   border-radius: 50px;
 }
 .slider-tem .p-slider-range{
@@ -61,4 +67,20 @@
 
 .p-card-body{
   padding: 0;
+}
+
+@keyframes bounce {
+  0%, 10%, 40%, 70%, 90% {
+    transform: translateY(0);
+  }
+  30% {
+    transform: translateY(-20px);
+  }
+  50% {
+    transform: translateY(-05px);
+  }
+}
+
+.icon-bounce {
+  animation: bounce 5s infinite;
 }

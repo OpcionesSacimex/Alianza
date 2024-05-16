@@ -23,22 +23,22 @@ export const CompleteRegister = () => {
     const toast = useRef(null)
     const items = [
         {
-            label: 'Datos personales',
+            label: '1.Datos personales',
             icon: "file-lines",
             command: (e) => { },
             template: (item) => StepsModel(item, 0, activeIndex, setActiveIndex)
         }, {
-            label: "Socioeconómico",
+            label: "2.Socioeconómico",
             icon: "comments-dollar",
             command: (e) => { },
             template: (item) => StepsModel(item, 1, activeIndex, setActiveIndex)
         }, {
-            label: 'Detalles del crédito',
+            label: '3.Detalles del crédito',
             icon: "hand-holding-dollar",
             command: (e) => { },
             template: (item) => StepsModel(item, 2, activeIndex, setActiveIndex)
         }, {
-            label: 'Solicitud de crédito',
+            label: '4.Solicitud de crédito',
             icon: "file-invoice-dollar",
             command: (e) => { },
             template: (item) => StepsModel(item, 3, activeIndex, setActiveIndex)
@@ -108,7 +108,7 @@ export const CompleteRegister = () => {
                                 </div>
                                 <div className={`${classNames({ 'hidden': activeIndex !== 3 })}`}>
                                     <FrmSolicitud control={control} errors={{...errors}} getValues={getValues}>
-                                        <ButtonBackGO onBack={onBack} onGo={onGo} back={true} go={true} />
+                                        <ButtonBackGO className="text-xs" onBack={onBack} onGo={onGo} back={true} go={true} />
                                     </FrmSolicitud>
                                 </div>
                                 <div className={`${classNames({ 'hidden': activeIndex !== 4 })}`}>

@@ -8,7 +8,7 @@ import { FileUpload } from 'primereact/fileupload';
 export const FrmDocs = () => {
     const documents = [
         {
-            name: 'Comprobante de ingresos.',
+            name: 'Últimos tres talones de pago.',
             image: 'x.png',
         },
         {
@@ -43,7 +43,7 @@ export const FrmDocs = () => {
                     <div className='col-7'>
                         <h4 className="text-md">{document.name}</h4>
                         <div className="flex flex-wrap justify-content-center">
-                            <FileUpload chooseLabel='Abrir archivo' uploadLabel='Subir ' name="demo[]" url={'/api/upload'} accept="/*" maxFileSize={1000000} emptyTemplate={<p className="m-0"></p>} />
+                            <FileUpload chooseLabel='Abrir archivo' uploadLabel='Subir' name="demo[]" url={'/api/upload'} accept="/*" maxFileSize={1000000} emptyTemplate={<p className="m-0"></p>} />
                         </div>
                     </div>
                 </PanelGrid>
