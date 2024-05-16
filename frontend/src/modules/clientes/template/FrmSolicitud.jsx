@@ -7,36 +7,40 @@ import { Controller } from "react-hook-form"
 import { calcularCredito } from "../../../utils/calcule/Creditos"
 import { getConvenioCliente } from "../handle/handleCliente"
 import { useUserInfo } from "../../../hooks/useUserAuth"
+import { useConvenio } from "../../../hooks/useConvenio"
 
 export const FrmSolicitud = ({ children, control, errors,getValues }) => {
     const {userInfo,} = useUserInfo()
-    const [convenio,setConvenio] =useState({})
+    //const [convenio,setConvenio] =useState({})
+    const {convenio} = useConvenio()
     const [prestamoMax, setPrestamoMax] = useState(0)
 
-    const getAndSetConvenio=async()=>{
+    /*const getAndSetConvenio=async()=>{
         const res = await getConvenioCliente(userInfo?.convenio)
         if(!res.error){
             setConvenio(res)
         }else{
 
         }
-    }
+    }*/
     useEffect(()=>{
+        
         const pago=getValues("pago_min")
         const plazo=getValues("plazo")
         const pf = parseFloat(calcularCredito({
             tasa: (((convenio?.tasa || 26.4)/12)/100) ,
             pagoQuincenal:pago ||0,
-            meses:plazo
+            meses:plazo,
+            max:(convenio?.montoMaximo?parseFloat(convenio.montoMaximo):undefined)
         }))
         setPrestamoMax(Math.round(pf/500)*500)
     },[getValues("pago_min"),getValues("plazo")])
-    useMountEffect(()=>{
+    /*useMountEffect(()=>{
         const obtener = async()=>{
             await getAndSetConvenio()
         }
         obtener()
-    })
+    })*/
     return (
         <>
             <div className="align-content-center">

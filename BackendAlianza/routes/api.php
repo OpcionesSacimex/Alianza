@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\Usuario\ExistController;
+use App\Http\Controllers\Usuario\UsuarioUtilController;
 use App\Http\Controllers\convenio\ConvenioController;
 use Whoops\Run;
 
@@ -20,9 +21,10 @@ Route::middleware('auth:api')->post('/usuario/refresh',[UsuarioController::class
 Route::middleware('auth:api')->get('/usuario/user', [UsuarioController::class,'getUser']);
 Route::middleware('auth:api')->post('/usuario/logout', [UsuarioController::class,'logout']);
 Route::post('/usuario/createUser',[UsuarioController::class,'create']);
-
 Route::post('/usuario/formulario',[UsuarioController::class,'ingresarPersona']);
 Route::post('/usuario/email_verify',[ExistController::class,'validar_correo']);
+
+Route::post('/usario/activarcorreo',[UsuarioUtilController::class,'activar_correo']);
 //clientes
 Route::middleware('auth:api')->post('/persona/updateUser', [PersonaController::class,'updateUser']);
 Route::post('/persona/createUser',[PersonaController::class,'create']);

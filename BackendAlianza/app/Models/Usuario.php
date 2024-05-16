@@ -18,16 +18,16 @@ class Usuario extends Authenticatable implements JWTSubject
         "password",
         'rol_id',
         "convenio",
-        "remember_token"
+        "remember_token",
+        "verify_at"
     ];
     protected $hidden = [
         'password',
         'remember_token',
-        "remember_token"
     ];
-    protected $casts = [
+    /*protected $casts = [
         'verify_at' => 'datetime',
-    ];
+    ];*/
     protected $table="usuario";
     protected $primaryKey = "id";
     public $incrementing = true;
