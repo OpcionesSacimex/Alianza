@@ -1,4 +1,4 @@
 {
     "vscode-pets.petSize": "large",
-    "vscode-pets.throwBallWithMouse": true
+    "vscode-pets.throwBallWithMouse": false
 }

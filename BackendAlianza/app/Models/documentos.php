@@ -10,15 +10,9 @@ class documentos extends Model
 {
     use HasFactory;
     protected $fillable = [
-        "credencial",
-        "croquis",
-        "foto",
-        "comp_dom",
-        "status",
-        "observaciones",
-        "comprobante_peso",
-        "comprobante_total",
-        "ine",
+        "cliente_id",
+        "status_docs_id",
+        "tipo_doc_id",
         "autorizacion"
     ];
     protected $table="documentos";
@@ -28,5 +22,11 @@ class documentos extends Model
 
     public function cliente(): HasOne{
         return $this->hasOne(Cliente::class);
+    }
+    public function status(): HasOne {
+        return $this->hasOne(Status_docs::class);
+    }
+    public function tipo(): HasOne {
+        return $this->hasOne(Tipo_doc::class);
     }
 }

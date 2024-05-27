@@ -11,6 +11,8 @@ return new class extends Migration
     {
         Schema::create('aval', function (Blueprint $table) {
             $table->id();
+            $table->unsignedInteger('telefono_id');
+            $table->foreign("telefono_id")->nullable(false)->references('id')->on('telefono');
             $table->foreignId("persona_id")->nullable(false)->references('id')->on('persona');
             $table->foreignId("clientes_id")->nullable(false)->references('id')->on('cliente');
         });

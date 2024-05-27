@@ -23,6 +23,7 @@ Route::middleware('auth:api')->post('/usuario/logout', [UsuarioController::class
 Route::post('/usuario/createUser',[UsuarioController::class,'create']);
 Route::post('/usuario/formulario',[UsuarioController::class,'ingresarPersona']);
 Route::post('/usuario/email_verify',[ExistController::class,'validar_correo']);
+Route::post('/usuario/numero_verify',[ExistController::class,'validar_numero']);
 
 Route::post('/usario/activarcorreo',[UsuarioUtilController::class,'activar_correo']);
 //clientes

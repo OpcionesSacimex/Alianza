@@ -12,7 +12,7 @@ return new class extends Migration
         Schema::create('asesor', function (Blueprint $table) {
             $table->id();
             $table->foreignId("persona_id")->nullable(false)->references('id')->on('persona');
-            $table->foreignId("usuario_id")->nullable(false)->references('id')->on('usuario');
+            $table->foreignId("usuario_id")->references('id')->on('usuario');
         });
     }
 

@@ -18,12 +18,6 @@ class DatabaseSeeder extends Seeder
         $this->call(Status_docs::class);
         $this->call(UserRol::class);
         $this->call(Tipo_doc::class);
-        // \App\Models\User::factory(10)->create();
-
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
     }
 
 }

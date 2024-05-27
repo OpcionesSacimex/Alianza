@@ -7,7 +7,7 @@ import {Password} from "primereact/password"
 import {Button} from "primereact/button"
 import { useNavigate } from "react-router"
 import { OverlayPanel } from 'primereact/overlaypanel';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ContentDialog } from "../../../globalsComponents/dialog/ContentDialog"
 import { PasswordResetEmail } from "./PasswordResetEmail"
 import { loginUser} from "../handle/handleAcceso"

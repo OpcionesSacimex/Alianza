@@ -14,25 +14,29 @@ class Usuario extends Authenticatable implements JWTSubject
 {
     use HasFactory;
     protected $fillable = [
-        "correo",
+        "activo",
         "password",
         'rol_id',
         "convenio",
-        "remember_token",
-        "verify_at"
+        "correo_id",
+        "telefono_id"
     ];
     protected $hidden = [
         'password',
         'remember_token',
     ];
-    /*protected $casts = [
-        'verify_at' => 'datetime',
-    ];*/
     protected $table="usuario";
     protected $primaryKey = "id";
     public $incrementing = true;
     public $timestamps = true;
+    
 
+    public function correo ():HasOne{
+        return $this->hasOne(Correo::class);
+    }
+    public function telefono ():HasOne{
+        return $this->hasOne(Telefono::class);
+    }
     public function asesor ():HasOne{
         return $this->hasOne(Asesor::class);
     }

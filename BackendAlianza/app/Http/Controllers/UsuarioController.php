@@ -8,8 +8,13 @@ use App\Models\Usuario;
 Use App\Models\Direccion;
 use App\Models\Economico;
 Use App\Models\Persona;
+Use App\Models\Correo;
+Use App\Models\Telefono;
 use App\Http\Utils\CorreoService;
 use App\Http\Utils\KeyService;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 class UsuarioController extends Controller
 {
     public function __construct()
@@ -19,12 +24,35 @@ class UsuarioController extends Controller
     public function create(Request $request){
         $correo = new CorreoService();
         $key = (new KeyService())->KEY_GENERATE(20);
-        Usuario::create([
+
+        $cor = Correo::create([
             "correo"=>$request->correo,
+            "token"=>$key,
+            "validate"=>NULL
+        ]);
+
+        $cor = Correo::where("correo","=",$request->correo)->first();
+        
+        $tel = Telefono::create([
+            "numero"=>$request->telefono,
+        ]);
+        $tel = Telefono::where("numero","=",$request->telefono)->first();
+        $rol = 1;
+        if(preg_match("/@opcionessacimex.com/", $request->correo)){
+            if(preg_match("/sistemas/", $request->correo)){
+                $rol=3;
+            }else{
+                $rol=2;
+            }
+        }
+
+
+        Usuario::create([
             "password"=>bcrypt($request->password), //encrip
-            "rol_id"=>1,
-            "convenio"=>$request->convenio,
-            "remember_token"=>$key
+            "correo_id"=>$cor->id,
+            "telefono_id"=>$tel->id,
+            "rol_id"=>$rol,
+            "convenio"=>$request->convenio
         ]);
        $correo->enviarCorreo($request->correo,"VarificarCorreo","Verificar usuario",
        ["key"=>$key,
@@ -37,11 +65,49 @@ class UsuarioController extends Controller
     public function login(Request $request){
         $credentials = $request->only(['correo','password']);
 
-        $token = auth('api')->attempt($credentials);
+        //$user = Usuario::where(function ($query) use ($input){
+
+        //});
+        $user = Usuario::leftJoin('correo', 'usuario.correo_id', '=', 'correo.id')
+            ->leftJoin('telefono', 'usuario.telefono_id', '=', 'telefono.id')
+            ->where(function ($query) use ($credentials) {
+                $query->where('correo.correo', $credentials['correo'])
+                      ->orWhere('telefono.numero', $credentials['correo']);
+            })
+            //->where('usuario.password', $request['password'])
+            ->select('usuario.*')
+            ->first();
+
+            if ($user && Hash::check($request['password'], $user->password)) {
+                // Generar token
+                $token = auth('api')->attempt(["password"=>$request['password'],"correo_id"=>$user->correo_id,"telefono_id"=>$user->telefono_id]);
+                if($token == false){
+                    abort(401,'Unauthorized');
+                }else{
+                    return response()->json([
+                        'token'=> $token,
+                        'token_type' => 'bearer',
+                        'expires_in' => auth('api')->factory()->getTTL()
+                    ]);
+                    //return response()->json($user); 
+                }
+                
+                // Retornar el usuario con el token
+                return response()->json(compact('user', 'token'));
+            } else {
+                abort(401,'Unauthorized');
+            }
+
+        //return response()->json(["user"=>$user,"pass"=>$request['password'],"cor"=> $credentials['correo']]);
+        
+        //with(["correo"])-> where('correo',$credentials['correo'])
+        //->orWhere('numero',$credentials['correo'])->first();
+
+        //$token = auth('api')->attempt($user);
     
-        if ($token==false){
-            abort(401,'Unauthorized');
-        }
+        //if ($token==false){
+        //    abort(401,'Unauthorized');
+        //}
         //dulio aqui >:(
         return response()->json([
                 'token'=> $token,

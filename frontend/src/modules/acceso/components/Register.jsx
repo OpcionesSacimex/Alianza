@@ -3,6 +3,7 @@ import {PanelCenter} from "../../../globalsComponents/panels/PanelCenter"
 import {PanelGrid} from "../../../globalsComponents/panels/PanelGrid"
 import {InputText} from "primereact/inputtext"
 import {Password} from "primereact/password"
+import {InputMask} from "primereact/inputmask"
 import {Card} from "primereact/card"
 import { ContentDialog } from "../../../globalsComponents/dialog/ContentDialog"
 import {useRef, useState } from "react"
@@ -12,7 +13,7 @@ import { useNavigate } from "react-router"
 import { Button } from "primereact/button"
 import {Controller,useForm} from "react-hook-form"
 import {LabelForm,ErrorLabel} from "../../../globalsComponents/msg/LabelForm"
-import {createUser, getConvenioExistente, getCorreoExistente} from "../handle/handleAcceso"
+import {createUser, getConvenioExistente, getCorreoExistente, getNumeroExistente} from "../handle/handleAcceso"
 import { Toast } from 'primereact/toast';
 import { classNames } from "primereact/utils"
         
@@ -25,6 +26,7 @@ const Registrate=()=>{
     const [content,setContent] = useState(<></>)
     const [password,setPassword]=useState("")
     const [existe,setExiste] =useState(false)
+    const [existeTel,setExisteTel] =useState(false)
     const [existeConvenio,setExisteConvenio]=useState(false)
 
     const {control,reset,handleSubmit,formState:{errors}} =useForm()
@@ -68,7 +70,16 @@ const Registrate=()=>{
         const {existe:ex} = cor
         setExiste(ex)
     }
+    const validarNumero=async(value)=>{
+        let telefono = value.replace(/ /g, "")
+        const tel = await getNumeroExistente({
+            telefono: telefono
+        })
+        const {existe:ex} = tel
+        setExisteTel(ex)
+    }
     const onSubmit=async(data)=>{
+        data.telefono = data.telefono.replace(/ /g, "")
         const res = await createUser(data)
         if(!res.error){
             toast.current.show({severity:'success', summary: "Registro exitoso", detail: 'Gracias'})
@@ -129,6 +140,24 @@ const Registrate=()=>{
                                     <ErrorLabel name={field.name} errors={{...errors}}></ErrorLabel>
                                 </>
                             )}/>
+                        </div>
+                        <div className="col-12 mb-2">
+                            <Controller rules={{
+                                required: "El teléfono es requerido.",
+                                validate:(v)=>!existeTel||"Este numero ya fue registrado",
+                            }} control={control} name="telefono" render={({ field, fieldState }) => (
+                                <>
+                                    <span className="mt-2 p-float-label">
+                                        <InputMask name={field.name} onBlur={(e)=>{
+                                            validarNumero(e.target.value)
+                                        }} value={field.value || ''} placeholder="999 999 99 99" onChange={(e) => field.onChange(e.value)} mask="999 999 99 99"  />
+                                        <LabelForm htmlFor={field.name} status={fieldState.invalid} required={true}>
+                                            Número telefónico:
+                                        </LabelForm>
+                                    </span>
+                                    <ErrorLabel name={field.name} errors={{ ...errors }}></ErrorLabel>
+                                </>
+                            )} />
                         </div>
                         <div className="col-12 mb-4">
                             <Controller rules={{
