@@ -47,16 +47,23 @@ class UsuarioController extends Controller
                 $rol=2;
             }
         }
-
-
-        Usuario::create([
+        $user=Usuario::create([
             "password"=>bcrypt($request->password), //encrip
             "correo_id"=>$cor->id,
             "telefono_id"=>$tel->id,
             "rol_id"=>$rol,
             "convenio"=>$request->convenio
         ]);
+
+        if($rol == 1){
+            Cliente::create([
+                "usuario_id"=>$user->id
+            ]);
+        }
        $correo->enviarCorreo($request->correo,"VarificarCorreo","Verificar usuario",
+       
+
+
        ["key"=>$key,
         "origen"=>env("ORIGIN_URL") . "home/validate"]);
         
@@ -118,6 +125,19 @@ class UsuarioController extends Controller
                 'expires_in' => auth('api')->factory()->getTTL()
             ]);
     }
+    //--//
+    public function getUser(Request $request){
+        $id = $request->user()->id;
+        $user = Usuario::with('rol')->find($id);
+        $user->socio = Cliente::where("usuario_id","=",$id)
+        ->with('persona')
+        ->with('direccion')
+        ->with('economico')
+        ->first();
+
+        return response()->json($user);
+    }
+
     public function searchC(Request $request){
         $credentials = $request->only(['correo','password']);
 
@@ -167,11 +187,7 @@ class UsuarioController extends Controller
             'status'=>true,
         ],200);
     }
-    public function getUser(Request $request){
-        $id = $request->user()->id;
-        $user = Usuario::with('rol')->find($id);
-        return response()->json($user);
-    }
+    
     public function logout()
     {
         auth('api')->logout();

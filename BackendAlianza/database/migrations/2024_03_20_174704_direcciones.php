@@ -11,8 +11,8 @@ return new class extends Migration
         Schema::create('direccion', function (Blueprint $table) {
             $table->id();
             $table->string("calle",45);
-            $table->string("no_exterior",8);
-            $table->string("no_interior",8);
+            $table->string("no_exterior",8)->nullable(true);
+            $table->string("no_interior",8)->nullable(true);
             $table->string("cp",5);
             $table->string("colonia",45);
             $table->string("latitud",45);

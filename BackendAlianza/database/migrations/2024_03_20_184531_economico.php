@@ -11,11 +11,11 @@ return new class extends Migration
     {
         Schema::create('economico', function (Blueprint $table) {
             $table->id();
-            $table->float("ingresos_q");
+            $table->float("ingreso_q");
             $table->float("disponible_q");
             $table->float("prestamo_f");
             $table->string("plazo_f");
-            $table->string("clabe_int",18);
+            $table->string("clabe_int",18)->nullable(true);
         });
     }
 

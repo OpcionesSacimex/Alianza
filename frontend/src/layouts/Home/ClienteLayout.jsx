@@ -27,6 +27,7 @@ const ClienteLayout = ()=>{
                 closeSession()
             }else{
                 setUserInfo(res)
+                console.log(res)
                 const conve=await getConvenioCliente(res?.convenio)
                 setConvenio(conve)
                 if(res.rol.id!==1){

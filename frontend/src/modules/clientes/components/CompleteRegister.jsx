@@ -1,5 +1,5 @@
 
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, } from 'react';
 import { Steps } from 'primereact/steps';
 import { PanelCenter } from '../../../globalsComponents/panels/PanelCenter';
 import { Card } from 'primereact/card';
@@ -12,12 +12,13 @@ import { useForm} from 'react-hook-form'
 import { ButtonBackGO } from '../template/ButtonBackGO';
 import { FrmSolicitud } from '../template/FrmSolicitud';
 import { Ticket } from '../template/Ticket';
-import { createCliente } from '../handle/handleCliente';
+import { createSolicitud } from '../handle/handleCliente';
 import { confirmDialog } from "primereact/confirmdialog";
 import { Toast } from "primereact/toast"
 import { classNames } from 'primereact/utils';
+import { useNavigate } from 'react-router';
 export const CompleteRegister = () => {
-
+    const navigate = useNavigate()
     const { control, trigger, getValues, setValue, handleSubmit, reset, formState: { errors } } = useForm()
     const [activeIndex, setActiveIndex] = useState(0);
     const toast = useRef(null)
@@ -56,7 +57,6 @@ export const CompleteRegister = () => {
     }
 
     const onSubmit = (data) => {
-
         confirmDialog({
             message: "¿Confirmar solicitud de crédito?",
             accept: (e) => { onAccept(data) },
@@ -67,10 +67,14 @@ export const CompleteRegister = () => {
         toast.current.show({ severity: 'warn', summary: 'Info', detail: 'Solicitud cancelada' })
     }
     const onAccept = async (data) => {
-        const res = await createCliente(data)
+        const res = await createSolicitud(data)
+        if(!res.error){
+            navigate('/dashboard/clientes/parte2', { replace: true })
+        }else{
+            toast.current.show({ severity: 'error', summary: 'error', detail:res.error})
+        }
         console.log(data)
         console.log(res)
-    
     }
 
     return (
@@ -97,18 +101,18 @@ export const CompleteRegister = () => {
                                 </div>
                                 <form onSubmit={handleSubmit(onSubmit)} >
                                 <div className={`${classNames({ 'hidden': activeIndex !== 1 })}`}>
-                                    <FrmEconomico control={control} errors={{...errors}} getValues={getValues}>
+                                    <FrmEconomico control={{...control}} errors={{...errors}} getValues={getValues} onGo={onGo}>
                                         <ButtonBackGO onBack={onBack} onGo={onGo} back={true} go={true} />
                                     </FrmEconomico>
                                 </div>
                                 <div className={`${classNames({ 'hidden': activeIndex !== 2 })}`}>
-                                    <FrmMontos control={control} errors={{...errors}} getValues={getValues} setValue={setValue}>
+                                    <FrmMontos control={{...control}} errors={{...errors}} getValues={getValues} setValue={setValue}>
                                         <ButtonBackGO onBack={onBack} onGo={onGo} back={true} go={true} />
                                     </FrmMontos>
                                 </div>
                                 <div className={`${classNames({ 'hidden': activeIndex !== 3 })}`}>
-                                    <FrmSolicitud control={control} errors={{...errors}} getValues={getValues}>
-                                        <ButtonBackGO className="text-xs" onBack={onBack} onGo={onGo} back={true} go={true} />
+                                    <FrmSolicitud control={{...control}} errors={{...errors}} getValues={getValues}>
+                                        <ButtonBackGO onBack={onBack} back={true} onGo={onGo} go={true}/>
                                     </FrmSolicitud>
                                 </div>
                                 <div className={`${classNames({ 'hidden': activeIndex !== 4 })}`}>

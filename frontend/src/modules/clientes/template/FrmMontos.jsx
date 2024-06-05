@@ -6,7 +6,6 @@ import { useEffect, useState } from "react"
 import { Slider } from 'primereact/slider'; 
 import { PanelCenter } from "../../../globalsComponents/panels/PanelCenter"
 import { xpfrom } from "../../../utils/calcule/Porcentaje"
-import { useUserInfo } from "../../../hooks/useUserAuth"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { classNames } from "primereact/utils"
 import { useConvenio } from "../../../hooks/useConvenio"
@@ -17,22 +16,8 @@ export const FrmMontos=({children,control,errors,getValues,setValue})=>{
     const [plazoMin,setPlazoMin]=useState(0)
     const [plazoMax,setPlazoMax]=useState(0)
 
-    /*const obtenerPlazos = async()=>{
-        if(userInfo.convenio){
-            const res=await getConvenioCliente(userInfo?.convenio)
-            if(!res.error){
-                const {plazoMinimo,plazoMaximo} = res
-                setPlazoMin(plazoMinimo)
-                if(getValues("plazo")===0){
-                    setValue('plazo',plazoMaximo)
-                }
-                setPlazoMax(plazoMaximo)
-            }
-        }
-        
-    }*/
-    
-    useEffect(()=>{
+ 
+   useEffect(()=>{
         if(convenio.plazoMaximo){
             const {plazoMinimo,plazoMaximo} = convenio
             setPlazoMin(plazoMinimo)
@@ -42,13 +27,6 @@ export const FrmMontos=({children,control,errors,getValues,setValue})=>{
             setPlazoMax(plazoMaximo)
         }
     },[{...convenio}])
-
-    /*useEffect(()=>{
-        const obtener = async ()=>{
-            await obtenerPlazos()
-        }
-        obtener()
-    },[userInfo])*/
 
     useEffect(()=>{
         const cap_pago=getValues("economico.disponible_q")

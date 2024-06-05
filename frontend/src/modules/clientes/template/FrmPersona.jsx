@@ -2,18 +2,18 @@ import { PanelGrid } from "../../../globalsComponents/panels/PanelGrid"
 import { InputText } from "primereact/inputtext"
 import { Controller, useForm } from "react-hook-form"
 import { LabelForm, ErrorLabel } from "../../../globalsComponents/msg/LabelForm"
-import { InputMask } from "primereact/inputmask"
 import { ButtonBackGO } from "./ButtonBackGO"
 import { crearPersonaCliente } from "../handle/handleCliente"
 import { Toast } from "primereact/toast"
 import { useRef } from "react"
+import { useUserInfo } from "../../../hooks/useUserAuth"
+import { useUpdateEffect } from "primereact/hooks"
 export const FrmPersona = ({ onGo }) => {
-
+    const {userInfo} = useUserInfo()
     const toast = useRef(null)
     const { control, getValues, setValue, handleSubmit, formState: { errors } } = useForm()
 
     const onSubmit = async(data) => {
-        data.telefono = data.telefono.replace(/ /g, "")
         const res=await crearPersonaCliente(data)
         if(!res.error){
             //toast.current.show({severity:'success', summary: 'Exitoso',detail:"Actualizacion exitosa", life: 4000})
@@ -21,9 +21,17 @@ export const FrmPersona = ({ onGo }) => {
         }else{
             toast.current.show({severity:'error', summary: 'Error', detail:res.error, life: 4000})
         }
-        
-        
     }
+    useUpdateEffect(()=>{
+        if(userInfo.id){
+            const {socio:{persona}} = userInfo
+            if(persona){
+                setValue("nombre",persona.nombre)
+                setValue("ape_pat",persona.ape_pat)
+                setValue("ape_mat",persona.ape_mat)
+            }
+        }
+    },[userInfo])
     return (
         <>
         <Toast ref={toast}></Toast>

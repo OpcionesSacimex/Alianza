@@ -18,18 +18,25 @@ use Whoops\Run;
 //acceso y usuario
 Route::post('/usuario/createUser',[UsuarioController::class,'create']);
 Route::post('/usuario/login',[UsuarioController::class,'login']);
-
-
-Route::middleware('auth:api')->post('/usuario/refresh',[UsuarioController::class,'refresh']);
 Route::middleware('auth:api')->get('/usuario/user', [UsuarioController::class,'getUser']);
+
+
+//clientes
+Route::middleware('auth:api')->post('/persona/updateUser', [PersonaController::class,'updateUser']);
+Route::middleware('auth:api')->post('/cliente/solicitudCreate', [ClienteController::class,'solicitudCreate']);
+
+
+//Revisar
+Route::middleware('auth:api')->post('/usuario/refresh',[UsuarioController::class,'refresh']);
 Route::middleware('auth:api')->post('/usuario/logout', [UsuarioController::class,'logout']);
 Route::post('/usuario/formulario',[UsuarioController::class,'ingresarPersona']);
 Route::post('/usuario/email_verify',[ExistController::class,'validar_correo']);
 Route::post('/usuario/numero_verify',[ExistController::class,'validar_numero']);
 
 Route::post('/usario/activarcorreo',[UsuarioUtilController::class,'activar_correo']);
-//clientes
-Route::middleware('auth:api')->post('/persona/updateUser', [PersonaController::class,'updateUser']);
+
+
+
 Route::post('/persona/createUser',[PersonaController::class,'create']);
 Route::get('/cliente/tipo_doc',[DocumentoController::class,'allTipo']);
 Route::get('/cliente/status_docs',[StatusController::class,'allStatus']);
@@ -39,7 +46,7 @@ Route::post('/economico/createEconomico',[EconomicoController::class,'create']);
 Route::middleware('auth:api')->post('/cliente/createCliente', [UsuarioController::class,'ingresarPersona']);
 
 Route::middleware('auth:api')->get('/cliente/search', [ClienteController::class,'getCliente']);
-Route::middleware('auth:api')->get('/cliente/create', [ClienteController::class,'create']);
+
 Route::post('/usuario/search',[UsuarioController::class,'searchC']);
 
 Route::middleware('auth:api')->post('/cliente/get', [UsuarioController::class,'ingresarPersona']);

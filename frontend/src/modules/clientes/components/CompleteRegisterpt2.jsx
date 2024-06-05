@@ -11,7 +11,6 @@ import { StepsModel } from "../../../globalsComponents/steps/StepsModel"
 import { confirmDialog } from "primereact/confirmdialog";
 import { Card } from 'primereact/card';
 import { Steps } from 'primereact/steps';
-import { createCliente } from '../handle/handleCliente';
 import { FrmDocs } from '../template/FrmDocs';
 
 export const CompleteRegisterpt2 = () => {
@@ -55,9 +54,7 @@ export const CompleteRegisterpt2 = () => {
         toast.current.show({ severity: 'warn', summary: 'Info', detail: 'Solicitud cancelada' })
     }
     const onAccept = async (data) => {
-        const res = await createCliente(data)
-        console.log(data)
-        console.log(res)
+       console.log(data)
 
     }
 

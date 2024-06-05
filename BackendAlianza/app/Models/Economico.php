@@ -10,7 +10,7 @@ class Economico extends Model
 {
     use HasFactory;
     protected $fillable = [
-        "ingresos_q",
+        "ingreso_q",
         "disponible_q",
         "prestamo_f",
         "plazo_f",
