@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('cliente', function (Blueprint $table) {
             $table->id();
             $table->foreignId("usuario_id")->nullable(true)->references('id')->on('usuario');
-            $table->foreignId("persona_id")->nullable(false)->references('id')->on('persona');
-            $table->foreignId("direccion_id")->nullable(false)->references('id')->on('direccion');
-            $table->foreignId("economico_id")->nullable(false)->references('id')->on('economico');
+            $table->foreignId("persona_id")->nullable(true)->references('id')->on('persona');
+            $table->foreignId("direccion_id")->nullable(true)->references('id')->on('direccion');
+            $table->foreignId("economico_id")->nullable(true)->references('id')->on('economico');
         });
     }
 

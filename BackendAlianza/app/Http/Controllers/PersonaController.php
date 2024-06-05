@@ -13,8 +13,7 @@ class PersonaController extends Controller
         $userData = [
             "nombre"=>$request->nombre,
             "ape_pat"=>$request->ape_pat,
-            "ape_mat"=>$request->ape_mat,
-            "telefono"=>$request->telefono
+            "ape_mat"=>$request->ape_mat
         ];
         Persona::updateOrCreate(
             ['id' => $id], // Condiciones de búsqueda para el usuario existente

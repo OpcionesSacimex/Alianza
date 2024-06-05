@@ -10,7 +10,7 @@ import { useRef } from "react"
 export const FrmPersona = ({ onGo }) => {
 
     const toast = useRef(null)
-    const { control, getValues, setValue, handleSubmit, reset, formState: { errors } } = useForm()
+    const { control, getValues, setValue, handleSubmit, formState: { errors } } = useForm()
 
     const onSubmit = async(data) => {
         data.telefono = data.telefono.replace(/ /g, "")
@@ -73,22 +73,6 @@ export const FrmPersona = ({ onGo }) => {
                                         <InputText id={field.name} maxLength={45} name={field.name} value={field.value || ""} onChange={field.onChange} />
                                         <LabelForm htmlFor={field.name} status={fieldState.invalid} required={true}>
                                             Apellido Materno:
-                                        </LabelForm>
-                                    </span>
-                                    <ErrorLabel name={field.name} errors={{ ...errors }}></ErrorLabel>
-                                </>
-                            )} />
-                        </div>
-
-                        <div className="col-12">
-                            <Controller rules={{
-                                required: "El teléfono es requerido."
-                            }} control={control} name="telefono" render={({ field, fieldState }) => (
-                                <>
-                                    <span className="mt-2 p-float-label">
-                                        <InputMask name={field.name} value={field.value || ''} placeholder="999 999 99 99" onChange={(e) => field.onChange(e.value)} mask="999 999 99 99" />
-                                        <LabelForm htmlFor={field.name} status={fieldState.invalid} required={true}>
-                                            Número telefónico:
                                         </LabelForm>
                                     </span>
                                     <ErrorLabel name={field.name} errors={{ ...errors }}></ErrorLabel>

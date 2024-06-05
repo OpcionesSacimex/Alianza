@@ -12,8 +12,7 @@ class Persona extends Model
     protected $fillable = [
         "nombre",
         "ape_pat",
-        "ape_mat",
-        "telefono"
+        "ape_mat"
     ];
     protected $table="persona";
     protected $primaryKey = "id";
@@ -29,4 +28,5 @@ class Persona extends Model
     public function aval(): HasMany{
         return $this->hasMany(Aval::class);
     }
+    
 }

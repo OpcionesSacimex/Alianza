@@ -16,7 +16,6 @@ return new class extends Migration
             $table->string("nombre",45);
             $table->string("ape_pat",45);
             $table->string("ape_mat",45);
-            $table->string("telefono",10);
         });
     }
 

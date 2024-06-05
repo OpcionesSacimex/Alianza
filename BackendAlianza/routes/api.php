@@ -16,11 +16,13 @@ use App\Http\Controllers\convenio\ConvenioController;
 use Whoops\Run;
 
 //acceso y usuario
+Route::post('/usuario/createUser',[UsuarioController::class,'create']);
 Route::post('/usuario/login',[UsuarioController::class,'login']);
+
+
 Route::middleware('auth:api')->post('/usuario/refresh',[UsuarioController::class,'refresh']);
 Route::middleware('auth:api')->get('/usuario/user', [UsuarioController::class,'getUser']);
 Route::middleware('auth:api')->post('/usuario/logout', [UsuarioController::class,'logout']);
-Route::post('/usuario/createUser',[UsuarioController::class,'create']);
 Route::post('/usuario/formulario',[UsuarioController::class,'ingresarPersona']);
 Route::post('/usuario/email_verify',[ExistController::class,'validar_correo']);
 Route::post('/usuario/numero_verify',[ExistController::class,'validar_numero']);

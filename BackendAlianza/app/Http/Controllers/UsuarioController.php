@@ -17,10 +17,12 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 class UsuarioController extends Controller
 {
+    //---//
     public function __construct()
     {
         $this->middleware('auth:api', ['except' => ['login','create']]);
     }
+    //---//
     public function create(Request $request){
         $correo = new CorreoService();
         $key = (new KeyService())->KEY_GENERATE(20);
@@ -62,6 +64,7 @@ class UsuarioController extends Controller
             'status'=>true,
         ],200);
     }
+    //---//
     public function login(Request $request){
         $credentials = $request->only(['correo','password']);
 
