@@ -24,7 +24,7 @@ Route::middleware('auth:api')->get('/usuario/user', [UsuarioController::class,'g
 //clientes
 Route::middleware('auth:api')->post('/persona/updateUser', [PersonaController::class,'updateUser']);
 Route::middleware('auth:api')->post('/cliente/solicitudCreate', [ClienteController::class,'solicitudCreate']);
-
+Route::post('/cliente/createDireccion',[ClienteController::class,'createDireccion']);
 
 //Revisar
 Route::middleware('auth:api')->post('/usuario/refresh',[UsuarioController::class,'refresh']);
@@ -41,7 +41,7 @@ Route::post('/persona/createUser',[PersonaController::class,'create']);
 Route::get('/cliente/tipo_doc',[DocumentoController::class,'allTipo']);
 Route::get('/cliente/status_docs',[StatusController::class,'allStatus']);
 //Route::post('/persona/updateUser',[PersonaController::class,'updateUser']);
-Route::post('/direccion/createDireccion',[DireccionController::class,'create']);
+
 Route::post('/economico/createEconomico',[EconomicoController::class,'create']);
 Route::middleware('auth:api')->post('/cliente/createCliente', [UsuarioController::class,'ingresarPersona']);
 
